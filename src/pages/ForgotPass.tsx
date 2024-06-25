@@ -10,13 +10,13 @@ export default function ForgotPass() {
     <div className="container-fluid">
 
         <div className="flex flex-col md:flex-row">
-            <div className="item itemImg object-cover basis-2/4 hidden md:block" >
-                <img src={forgotBG} alt=""/>
+            <div className="item itemImg object-cover basis-2/4 hidden md:block h-full" >
+                <img className="w-full object-cover" src={forgotBG} alt=""/>
             </div>
 
             <div className="item itemForm flex flex-col basis-2/4 gap-4 items-center justify-center p-4   ">
 
-                <section className="Regisform flex flex-col gap-4 py-8">
+                <section className="Regisform flex flex-col gap-4 p-8 w-full">
 
                     <section className="logoJudul flex-logo flex flex-row gap-2">
                         <img className="itemLogo h-8" src={logoCoffee} alt="logoCoffee"/>
@@ -24,7 +24,7 @@ export default function ForgotPass() {
                     </section>
 
                     <header>
-                        <h3 > Fill out
+                        <h3 className="text-amber-700 text-base" > Fill out
                             the form correctly</h3>
                     </header>
 
@@ -41,7 +41,7 @@ export default function ForgotPass() {
                             </div>
                         </div>
 
-                        <button className="item font-semibold border-2 bg-oren w-full rounded rounded-lg"
+                        <button className="item font-semibold border-2 border-oren bg-oren w-full h-8 rounded rounded-lg"
                             type="submit">submit</button>
 
                     </form>
