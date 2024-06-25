@@ -1,14 +1,15 @@
-import { Outlet, createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 
-import Class from "./pages/Example/Class";
-import Function from "./pages/Example/Function";
-// import Position from "./pages/Position";
-import Shop from "./pages/Example/Shop";
-
+import CheckoutProduct from "./pages/CheckoutProduct"
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Index from "./pages/Index";
+import OrderDetails from "./pages/OrderDetails";
+import DetailProduct from "./pages/DetailProduct";
+import HistoryOrder from "./pages/HistoryOrder";
+import Profile from "./pages/Profile";
+import ForgotPass from "./pages/ForgotPass";
 
 
 function Error() {
@@ -30,6 +31,26 @@ const routerWithChildren = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: "checkout",
+        element: <CheckoutProduct />
+      },
+      {
+        path: 'orderdetails',
+        element: <OrderDetails/>
+      },
+      {
+        path: 'detailproduct',
+        element: <DetailProduct/>
+      },
+      {
+        path: 'historyorder',
+        element: <HistoryOrder/>
+      },
+      {
+        path: 'profile',
+        element: <Profile/>
+      },
+      {
         path: "*",
         element: <NotFound />,
       },
@@ -42,6 +63,10 @@ const routerWithChildren = createBrowserRouter([
   {
     path: '/register',
     element: <Register/>,
+  },
+  {
+    path: 'forgot',
+    element: <ForgotPass/>
   },
   {
     path: "*",
