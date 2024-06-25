@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import bg_coffeLogin from "../images/loginBG.jpg"
 import logoCoffee from "../images/logoCoffee.png";
@@ -17,7 +16,7 @@ const Login = () => {
         <div className="container-fluid">
             <div className="flex flex-col md:flex-row w-full">
                 <div className="item itemImg object-cover basis-2/4 hidden md:block" style={{ flex: 1 }}>
-                    <img src={bg_coffeLogin} alt="Logo Coffee" />
+                    <img className='h-full object-cover' src={bg_coffeLogin} alt="Logo Coffee" />
                 </div>
                 <div className="item itemForm flex flex-col basis-2/4 gap-4 items-center justify-center p-4">
                     <section className="Regisform flex flex-col gap-4 py-8">
@@ -26,8 +25,8 @@ const Login = () => {
                             <img className="itemTulisanCoffee h-8" src={coffeeShop} alt="Coffee Shop" />
                         </section>
                         <header className="flex flex-col gap-4">
-                            <p className="bg-amber-700 text-3xl">Login</p>
-                            <h3 style={{ fontFamily: 'Plus Jakarta Sans', color: 'rgba(142, 100, 71, 1)' }}>Fill out the form correctly</h3>
+                            <p className="text-amber-700 text-3xl">Login</p>
+                            <h3 className="text-amber-700" >Fill out the form correctly</h3>
                         </header>
                         <form className="flex-form flex flex-col gap-4">
                                 <Input

@@ -17,8 +17,8 @@ function Register() {
     <div className="container-fluid">
 
         <div className="flex flex-col md:flex-row w-full h-full">
-            <div className="item itemImg object-cover basis-2/4 hidden md:block" style={{ flex: 1 }}>
-                <img src={bg_coffeLogin} alt=""/>
+            <div className="item itemImg  basis-2/4 hidden md:block" style={{ flex: 1 }}>
+                <img className='h-full object-cover' src={bg_coffeLogin} alt=""/>
             </div>
 
             <div className="item itemForm flex flex-col basis-2/4 gap-4 items-center justify-center p-4">
@@ -28,7 +28,7 @@ function Register() {
                             <img className="itemTulisanCoffee h-8" src={coffeeShop} alt="Coffee Shop" />
                         </section>
                         <header className="flex flex-col gap-4">
-                            <p className="bg-amber-700 text-3xl">Register</p>
+                            <p className="text-amber-700 text-3xl">Register</p>
                             <h3 className=''>Fill out the form correctly</h3>
                         </header>
                         <form className="flex-form flex flex-col gap-4">

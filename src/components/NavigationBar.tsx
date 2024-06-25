@@ -1,32 +1,28 @@
 import { Link } from "react-router-dom";
 
+import searchIcon from "../icons/magnifying-glass.ico"
+import shopingCart from "../icons/shopping-cart.ico"
 import ThreeDots from "../assets/ThreeDots.svg"
 import logokopi from "../images/logoCoffee.png"
 import tulisankopi from "../images/coffeeShop.png"
-import { MouseEventHandler, useEffect, useState } from 'react';
-
+import { MouseEventHandler, useState } from 'react';
 
 function NavigationBar() {
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const dropDown: MouseEventHandler<HTMLButtonElement> = (event) => {
-        document.addEventListener("DOMContentLoaded", function () {
-            const menuButton = document.getElementById("menu-button");
-            const dropdownMenu = document.querySelector(".absolute[aria-labelledby='menu-button']");
+        
+            console.log("test jalan");
+            const dropdownMenu = document.querySelector('.absolute[aria-labelledby="menu-button"]');
+            const dropdownMenu1 = document.querySelector('.absolute[aria-labelledby="menu-button1"]');
 
-            menuButton?.addEventListener("click", function () {
-                setIsDropdownOpen(prevState => !prevState);
-            });
 
-            document.addEventListener("click", function (documentEvent) {
-                if (menuButton instanceof Node && dropdownMenu instanceof Node) {
-                    if (!menuButton.contains(documentEvent.target as Node) && !dropdownMenu.contains(documentEvent.target as Node)) {
-                        setIsDropdownOpen(false);
-                    }
-                }
-            });
-        });
+            setIsDropdownOpen((prevState) => !prevState)
+
+            isDropdownOpen ? dropdownMenu1?.classList.remove('hidden') : dropdownMenu1?.classList.add('hidden');
+            isDropdownOpen ? dropdownMenu?.classList.remove('hidden') : dropdownMenu?.classList.add('hidden');
+        
     }
 
     return (
@@ -38,7 +34,7 @@ function NavigationBar() {
                         <img className="itemTulisanCoffee h-10" src={tulisankopi} alt="" />
                     </div>
                     <div className="flex flex-row text-white gap-4">
-                        <Link to="/">Home</Link>
+                        <Link to="/home">Home</Link>
                         <Link to="/product">Product</Link>
                     </div>
                 </div>
@@ -52,35 +48,29 @@ function NavigationBar() {
                         </Link>
                     </div>
                     <button>
-                        <Link to="/login" className="border-2 border-white p-4 rounded">
+                        <Link to="/login" className="border-2 border-white py-2 px-4 rounded">
                             Sign In
                         </Link>
                     </button>
                     <button>
-                        <Link to="/register" className="border-2 border-oren p-4 bg-oren rounded">
+                        <Link to="/register" className="border-2 border-oren py-2 px-4 bg-oren rounded">
                             Sign Up
                         </Link>
                     </button>
-                </div>
-            </nav>
-            <nav className=" py-2 px-4 bg-black items-center sticky top-0  md:hidden">
-                <div className="relative inline-block flex flex-row justify-between items-center py-2 px-4 bg-black sticky top-0  md:hidden">
-                    <div className="flex flex-row gap-4">
-                        <img className="itemLogo h-6 md:h-8" src={logokopi} alt="logoCoffee" />
-                        <img className="itemTulisanCoffee h-6 md:h-8" src={tulisankopi} alt="" />
-                    </div>
                     <div>
                         <div>
-                            <button onClick={dropDown} type="button"
+                            <button 
+                            onClick= {dropDown}
+                            type="button"
                                 className="dropdown-menu bg-black inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 "
                                 id="menu-button" aria-expanded="true" aria-haspopup="true">
                                 <img src={ThreeDots} alt="" />
                             </button>
                         </div>
                         <div className="bg-white absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md hidden shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-black"
-                            role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
+                            role="menu" aria-orientation="vertical" aria-labelledby="menu-button1">
                             <div className="py-1" role="none">
-                                <Link to="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
+                                <Link to="/home" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
                                     id="menu-item-0">Home</Link>
                                 <Link to="/product" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
                                     id="menu-item-1">Product</Link>
@@ -95,12 +85,59 @@ function NavigationBar() {
                             </div>
                             <div className="py-1 " role="none">
                                 <Link to="#" className="block px-4 py-2 text-sm text-gray-700 flex flex-row gap-2 items-center hover:bg-orange-300"  id="menu-item-2">
-                                    <img className="h-4 w-4" src="../icons/magnifying-glass.ico" alt="" />
+                                    <img className="h-4 w-4" src={searchIcon} alt="" />
                                     <p>Search</p>
                                 </Link>
                                 <Link to="#" className="block px-4 py-2 text-sm text-gray-700 flex flex-row gap-2 items-center hover:bg-orange-300" 
                                     id="menu-item-3">
-                                    <img className="h-4 w-4" src="../icons/shopping-cart.ico" alt="" />
+                                    <img className="h-4 w-4" src={shopingCart} alt="" />
+                                    <p>Shooping Cart</p>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <nav className=" py-2 px-4 bg-black items-center sticky top-0  md:hidden">
+                <div className="relative inline-block flex flex-row justify-between items-center py-2 px-4 bg-black sticky top-0  md:hidden">
+                    <div className="flex flex-row gap-4">
+                        <img className="itemLogo h-6 md:h-8" src={logokopi} alt="logoCoffee" />
+                        <img className="itemTulisanCoffee h-6 md:h-8" src={tulisankopi} alt="" />
+                    </div>
+                    <div>
+                        <div>
+                            <button 
+                            onClick= {dropDown}
+                            type="button"
+                                className="dropdown-menu bg-black inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 "
+                                id="menu-button" aria-expanded="true" aria-haspopup="true">
+                                <img src={ThreeDots} alt="" />
+                            </button>
+                        </div>
+                        <div className="bg-white absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md hidden shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-black"
+                            role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
+                            <div className="py-1" role="none">
+                                <Link to="/home" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
+                                    id="menu-item-0">Home</Link>
+                                <Link to="/product" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
+                                    id="menu-item-1">Product</Link>
+                                <Link to="/order-details" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
+                                    id="menu-item-1">Order Details</Link>
+                                <Link to="/details-product" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
+                                    id="menu-item-1">Details Product</Link>
+                                <Link to="/orders-history" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
+                                    id="menu-item-1">Orders History</Link>
+                                <Link to="/checkout-product" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
+                                    id="menu-item-1">Checkout Product</Link>
+                            </div>
+                            <div className="py-1 " role="none">
+                                <Link to="#" className="block px-4 py-2 text-sm text-gray-700 flex flex-row gap-2 items-center hover:bg-orange-300"  id="menu-item-2">
+                                    <img className="h-4 w-4" src={searchIcon} alt="" />
+                                    <p>Search</p>
+                                </Link>
+                                <Link to="#" className="block px-4 py-2 text-sm text-gray-700 flex flex-row gap-2 items-center hover:bg-orange-300" 
+                                    id="menu-item-3">
+                                    <img className="h-4 w-4" src={shopingCart} alt="" />
                                     <p>Shooping Cart</p>
                                 </Link>
                             </div>

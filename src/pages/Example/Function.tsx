@@ -1,7 +1,7 @@
 // rfce
 import { useState } from "react";
 
-import Profile from "../components/Profile";
+import Profile from "../../components/Profile";
 // import Header from "../components/Header";
 
 import publicFormIcon from "../assets/form-icon.png";

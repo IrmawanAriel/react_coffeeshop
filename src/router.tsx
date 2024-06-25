@@ -1,13 +1,14 @@
 import { Outlet, createBrowserRouter } from "react-router-dom";
 
-import Class from "./pages/Class";
-import Function from "./pages/Function";
+import Class from "./pages/Example/Class";
+import Function from "./pages/Example/Function";
 // import Position from "./pages/Position";
-import Shop from "./pages/Shop";
+import Shop from "./pages/Example/Shop";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Index from "./pages/Index";
 
 
 function Error() {
@@ -21,20 +22,12 @@ function NotFound() {
 const routerWithChildren = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <Index />,
     errorElement: <Error />,
     children: [
       {
-        path: "class",
-        element: <Class />,
-      },
-      {
-        path: "function",
-        element: <Function />,
-      },
-      {
-        path: "shop",
-        element: <Shop />,
+        path: "home",
+        element: <Home />,
       },
       {
         path: "*",
