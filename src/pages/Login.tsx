@@ -25,8 +25,8 @@ const Login = () => {
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
-        setUser((prevUser) => ({
-            ...prevUser,
+        setUser((User) => ({
+            ...User,
             [name]: value,
         }));
     };
@@ -35,8 +35,7 @@ const Login = () => {
         e.preventDefault(); //mencegah page reload
 
         const url = 'http://localhost:8000/users/login';
-        try {
-            const result = await axios.post(url, {
+        try { await axios.post( url, {
                 email: user.email,
                 password: user.password
               }, {
@@ -44,7 +43,6 @@ const Login = () => {
                   'Content-Type': 'application/x-www-form-urlencoded'
                 }
             });
-            console.log(result)
 
         } catch(error) {
             console.log(error)

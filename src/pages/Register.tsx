@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Input from '../components/Input'
 import { Link } from 'react-router-dom';
 import bg_coffeLogin from "../images/loginBG.jpg"
@@ -12,6 +12,19 @@ import GoogleFacebook from '../components/GoogleFacebook';
 import fullname from '../icons/fullname.png';
 
 function Register() {
+
+    type TRegist =  {
+        fullname: string;
+        email: string;
+        password: string;
+    }
+
+    const [registData, setRegistData] = useState<TRegist>();
+
+    const formSubmit = async () => {
+        
+    }
+
   return (
     
     <div className="container-fluid">
@@ -31,25 +44,25 @@ function Register() {
                             <p className="text-amber-700 text-3xl">Register</p>
                             <h3 className=''>Fill out the form correctly</h3>
                         </header>
-                        <form className="flex-form flex flex-col gap-4">
+                        <form onSubmit={formSubmit} className="flex-form flex flex-col gap-4">
                                 <Input
                                     img={{ src: fullname, alt: 'image gagal' }}
-                                    input={{ type: 'text', name: 'fullname', placeholder: 'Enter your Fulname' }}
+                                    input={{ type: 'text', name: 'fullname', placeholder: 'Enter your Fulname', value: , onChange: }}
                                     label="fullname"
                                 />
                                 <Input
                                     img={{ src: emailIcon, alt: 'image gagal' }}
-                                    input={{ type: 'text', name: 'email', placeholder: 'Enter your email' }}
+                                    input={{ type: 'text', name: 'email', placeholder: 'Enter your email', value: , onChange: }}
                                     label="Email"
                                 />
                                 <Input
                                     img={{ src: passwordIcon, alt: 'image gagal' }}
-                                    input={{ type: 'password', name: 'password', placeholder: 'Enter your password' }}
+                                    input={{ type: 'password', name: 'password', placeholder: 'Enter your password', value: , onChange: }}
                                     label="password"
                                 />
                                 <Input
                                     img={{ src: passwordIcon, alt: 'image gagal' }}
-                                    input={{ type: 'password', name: 'password', placeholder: 'Enter your password again' }}
+                                    input={{ type: 'password', name: 'password', placeholder: 'Enter your password again', value: , onChange:  }}
                                     label="passwordConfirm"
                                 />
                             <button className="item font-semibold border-2 bg-oren w-full rounded rounded-lg" type="submit">Register</button>
