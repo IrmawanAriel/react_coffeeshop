@@ -4,12 +4,10 @@ import { RouterProvider } from "react-router-dom";
 
 import './styles/TailwindCSS.css'
 import  router  from './router.tsx';
+import { SignInToken } from './components/context/SignInToken.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-
+  <SignInToken>
     <RouterProvider router={router}/>
-
-
-  </React.StrictMode>,
+  </SignInToken>
 )

@@ -11,6 +11,7 @@ import HistoryOrder from "./pages/HistoryOrder";
 import Profile from "./pages/Profile";
 import ForgotPass from "./pages/ForgotPass";
 import AxiosTry from "./components/AxiosTry";
+import Product from "./pages/Product";
 
 
 function Error() {
@@ -30,6 +31,10 @@ const routerWithChildren = createBrowserRouter([
       {
         path: "home",
         element: <Home />,
+      },
+      {
+        path: "product",
+        element: <Product />
       },
       {
         path: "checkoutproduct",

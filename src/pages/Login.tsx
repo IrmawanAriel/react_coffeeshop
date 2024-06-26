@@ -7,10 +7,11 @@ import passwordIcon from "../icons/password.png";
 import googleIcon from "../icons/google.png";
 import facebookIcon from "../icons/facebook.png";
 import GoogleFacebook from '../components/GoogleFacebook';
-
+import { useNavigate } from 'react-router-dom';
 import Input from '../components/Input';
 import { useState } from 'react';
 import axios from 'axios';
+import { useSignInState } from '../components/context/SignInToken';
 
 interface user {
     email: string;
@@ -18,7 +19,7 @@ interface user {
 }
 
 const Login = () => {
-
+    const navigate = useNavigate();
     const [user, setUser]= useState<user>({email: '', password: ''})
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,9 +32,10 @@ const Login = () => {
 
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault(); //mencegah page reload
-
-        const url = 'http://localhost:8000/users/login';
-        try { await axios.post( url, {
+        const url = 'http://localhost:8000/users/login'; 
+        let result;
+        try {
+             result = await axios.post( url, {
                 email: user.email,
                 password: user.password
               }, {
@@ -41,11 +43,14 @@ const Login = () => {
                   'Content-Type': 'application/x-www-form-urlencoded'
                 }
             });
-
+            console.log(result.data.data[0].token);
+            result.status === 200 ? navigate("/home") : Error('Failed to login');
         } catch(error) {
             console.log(error)
         }
-
+        const {assignToken} = useSignInState();
+        
+        assignToken(result?.data.data[0].token); // tidak berjalan
     }
     
     return (
