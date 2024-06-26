@@ -56,7 +56,7 @@ function Register() {
                         </form>
                         <section className="login-container flex flex-col gap-2 md:gap-4 w-full items-center justify-center">
                             <div className="haveAccount flex flex-row gap-2">
-                                <p>Doesn't have an account?</p> <Link className="text-oren" to="/register">Register</Link>
+                                <p>Already have an account?</p> <Link className="text-oren" to="/login">Login</Link>
                             </div>
                             <div className="separator flex flex-row">
                                 <hr className="line border-2 bor" />

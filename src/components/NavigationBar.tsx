@@ -41,10 +41,10 @@ function NavigationBar() {
                 <div className="flex flex-row gap-4 items-center text-white">
                     <div className="flex flex-row gap-4">
                         <Link to="#" className="searchButton">
-                            <img className="w-4" src="../icons/search.png" alt="" />
+                            <img className="w-4" src={searchIcon} alt="" />
                         </Link>
                         <Link to="#" className="shopingCartItem">
-                            <img className="w-4" src="../icons/shopingcart.png" alt="" />
+                            <img className="w-4" src={shopingCart} alt="" />
                         </Link>
                     </div>
                     <button>
@@ -74,13 +74,13 @@ function NavigationBar() {
                                     id="menu-item-0">Home</Link>
                                 <Link to="/product" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
                                     id="menu-item-1">Product</Link>
-                                <Link to="/order-details" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
+                                <Link to="/orderdetails" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
                                     id="menu-item-1">Order Details</Link>
-                                <Link to="/details-product" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
+                                <Link to="/detailsproduct" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
                                     id="menu-item-1">Details Product</Link>
-                                <Link to="/orders-history" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
+                                <Link to="/historyorder" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
                                     id="menu-item-1">Orders History</Link>
-                                <Link to="/checkout-product" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
+                                <Link to="/checkoutproduct" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
                                     id="menu-item-1">Checkout Product</Link>
                             </div>
                             <div className="py-1 " role="none">
@@ -121,13 +121,13 @@ function NavigationBar() {
                                     id="menu-item-0">Home</Link>
                                 <Link to="/product" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
                                     id="menu-item-1">Product</Link>
-                                <Link to="/order-details" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
+                                <Link to="/orderdetails" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
                                     id="menu-item-1">Order Details</Link>
-                                <Link to="/details-product" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
+                                <Link to="/detailsproduct" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
                                     id="menu-item-1">Details Product</Link>
-                                <Link to="/orders-history" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
+                                <Link to="/historyorder" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
                                     id="menu-item-1">Orders History</Link>
-                                <Link to="/checkout-product" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
+                                <Link to="/checkoutproduct" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300" 
                                     id="menu-item-1">Checkout Product</Link>
                             </div>
                             <div className="py-1 " role="none">

@@ -6,12 +6,52 @@ import emailIcon from "../icons/email.png";
 import passwordIcon from "../icons/password.png";
 import googleIcon from "../icons/google.png";
 import facebookIcon from "../icons/facebook.png";
-
-
-import Input from '../components/Input';
 import GoogleFacebook from '../components/GoogleFacebook';
 
+import Input from '../components/Input';
+import { useState } from 'react';
+import axios from 'axios';
+
+interface user {
+    email: string;
+    password: string;
+}
+
 const Login = () => {
+
+    const [user, setUser]= useState<user>({email: '', password: ''})
+    const [Password, setPass]= useState("")
+
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+        setUser((prevUser) => ({
+            ...prevUser,
+            [name]: value,
+        }));
+    };
+
+    const handleSubmit = async (e: { preventDefault: () => void; }) => {
+        e.preventDefault(); //mencegah page reload
+
+        const url = 'http://localhost:8000/users/login';
+        try {
+            const result = await axios.post(url, {
+                email: user.email,
+                password: user.password
+              }, {
+                headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+            console.log(result)
+
+        } catch(error) {
+            console.log(error)
+        }
+
+    }
+    
     return (
         <div className="container-fluid">
             <div className="flex flex-col md:flex-row w-full">
@@ -28,15 +68,15 @@ const Login = () => {
                             <p className="text-amber-700 text-3xl">Login</p>
                             <h3 className="text-amber-700" >Fill out the form correctly</h3>
                         </header>
-                        <form className="flex-form flex flex-col gap-4">
+                        <form onSubmit={handleSubmit} className="flex-form flex flex-col gap-4 ">
                                 <Input
                                     img={{ src: emailIcon, alt: 'image gagal' }}
-                                    input={{ type: 'text', name: 'email', placeholder: 'Enter your email' }}
+                                    input={{ type: 'text', name: 'email', placeholder: 'Enter your email', value: user.email, onChange: handleChange }}
                                     label="Email"
                                 />
                                 <Input
                                     img={{ src: passwordIcon, alt: 'image gagal' }}
-                                    input={{ type: 'password', name: 'password', placeholder: 'Enter your password' }}
+                                    input={{ type: 'password', name: 'password', placeholder: 'Enter your password', value: user.password, onChange: handleChange }}
                                     label="password"
                                 />
                             <button className="item font-semibold border-2 bg-oren w-full rounded rounded-lg" type="submit">Login</button>
