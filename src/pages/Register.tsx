@@ -10,19 +10,50 @@ import googleIcon from "../icons/google.png";
 import facebookIcon from "../icons/facebook.png";
 import GoogleFacebook from '../components/GoogleFacebook';
 import fullname from '../icons/fullname.png';
+import axios from 'axios';
 
 function Register() {
 
-    type TRegist =  {
+    type TRegist = {
         fullname: string;
         email: string;
         password: string;
-    }
+    };
 
-    const [registData, setRegistData] = useState<TRegist>();
+    const [registData, setRegistData] = useState<TRegist>({
+        fullname: '',
+        email: '',
+        password: '',
+    });
 
-    const formSubmit = async () => {
-        
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+        setRegistData((prevRegistData) => ({
+            ...prevRegistData,
+            [name]: value,
+        }));
+    };
+
+    const formSubmit = async (e: { preventDefault: () => void; }) => {
+
+        e.preventDefault();
+
+        const url = 'http://localhost:8000/users/register'
+        try {
+            const result = await axios.post(url, {
+                fullname: registData.fullname,
+                email: registData.email,
+                password: registData.password,
+              }, {
+                headers: {
+                  'Content-Type': 'multipart/form-data'
+                }
+              }
+            )
+            console.log(result.data)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
   return (
@@ -47,24 +78,24 @@ function Register() {
                         <form onSubmit={formSubmit} className="flex-form flex flex-col gap-4">
                                 <Input
                                     img={{ src: fullname, alt: 'image gagal' }}
-                                    input={{ type: 'text', name: 'fullname', placeholder: 'Enter your Fulname', value: , onChange: }}
+                                    input={{ type: 'text', name: 'fullname', placeholder: 'Enter your Fulname', value: registData.fullname , onChange: handleChange}}
                                     label="fullname"
                                 />
                                 <Input
                                     img={{ src: emailIcon, alt: 'image gagal' }}
-                                    input={{ type: 'text', name: 'email', placeholder: 'Enter your email', value: , onChange: }}
+                                    input={{ type: 'text', name: 'email', placeholder: 'Enter your email', value: registData.email , onChange: handleChange }}
                                     label="Email"
                                 />
                                 <Input
                                     img={{ src: passwordIcon, alt: 'image gagal' }}
-                                    input={{ type: 'password', name: 'password', placeholder: 'Enter your password', value: , onChange: }}
+                                    input={{ type: 'password', name: 'password', placeholder: 'Enter your password', value: registData.password , onChange: handleChange }}
                                     label="password"
                                 />
-                                <Input
+                                {/* <Input
                                     img={{ src: passwordIcon, alt: 'image gagal' }}
                                     input={{ type: 'password', name: 'password', placeholder: 'Enter your password again', value: , onChange:  }}
                                     label="passwordConfirm"
-                                />
+                                /> */}
                             <button className="item font-semibold border-2 bg-oren w-full rounded rounded-lg" type="submit">Register</button>
                         </form>
                         <section className="login-container flex flex-col gap-2 md:gap-4 w-full items-center justify-center">

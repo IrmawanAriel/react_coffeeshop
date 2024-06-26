@@ -20,8 +20,6 @@ interface user {
 const Login = () => {
 
     const [user, setUser]= useState<user>({email: '', password: ''})
-    const [Password, setPass]= useState("")
-
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
