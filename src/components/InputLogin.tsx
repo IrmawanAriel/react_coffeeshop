@@ -1,16 +1,11 @@
 import React, { ChangeEvent, useState } from 'react';
 import axios from 'axios'; 
-import emailIcon from "../icons/email.png";
-import passwordIcon from "../icons/password.png";
 
 interface email {
   email: {
     email: string;
     password: string;
   }
-}
-interface pass {
-  password: string
 }
 
 type InputProps = {
@@ -28,7 +23,7 @@ type InputProps = {
   onTogglerHandler?: (e: React.MouseEvent) => void;
 };
 
-const [email, setEmail] = useState<email>();
+const [email] = useState<email>();
 // const [password, setPassword] = useState();
 
 function InputLogin(props: InputProps) {
@@ -45,7 +40,7 @@ function InputLogin(props: InputProps) {
     }
   };
 
-  function onInputChange(e: ChangeEvent<HTMLInputElement>): void {
+  function onInputChange(): void {
     throw new Error('Function not implemented.');
   }
 

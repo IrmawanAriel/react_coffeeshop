@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import Product from '../pages/Product';
 import axios from "axios";
 import orenShopingCart from "../icons/orenshopingcart.png"
 import gambartest from "../images/p2.png"
@@ -20,25 +19,25 @@ export default function Cards() {
         image?: string;
     }
 
-    interface productImg {
-        id?: number;
-        image?: string;
-    }
+    // interface productImg {
+    //     id?: number;
+    //     image?: string;
+    // }
 
-    interface IPaginationMeta {
-        totalData?: number;
-        totalPage?: number;
-        page: number;
-        prevLink: string | null;
-        nextLink: string | null;
-    }
+    // interface IPaginationMeta {
+    //     totalData?: number;
+    //     totalPage?: number;
+    //     page: number;
+    //     prevLink: string | null;
+    //     nextLink: string | null;
+    // }
 
-    interface IBasicResponse {
-        msg: string;
-        data?: any[];
-        err?: string;
-        meta?: IPaginationMeta;
-    }
+    // interface IBasicResponse {
+    //     msg: string;
+    //     data?: any[];
+    //     err?: string;
+    //     meta?: IPaginationMeta;
+    // }
 
 
     const [Products, setProduct] = useState<productBody[]>([])

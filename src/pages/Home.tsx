@@ -4,9 +4,7 @@ import testimonies from "../images/70840a4caeb335701029d52bbb650fae.jpeg"
 import HomeSvg from '../assets/HomeSvg.svg'
 import kopiHome from '../images/kopiHome.png'
 import baristaHome from '../images/1ff108caf42e05aafc2d71749bf4d116.jpeg'
-import p2 from "../images/p2.png"
 import accept from "../icons/accept.ico"
-import orenShopingCart from "../icons/orenshopingcart.png"
 import Cards from '../components/Cards';
 
 export default function Home() {

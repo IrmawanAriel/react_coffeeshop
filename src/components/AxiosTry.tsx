@@ -1,6 +1,6 @@
-import axios, { AxiosResponse } from 'axios';
-import React, { useState } from 'react'
-import Input from './Input';
+import axios from 'axios';
+import { useState } from 'react'
+
 
  interface productBody {
     id?: number;
