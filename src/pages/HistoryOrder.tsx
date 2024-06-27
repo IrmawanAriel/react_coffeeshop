@@ -1,4 +1,3 @@
-import React from 'react';
 
 // Importing images
 import calendarIcon from '../icons/calendar.png';

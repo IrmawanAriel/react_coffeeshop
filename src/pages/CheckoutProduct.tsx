@@ -1,4 +1,3 @@
-import React from 'react'
 import productImage from '../images/p2.png';
 import xButtonIcon from '../icons/Xbutton.png';
 import bankersIcon from '../icons/Bankers.png';

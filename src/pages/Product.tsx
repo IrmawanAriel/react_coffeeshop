@@ -1,4 +1,3 @@
-import React from 'react';
 import HeaderProduct from '../images/HeaderProduct.png';
 import LeftCarouselArrow from '../icons/leftCarouselArrow.png';
 import RightCarouselArrow from '../icons/rightCarouselArrow.png';
@@ -6,11 +5,8 @@ import Image46 from '../images/image 46.png';
 import P2 from '../images/p2.png';
 import Orenshoppingcart from '../icons/orenshopingcart.png';
 import Arrowkanan from '../icons/Arrowkanan.png';
-import { useSignInState } from '../components/context/SignInToken';
 
 function Product() {
-
-  const {token} = useSignInState()
   
   return (
     <main>

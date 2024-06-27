@@ -10,7 +10,7 @@ function NavigationBar() {
 
     
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const dropDown: MouseEventHandler<HTMLButtonElement> = (event) => {
+    const dropDown: MouseEventHandler<HTMLButtonElement> = () => {
         const dropdownMenu = document.querySelector('.absolute[aria-labelledby="menu-button"]');
         const dropdownMenu1 = document.querySelector('.absolute[aria-labelledby="menu-button1"]');
         setIsDropdownOpen((prevState) => !prevState)

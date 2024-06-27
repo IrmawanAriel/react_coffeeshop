@@ -1,4 +1,3 @@
-import axios from "axios";
 import { ChangeEventHandler } from "react";
 
 type InputProps = {

@@ -49,7 +49,6 @@ const Login = () => {
             console.log(error)
         }
         const {assignToken} = useSignInState();
-        
         assignToken(result?.data.data[0].token); // tidak berjalan
     }
     

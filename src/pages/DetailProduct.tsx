@@ -1,4 +1,3 @@
-import React from 'react';
 import kopidetail from '../images/kopidetail.png';
 import orenshopingcart from '../icons/orenshopingcart.png';
 import p2 from '../images/p2.png';
