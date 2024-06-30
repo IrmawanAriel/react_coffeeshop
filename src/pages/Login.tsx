@@ -18,7 +18,10 @@ interface user {
     password: string;
 }
 
+
+
 const Login = () => {
+    const {assignToken} = useSignInState(); //context provider
     const navigate = useNavigate();
     const [user, setUser]= useState<user>({email: '', password: ''})
 
@@ -30,27 +33,29 @@ const Login = () => {
         }));
     };
 
-    const handleSubmit = async (e: { preventDefault: () => void; }) => {
-        e.preventDefault(); //mencegah page reload
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         const url = 'http://localhost:8000/users/login'; 
         let result;
         try {
              result = await axios.post( url, {
                 email: user.email,
                 password: user.password
-              }, {
-                headers: {
-                  'Content-Type': 'application/x-www-form-urlencoded'
-                }
             });
-            console.log(result.data.data[0].token);
-            result.status === 200 ? navigate("/home") : Error('Failed to login');
+
+            if(result.status !== 200){
+                throw Error('Failed to login');
+            }
+            assignToken(result?.data.data[0].token); // tidak berjalan
+            navigate("/home")
+            
         } catch(error) {
             console.log(error)
         }
-        const {assignToken} = useSignInState();
-        assignToken(result?.data.data[0].token); // tidak berjalan
     }
+
+    
     
     return (
         <div className="container-fluid">

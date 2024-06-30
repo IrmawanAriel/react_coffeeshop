@@ -62,14 +62,16 @@ export default function Cards() {
 
         <div className="product-list flex flex-wrap md:flex-row gap-8 p-8 justify-center">
             {Products?.map((product) => (
-                <div key={product.uuid} className="max-w-sm rounded overflow-hidden relative">
-                    {product.image ? (
-                        <img className="-mt-16" src={`http://localhost:8000/${product.image}`} alt={product.product_name} />
-                    ) : (
-                        <img className="-mt-16" src={gambartest} alt={product.product_name} />
-                    )}
+                <div key={product.uuid} className="max-w-sm rounded overflow-hidden relative h-[470px]">
+                    <div className="" > 
+                        {product.image ? (
+                            <img className="-mt-16 object-cover object-top  w-full h-[400px] " src={`http://localhost:8000/${product.image}`} alt={product.product_name} />
+                        ) : (
+                            <img className="-mt-16 object-cover object-top  w-full h-[400px] " src={gambartest} alt={product.product_name} />
+                        )}
+                    </div>
 
-                    <div className="ml-4 mr-4 -mt-56 mb-auto bg-white w-11/12 mx-auto p-4 shadow-lg flex flex-col gap-2 absolute bottom-0">
+                    <div className="ml-4 mr-4 -mt-56 mb-auto bg-white w-11/12 mx-auto p-4 shadow-lg flex flex-col gap-2 absolute bottom-0 shadow-xl	">
                         <div className="font-bold text-xl mb-2">{product.product_name}</div>
                         <p className="text-gray-700 text-base">{product.description}</p>
                         <div className="flex flex-row gap-2">

@@ -4,11 +4,48 @@ import shopingCart from "../icons/shopping-cart.ico"
 import ThreeDots from "../assets/ThreeDots.svg"
 import logokopi from "../images/logoCoffee.png"
 import tulisankopi from "../images/coffeeShop.png"
-import { MouseEventHandler, useState } from 'react';
+import { MouseEventHandler, useEffect, useState } from 'react';
+import PortalExample from "./logoutAccount";
+import { useSignInState } from "./context/SignInToken";
 
 function NavigationBar() {
 
+    const {token} = useSignInState();
+
+    useEffect(() => {
+        const belumlogin = document.getElementById('unLoged');
+        const displayLoged = document.getElementById('loged');
+        const classUnloged = document.getElementById('unLoged3');
+        const classUnloged2 = document.getElementById('unLoged4');
+
+
+        if (token) { // jika udah login
+            belumlogin?.classList.add('hidden');
+            displayLoged?.classList.remove('hidden');
+            classUnloged?.classList.remove('hidden')
+            classUnloged2?.classList.remove('hidden')
+
+        } else { // jika belum login
+            classUnloged?.classList.add('hidden')
+            belumlogin?.classList.remove('hidden');
+            displayLoged?.classList.add('hidden');
+            classUnloged2?.classList.add('hidden')
+
+        }
+
+        const belumlogin2 = document.getElementById('unLoged2');
+        const displayLoged2 = document.getElementById('loged2');
+        if (token) { // jika udah login
+            belumlogin2?.classList.add('hidden');
+            displayLoged2?.classList.remove('hidden');
+        } else { // jika belum login
+            belumlogin2?.classList.remove('hidden');
+            displayLoged2?.classList.add('hidden');
+        }
+    }, [token]);
     
+    
+
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropDown: MouseEventHandler<HTMLButtonElement> = () => {
         const dropdownMenu = document.querySelector('.absolute[aria-labelledby="menu-button"]');
@@ -17,8 +54,9 @@ function NavigationBar() {
         isDropdownOpen ? dropdownMenu1?.classList.remove('hidden') : dropdownMenu1?.classList.add('hidden');
         isDropdownOpen ? dropdownMenu?.classList.remove('hidden') : dropdownMenu?.classList.add('hidden');
     }
+
     return (
-        <header>
+        <header className="modalLogut" id="modal-root">
             <nav className="flex flex-row justify-between items-center py-4 px-16 bg-black sticky inset-x-0 top-0 hidden md:flex">
                 <div className="flex flex-row gap-4 items-center">
                     <div className="flex flex-row gap-4">
@@ -39,16 +77,19 @@ function NavigationBar() {
                             <img className="w-4" src={shopingCart} alt="" />
                         </Link>
                     </div>
-                    <button>
-                        <Link to="/login" className="border-2 border-white py-2 px-4 rounded">
-                            Sign In
-                        </Link>
-                    </button>
-                    <button>
-                        <Link to="/register" className="border-2 border-oren py-2 px-4 bg-oren rounded">
-                            Sign Up
-                        </Link>
-                    </button>
+                    <div id="unLoged" className="flex flex-row gap-4">
+                        <button>
+                            <Link to="/login"  className="border-2 border-white py-2 px-4 rounded ">
+                                Sign In
+                            </Link>
+                        </button>
+                        <button>
+                            <Link to="/register"  className="border-2 border-oren py-2 px-4 bg-oren rounded ">
+                                Sign Up
+                            </Link>
+                        </button>
+                    </div>
+                    
                     <div>
                         <div>
                             <button
@@ -62,18 +103,21 @@ function NavigationBar() {
                         <div className="bg-white absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md hidden shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-black"
                             role="menu" aria-orientation="vertical" aria-labelledby="menu-button1">
                             <div className="py-1" role="none">
-                                <Link to="/home" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
+                                <Link to="/home" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300 md:hidden"
                                     id="menu-item-0">Home</Link>
-                                <Link to="/product" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
+                                <Link to="/product" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300 md:hidden"
                                     id="menu-item-1">Product</Link>
-                                <Link to="/orderdetails" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
-                                    id="menu-item-1">Order Details</Link>
-                                <Link to="/detailsproduct" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
-                                    id="menu-item-1">Details Product</Link>
-                                <Link to="/historyorder" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
-                                    id="menu-item-1">Orders History</Link>
-                                <Link to="/checkoutproduct" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
-                                    id="menu-item-1">Checkout Product</Link>
+                                <div id="unLoged3">
+                                    <Link to="/orderdetails" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
+                                        id="menu-item-1">Order Details</Link>
+                                    <Link to="/detailsproduct" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
+                                        id="menu-item-1">Details Product</Link>
+                                    <Link to="/historyorder" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
+                                        id="menu-item-1">Orders History</Link>
+                                    <Link to="/checkoutproduct" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
+                                        id="menu-item-1">Checkout Product</Link>
+                                </div>
+                                
                             </div>
                             <div className="py-1 " role="none">
                                 <Link to="#" className="block px-4 py-2 text-sm text-gray-700 flex flex-row gap-2 items-center hover:bg-orange-300" id="menu-item-2">
@@ -85,6 +129,9 @@ function NavigationBar() {
                                     <img className="h-4 w-4" src={shopingCart} alt="" />
                                     <p>Shooping Cart</p>
                                 </Link>
+                                <div className="" id="loged">
+                                    <PortalExample />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -113,14 +160,16 @@ function NavigationBar() {
                                     id="menu-item-0">Home</Link>
                                 <Link to="/product" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
                                     id="menu-item-1">Product</Link>
-                                <Link to="/orderdetails" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
-                                    id="menu-item-1">Order Details</Link>
-                                <Link to="/detailsproduct" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
-                                    id="menu-item-1">Details Product</Link>
-                                <Link to="/historyorder" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
-                                    id="menu-item-1">Orders History</Link>
-                                <Link to="/checkoutproduct" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
-                                    id="menu-item-1">Checkout Product</Link>
+                                <div id="unLoged4">
+                                    <Link to="/orderdetails" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
+                                        id="menu-item-1">Order Details</Link>
+                                    <Link to="/detailsproduct" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
+                                        id="menu-item-1">Details Product</Link>
+                                    <Link to="/historyorder" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
+                                        id="menu-item-1">Orders History</Link>
+                                    <Link to="/checkoutproduct" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
+                                        id="menu-item-1">Checkout Product</Link>
+                                </div>
                             </div>
                             <div className="py-1 " role="none">
                                 <Link to="#" className="block px-4 py-2 text-sm text-gray-700 flex flex-row gap-2 items-center hover:bg-orange-300" id="menu-item-2">
@@ -133,12 +182,16 @@ function NavigationBar() {
                                     <p>Shooping Cart</p>
                                 </Link>
                             </div>
-                            <div className="py-1" role="none">
+                            <div className="py-1" role="none" id="unLoged2">
                                 <Link to="/login" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
                                     id="menu-item-4"><button>Sign In</button></Link>
                                 <Link to="/register" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
                                     id="menu-item-5"><button>Sign Up</button></Link>
+                                
                             </div>
+                            <div className="" id="loged2">
+                                    <PortalExample />
+                                </div>
                         </div>
                     </div>
                 </div>

@@ -23,17 +23,17 @@ export default function Home() {
                     </a>
 
                     <div className="hero-content flex flex-wrap lg:flex-row gap-4 ">
-                        <div className="content-statistik  text-5xl font-semibold text-oren">
+                        <div className="content-statistik text-lg md:text-5xl font-semibold text-oren">
                             <h1>90+</h1>
                             <p>Staff</p>
                         </div>
                         <div className="border-2 border-oren h-16"> </div>
-                        <div className="content-statistik  text-5xl font-semibold text-oren">
+                        <div className="content-statistik text-lg  md:text-5xl font-semibold text-oren">
                             <h1>30+</h1>
                             <p>Stores</p>
                         </div>
                         <div className="border-2 border-oren h-16"> </div>
-                        <div className="content-statistik text-5xl font-semibold text-oren">
+                        <div className="content-statistik text-lg md:text-5xl font-semibold text-oren">
                             <h1>800+</h1>
                             <p>Customer</p>
                         </div>
@@ -289,10 +289,10 @@ export default function Home() {
 
             </section>
 
-            <section className="flex flex-col lg:flex-row w-full text-white px-32 py-16 bg-gradient-to-b from-[#777C82] to-[#0B0909] gap-4">
+            <section className="flex flex-col lg:flex-row w-full text-white py-8 px-8 md:px-32 md:py-16 bg-gradient-to-b from-[#777C82] to-[#0B0909] gap-2">
 
-                <div className="basis-2/4 w-full hidden lg:block ">
-                    <img className="object-cover object-top  w-full h-[575px] "
+                <div className="basis-2/4 w-full ">
+                    <img className="object-cover object-top  w-full h-[300px] md:h-[575px] "
                         src={testimonies} alt="" />
                 </div>
 

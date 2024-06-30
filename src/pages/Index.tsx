@@ -7,7 +7,7 @@ function Index() {
   return (
     
     <>
-        <div className='container-fluid h-full w-full'>
+        <div className='container-fluid h-full w-full' >
 
             <NavigationBar/>
             <Outlet />
