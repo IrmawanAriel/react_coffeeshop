@@ -18,7 +18,6 @@ function NavigationBar() {
         const classUnloged = document.getElementById('unLoged3');
         const classUnloged2 = document.getElementById('unLoged4');
 
-
         if (token) { // jika udah login
             belumlogin?.classList.add('hidden');
             displayLoged?.classList.remove('hidden');

@@ -2,9 +2,10 @@ import HeaderProduct from '../images/HeaderProduct.png';
 import LeftCarouselArrow from '../icons/leftCarouselArrow.png';
 import RightCarouselArrow from '../icons/rightCarouselArrow.png';
 import Image46 from '../images/image 46.png';
-import P2 from '../images/p2.png';
-import Orenshoppingcart from '../icons/orenshopingcart.png';
+// import P2 from '../images/p2.png';
+// import Orenshoppingcart from '../icons/orenshopingcart.png';
 import Arrowkanan from '../icons/Arrowkanan.png';
+import Cards from '../components/Cards';
 
 function Product() {
   
@@ -20,7 +21,7 @@ function Product() {
         </section>
       </section>
 
-      <section className="">
+      <section className=" px-8">
         <section className="todays-promo flex flex-col md:flex-row gap-4 justify-between items-center p-8">
           <div className="todays-promo-text flex flex-row gap-4 text-5xl">
             <p className="todays-promo-text-todays">Today's</p>
@@ -80,8 +81,8 @@ function Product() {
         </section>
       </section>
 
-      <section className="products-show flex flex-col md:flex-row justify-center p-8 tulisan gap-4">
-        <div className="filter-menu basis-1/3 bg-black rounded-lg flex flex-col p-8 gap-4 h-max">
+      <section className="products-show flex flex-col md:flex-row justify-center py-8 px-16 tulisan gap-2 ">
+        <div className="filter-menu basis-1/3 bg-black rounded-lg flex flex-col w-4/5	p-8 gap-4 h-max">
           <section className="filter flex flex-row justify-between text-white w-full">
             <div>
               <h4 className="text-2xl">Filter</h4>
@@ -91,11 +92,11 @@ function Product() {
             </button>
           </section>
 
-          <section className="InputSearch text-white flex flex-col gap-2">
+          <section className="InputSearch text-white flex flex-col gap-2 text-black">
             <label className="text-xl" htmlFor="searchFilter">
               search
             </label>
-            <input className="rounded-lg h-8" type="text" id='searchFilter' name="searchFilter" placeholder="Search Your Product" />
+              <input  className="p-4 rounded-lg" type="text" id='searchFilter' name="searchFilter" placeholder="Search Your Product" />
           </section>
 
           <section className="category text-white flex flex-col gap-4">
@@ -161,205 +162,26 @@ function Product() {
         </div>
 
         <div className="products basis-2/3">
-          <div className="product-card">
-            <div className="cards flex flex-row flex-wrap justify-center gap-4">
-              <div className="max-w-sm rounded overflow-hidden  relative ">
-                <img className="w-full" src={P2} alt="Sunset in the mountains" />
-                <div className="ml-4 mr-4 mt-56 mb-auto ">
-                  <div
-                    className="absolute bottom-0 mb-12 bg-white w-11/12 mx-auto p-4  shadow-lg flex flex-col gap-2">
-                    <div className="font-bold text-xl mb-2">Hazelnut Latte</div>
-                    <p className="text-gray-700 text-base">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia,
-                    </p>
-                    <div className="flex flex-row gap-2">
-                      <div className="stars text-[#FF8906]">
-                        <span className="star">★</span>
-                        <span className="star">★</span>
-                        <span className="star">★</span>
-                        <span className="star">★</span>
-                        <span className="star">★</span>
-                      </div>
-                      <div className="rating">
-                        5/5
-                      </div>
-                    </div>
-
-                    <div className="price flex flex-row gap-2">
-                      <div className="first-price line-through text-red-800	">
-                        <p>20.000</p>
-                      </div>
-                      <div className="discount-price text-xl text-[#FF8906]">
-                        <p>10.000</p>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-row gap-2 h-10 ">
-                      <button className="basis-4/5 bg-orange-400 rounded-xl ">
-                        Buy
-                      </button>
-                      <button
-                        className="basis-1/5 rounded-xl border-2 border-orange-400 flex justify-center items-center	">
-                        <img className="w-6 h-6" src={Orenshoppingcart} alt="" />
-                      </button>
-                    </div>
-
-                  </div>
+          <Cards/>
+          <div className="flex flex-row gap-4 items-center justify-center">
+                <div
+                  className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
+                  1</div>
+                <div
+                  className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
+                  2</div>
+                <div
+                  className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
+                  3</div>
+                <div
+                  className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
+                  4</div>
+                <div
+                  className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
+                  <img className="h-6 w-4" src={Arrowkanan} alt="" />
                 </div>
               </div>
-              <div className="max-w-sm rounded overflow-hidden  relative ">
-                <img className="w-full" src={P2} alt="Sunset in the mountains" />
-                <div className="ml-4 mr-4 mt-56 mb-auto ">
-                  <div
-                    className="absolute bottom-0 mb-12 bg-white w-11/12 mx-auto p-4  shadow-lg flex flex-col gap-2">
-                    <div className="font-bold text-xl mb-2">Hazelnut Latte</div>
-                    <p className="text-gray-700 text-base">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia,
-                    </p>
-                    <div className="flex flex-row gap-2">
-                      <div className="stars text-[#FF8906]">
-                        <span className="star">★</span>
-                        <span className="star">★</span>
-                        <span className="star">★</span>
-                        <span className="star">★</span>
-                        <span className="star">★</span>
-                      </div>
-                      <div className="rating">
-                        5/5
-                      </div>
-                    </div>
-
-                    <div className="price flex flex-row gap-2">
-                      <div className="first-price line-through text-red-800	">
-                        <p>20.000</p>
-                      </div>
-                      <div className="discount-price text-xl text-[#FF8906]">
-                        <p>10.000</p>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-row gap-2 h-10 ">
-                      <button className="basis-4/5 bg-orange-400 rounded-xl ">
-                        Buy
-                      </button>
-                      <button
-                        className="basis-1/5 rounded-xl border-2 border-orange-400 flex justify-center items-center	">
-                        <img className="w-6 h-6" src={Orenshoppingcart} alt="" />
-                      </button>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-              <div className="max-w-sm rounded overflow-hidden  relative ">
-                <img className="w-full" src={P2} alt="Sunset in the mountains" />
-                <div className="ml-4 mr-4 mt-56 mb-auto ">
-                  <div
-                    className="absolute bottom-0 mb-12 bg-white w-11/12 mx-auto p-4  shadow-lg flex flex-col gap-2">
-                    <div className="font-bold text-xl mb-2">Hazelnut Latte</div>
-                    <p className="text-gray-700 text-base">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia,
-                    </p>
-                    <div className="flex flex-row gap-2">
-                      <div className="stars text-[#FF8906]">
-                        <span className="star">★</span>
-                        <span className="star">★</span>
-                        <span className="star">★</span>
-                        <span className="star">★</span>
-                        <span className="star">★</span>
-                      </div>
-                      <div className="rating">
-                        5/5
-                      </div>
-                    </div>
-
-                    <div className="price flex flex-row gap-2">
-                      <div className="first-price line-through text-red-800	">
-                        <p>20.000</p>
-                      </div>
-                      <div className="discount-price text-xl text-[#FF8906]">
-                        <p>10.000</p>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-row gap-2 h-10 ">
-                      <button className="basis-4/5 bg-orange-400 rounded-xl ">
-                        Buy
-                      </button>
-                      <button
-                        className="basis-1/5 rounded-xl border-2 border-orange-400 flex justify-center items-center	">
-                        <img className="w-6 h-6" src={Orenshoppingcart} alt="" />
-                      </button>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-              <div className="max-w-sm rounded overflow-hidden  relative ">
-                <img className="w-full" src={P2} alt="Sunset in the mountains" />
-                <div className="ml-4 mr-4 mt-56 mb-auto ">
-                  <div
-                    className="absolute bottom-0 mb-12 bg-white w-11/12 mx-auto p-4  shadow-lg flex flex-col gap-2">
-                    <div className="font-bold text-xl mb-2">Hazelnut Latte</div>
-                    <p className="text-gray-700 text-base">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia,
-                    </p>
-                    <div className="flex flex-row gap-2">
-                      <div className="stars text-[#FF8906]">
-                        <span className="star">★</span>
-                        <span className="star">★</span>
-                        <span className="star">★</span>
-                        <span className="star">★</span>
-                        <span className="star">★</span>
-                      </div>
-                      <div className="rating">
-                        5/5
-                      </div>
-                    </div>
-
-                    <div className="price flex flex-row gap-2">
-                      <div className="first-price line-through text-red-800	">
-                        <p>20.000</p>
-                      </div>
-                      <div className="discount-price text-xl text-[#FF8906]">
-                        <p>10.000</p>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-row gap-2 h-10 ">
-                      <button className="basis-4/5 bg-orange-400 rounded-xl ">
-                        Buy
-                      </button>
-                      <button
-                        className="basis-1/5 rounded-xl border-2 border-orange-400 flex justify-center items-center	">
-                        <img className="w-6 h-6" src={Orenshoppingcart} alt="" />
-                      </button>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-row gap-4 items-center justify-center">
-              <div
-                className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
-                1</div>
-              <div
-                className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
-                2</div>
-              <div
-                className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
-                3</div>
-              <div
-                className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
-                4</div>
-              <div
-                className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
-                <img className="h-6 w-4" src={Arrowkanan} alt="" />
-              </div>
-            </div>
-          </div>
+          
         </div>
       </section>
     </main>

@@ -6,7 +6,6 @@ import gambartest from "../images/p2.png"
 
 export default function Cards() {
 
-
     interface productBody {
         uuid: string;
         id?: number;
@@ -19,25 +18,6 @@ export default function Cards() {
         image?: string;
     }
 
-    // interface productImg {
-    //     id?: number;
-    //     image?: string;
-    // }
-
-    // interface IPaginationMeta {
-    //     totalData?: number;
-    //     totalPage?: number;
-    //     page: number;
-    //     prevLink: string | null;
-    //     nextLink: string | null;
-    // }
-
-    // interface IBasicResponse {
-    //     msg: string;
-    //     data?: any[];
-    //     err?: string;
-    //     meta?: IPaginationMeta;
-    // }
 
 
     const [Products, setProduct] = useState<productBody[]>([])
@@ -60,7 +40,7 @@ export default function Cards() {
     return (
 
 
-        <div className="product-list flex flex-wrap md:flex-row gap-8 p-8 justify-center">
+        <div className="product-list flex flex-wrap md:flex-row gap-8 p-4 justify-center">
             {Products?.map((product) => (
                 <div key={product.uuid} className="max-w-sm rounded overflow-hidden relative h-[470px]">
                     <div className="" > 
