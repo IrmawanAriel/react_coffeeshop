@@ -89,7 +89,7 @@ export default function Home() {
                 </div>
 
                 <div className="">
-                    <Cards/>
+                    <Cards props={undefined}/>
                     {/* <div className="max-w-sm rounded overflow-hidden  relative "> 
                         <img className="w-full" src={p2} alt="Sunset in the mountains" />
                         <div className="ml-4 mr-4 mt-56 mb-auto ">

@@ -3,8 +3,7 @@ import LeftCarouselArrow from '../icons/leftCarouselArrow.png';
 import RightCarouselArrow from '../icons/rightCarouselArrow.png';
 // import P2 from '../images/p2.png';
 // import Orenshoppingcart from '../icons/orenshopingcart.png';
-import Arrowkanan from '../icons/Arrowkanan.png';
-import Cards from '../components/Cards';
+// import Cards from '../components/Cards';
 import PromoCards from '../components/PromoCards';
 import FilterComponent from '../components/filter';
 
@@ -57,11 +56,6 @@ function Product() {
         <PromoCards />
 
       </section>
-
-      <section className="products-show flex flex-col md:flex-row justify-center py-8 px-16 tulisan gap-2 ">
-
-        <FilterComponent />
-
         {/* <div className="filter-menu basis-1/3 bg-black rounded-lg flex flex-col w-4/5 p-8 gap-4 h-max overflow-x-auto">
           <section className="filter flex flex-row justify-between text-white w-full">
             <div>
@@ -139,30 +133,8 @@ function Product() {
           </section>
         </div> */}
 
-
-        <div className="products basis-2/3">
-          <Cards />
-          <div className="flex flex-row gap-4 items-center justify-center">
-            <div
-              className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
-              1</div>
-            <div
-              className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
-              2</div>
-            <div
-              className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
-              3</div>
-            <div
-              className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
-              4</div>
-            <div
-              className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
-              <img className="h-6 w-4" src={Arrowkanan} alt="" />
-            </div>
-          </div>
-
-        </div>
-      </section>
+        <FilterComponent />
+        
     </main>
   );
 }

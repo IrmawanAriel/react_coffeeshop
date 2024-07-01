@@ -3,20 +3,20 @@ import axios from "axios";
 import orenShopingCart from "../icons/orenshopingcart.png"
 import gambartest from "../images/p2.png"
 
+interface productBody {
+    uuid: string;
+    id?: number;
+    description: string;
+    price: number;
+    product_name?: string;
+    rating: number;
+    stock: number;
+    category: string;
+    image?: string;
+}
 
-export default function Cards() {
 
-    interface productBody {
-        uuid: string;
-        id?: number;
-        description: string;
-        price: number;
-        product_name?: string;
-        rating: number;
-        stock: number;
-        category: string;
-        image?: string;
-    }
+export default function Cards({ props }: { props: productBody[] | undefined }) {
 
     const [Products, setProduct] = useState<productBody[]>([])
 
@@ -24,20 +24,24 @@ export default function Cards() {
         const getDataProduct = async () => {
             const url = 'http://localhost:8000/product';
             try {
-                const result = await axios.get(url);
-                setProduct(result.data.data)
-                console.log(result.data.data)
+                if(props){
+                    setProduct(props)
+                    console.log('ini props card : ', props)
+
+                } else {
+                    const result = await axios.get(url);
+                    setProduct(result.data.data)
+                }
+                // console.log(result.data.data)
             } catch (error) {
                 console.log(error)
             }
         }
         getDataProduct();
-    },
-        []);
+    },[]);
 
 
     return (
-
 
         <div className="product-list flex flex-wrap md:flex-row gap-8 p-4 justify-center">
             {Products?.map((product) => (
