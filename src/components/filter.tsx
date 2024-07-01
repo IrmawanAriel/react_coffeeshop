@@ -53,14 +53,9 @@ const FilterComponent = () => {
 
     const params = new URLSearchParams(categoryFilters).toString();
 
-    // console.log(filters);
-    // console.log(categoryFilters);
-    // console.log(params);
-
     axios.get(`http://localhost:8000/product/?${params}`)
       .then((response) => {
         setProduct(response.data.data);
-        console.log('punya filter :', product);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);

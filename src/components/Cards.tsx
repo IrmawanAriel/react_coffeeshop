@@ -26,8 +26,6 @@ export default function Cards({ props }: { props: productBody[] | undefined }) {
             try {
                 if(props){
                     setProduct(props)
-                    console.log('ini props card : ', props)
-
                 } else {
                     const result = await axios.get(url);
                     setProduct(result.data.data)
@@ -56,6 +54,7 @@ export default function Cards({ props }: { props: productBody[] | undefined }) {
 
                     <div className="ml-4 mr-4 -mt-56 mb-auto bg-white w-11/12 mx-auto p-4 shadow-lg flex flex-col gap-2 absolute bottom-0 shadow-xl	">
                         <div className="font-bold text-xl mb-2">{product.product_name}</div>
+                        <div className="font-bold text-lg mb-2">{product.category}</div>
                         <p className="text-gray-700 text-base">{product.description}</p>
                         <div className="flex flex-row gap-2">
                             <div className="stars text-[#FF8906]">
