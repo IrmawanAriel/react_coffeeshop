@@ -9,7 +9,6 @@ interface Filters {
   rangePrice: string;
 }
 
-
 interface productBody {
   uuid: string;
   id?: number;
@@ -21,7 +20,6 @@ interface productBody {
   category: string;
   image?: string;
 }
-
 
 const FilterComponent = () => {
   const [filters, setFilters] = useState<Filters>({
@@ -52,7 +50,7 @@ const FilterComponent = () => {
     const categoryFilters = { category, product_name, rangePrice };
 
     const params = new URLSearchParams(categoryFilters).toString();
-
+    console.log(params)
     axios.get(`http://localhost:8000/product/?${params}`)
       .then((response) => {
         setProduct(response.data.data);
@@ -201,7 +199,6 @@ const FilterComponent = () => {
           </div>
 
         </div>
-
     </section>
     
   );

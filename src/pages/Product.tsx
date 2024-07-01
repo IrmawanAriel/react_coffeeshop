@@ -1,29 +1,10 @@
 import HeaderProduct from '../images/HeaderProduct.png';
-import LeftCarouselArrow from '../icons/leftCarouselArrow.png';
-import RightCarouselArrow from '../icons/rightCarouselArrow.png';
-// import P2 from '../images/p2.png';
-// import Orenshoppingcart from '../icons/orenshopingcart.png';
-// import Cards from '../components/Cards';
 import PromoCards from '../components/PromoCards';
 import FilterComponent from '../components/filter';
 
 function Product() {
 
-  const container = document.querySelector('.carousel-contents');
-  const scrollLeftBtn = document.getElementById('btn-scroll-left');
-  const scrollRightBtn = document.getElementById('btn-scroll-right');
 
-  if (scrollLeftBtn && container) {
-    scrollLeftBtn.addEventListener('click', () => {
-      container.scrollLeft -= 100;
-    });
-  }
-
-  if (scrollRightBtn && container) {
-    scrollRightBtn.addEventListener('click', () => {
-      container.scrollLeft += 100;
-    });
-  }
 
   return (
     <main>
@@ -37,25 +18,10 @@ function Product() {
         </section>
       </section>
 
-      <section className=" px-8">
-        <section className="todays-promo flex flex-col md:flex-row gap-4 justify-between items-center p-8">
-          <div className="todays-promo-text flex flex-row gap-4 text-5xl">
-            <p className="todays-promo-text-todays">Today's</p>
-            <p className="text-orange-300">Promos</p>
-          </div>
-          <div className="carousel-btn flex items-center space-x-4">
-            <button id="btn-scroll-left" className="carousel-btn-left bg-oren rounded-full p-4">
-              <img src={LeftCarouselArrow} alt="Left Arrow" />
-            </button>
-            <button id="btn-scroll-right" className="carousel-btn-right bg-oren rounded-full p-4">
-              <img src={RightCarouselArrow} alt="Right Arrow" />
-            </button>
-          </div>
-        </section>
+      
 
         <PromoCards />
 
-      </section>
         {/* <div className="filter-menu basis-1/3 bg-black rounded-lg flex flex-col w-4/5 p-8 gap-4 h-max overflow-x-auto">
           <section className="filter flex flex-row justify-between text-white w-full">
             <div>

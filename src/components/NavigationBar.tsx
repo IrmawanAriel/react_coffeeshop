@@ -29,7 +29,6 @@ function NavigationBar() {
             belumlogin?.classList.remove('hidden');
             displayLoged?.classList.add('hidden');
             classUnloged2?.classList.add('hidden')
-
         }
 
         const belumlogin2 = document.getElementById('unLoged2');
@@ -42,8 +41,6 @@ function NavigationBar() {
             displayLoged2?.classList.add('hidden');
         }
     }, [token]);
-    
-    
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropDown: MouseEventHandler<HTMLButtonElement> = () => {
@@ -107,16 +104,15 @@ function NavigationBar() {
                                 <Link to="/product" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300 md:hidden"
                                     id="menu-item-1">Product</Link>
                                 <div id="unLoged3">
-                                    <Link to="/orderdetails" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
-                                        id="menu-item-1">Order Details</Link>
                                     <Link to="/detailsproduct" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
                                         id="menu-item-1">Details Product</Link>
-                                    <Link to="/historyorder" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
-                                        id="menu-item-1">Orders History</Link>
+                                    <Link to="/orderdetails" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
+                                        id="menu-item-1">Order Details</Link>
                                     <Link to="/checkoutproduct" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
                                         id="menu-item-1">Checkout Product</Link>
+                                    <Link to="/historyorder" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
+                                        id="menu-item-1">Orders History</Link>
                                 </div>
-                                
                             </div>
                             <div className="py-1 " role="none">
                                 <Link to="#" className="block px-4 py-2 text-sm text-gray-700 flex flex-row gap-2 items-center hover:bg-orange-300" id="menu-item-2">
@@ -160,14 +156,14 @@ function NavigationBar() {
                                 <Link to="/product" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
                                     id="menu-item-1">Product</Link>
                                 <div id="unLoged4">
-                                    <Link to="/orderdetails" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
-                                        id="menu-item-1">Order Details</Link>
                                     <Link to="/detailsproduct" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
                                         id="menu-item-1">Details Product</Link>
-                                    <Link to="/historyorder" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
-                                        id="menu-item-1">Orders History</Link>
+                                    <Link to="/orderdetails" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
+                                        id="menu-item-1">Order Details</Link>
                                     <Link to="/checkoutproduct" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
                                         id="menu-item-1">Checkout Product</Link>
+                                    <Link to="/historyorder" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
+                                        id="menu-item-1">Orders History</Link>
                                 </div>
                             </div>
                             <div className="py-1 " role="none">
@@ -186,7 +182,6 @@ function NavigationBar() {
                                     id="menu-item-4"><button>Sign In</button></Link>
                                 <Link to="/register" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
                                     id="menu-item-5"><button>Sign Up</button></Link>
-                                
                             </div>
                             <div className="" id="loged2">
                                     <PortalExample />

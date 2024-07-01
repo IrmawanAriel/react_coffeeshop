@@ -44,8 +44,13 @@ const routerWithChildren = createBrowserRouter([
       },
       {
         path: 'detailsproduct',
-        element: <DetailProduct/>
+        element: <DetailProduct/>,
       },
+      {
+        path: '/detailsproduct/:id',
+        element: <DetailProduct/>
+      }
+      ,
       {
         path: 'historyorder',
         element: <HistoryOrder/>
