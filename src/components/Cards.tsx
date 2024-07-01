@@ -38,7 +38,7 @@ export default function Cards({ props }: { props: productBody[] | undefined }) {
             }
         }
         getDataProduct();
-    },[]);
+    },[props]);
 
 
     return (
