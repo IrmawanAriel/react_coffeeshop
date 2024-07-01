@@ -5,12 +5,13 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Index from "./pages/Index";
 import OrderDetails from "./pages/OrderDetails";
-import DetailProduct from "./pages/DetailProduct";
+import DetailProduct from './pages/DetailProduct';
 import HistoryOrder from "./pages/HistoryOrder";
 import Profile from "./pages/Profile";
 import ForgotPass from "./pages/ForgotPass";
 import AxiosTry from "./components/AxiosTry";
 import Product from "./pages/Product";
+import PrivateRoute from "./components/PrivateRouting";
 
 function Error() {
   return <div>Error</div>;
@@ -36,28 +37,52 @@ const routerWithChildren = createBrowserRouter([
       },
       {
         path: "checkoutproduct",
-        element: <CheckoutProduct />
+        element: (
+          <PrivateRoute to={"/login"}>
+            <CheckoutProduct />
+          </PrivateRoute>
+        ),
       },
       {
         path: 'orderdetails',
-        element: <OrderDetails/>
+        element: (
+          <PrivateRoute to={"/login"}>
+            <OrderDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: 'detailsproduct',
-        element: <DetailProduct/>,
+        element: (
+          <PrivateRoute to={"/login"}>
+            <DetailProduct />
+          </PrivateRoute>
+        ),
       },
       {
         path: '/detailsproduct/:id',
-        element: <DetailProduct/>
+        element: (
+          <PrivateRoute to={"/login"}>
+            <DetailProduct />
+          </PrivateRoute>
+        ),
       }
       ,
       {
         path: 'historyorder',
-        element: <HistoryOrder/>
+        element: (
+          <PrivateRoute to={"/login"}>
+            <HistoryOrder />
+          </PrivateRoute>
+        ),
       },
       {
         path: 'profile',
-        element: <Profile/>
+        element: (
+          <PrivateRoute to={"/login"}>
+            <Profile />
+          </PrivateRoute>
+        ),
       },
       {
         path: 'axios',
