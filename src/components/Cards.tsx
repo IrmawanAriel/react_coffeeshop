@@ -18,8 +18,6 @@ export default function Cards() {
         image?: string;
     }
 
-
-
     const [Products, setProduct] = useState<productBody[]>([])
 
     useEffect(() => {
@@ -28,6 +26,7 @@ export default function Cards() {
             try {
                 const result = await axios.get(url);
                 setProduct(result.data.data)
+                console.log(result.data.data)
             } catch (error) {
                 console.log(error)
             }

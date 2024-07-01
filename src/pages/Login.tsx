@@ -21,7 +21,7 @@ interface user {
 
 
 const Login = () => {
-    const {assignToken} = useSignInState(); //context provider
+    const {assignToken, useID} = useSignInState(); //context provider
     const navigate = useNavigate();
     const [user, setUser]= useState<user>({email: '', password: ''})
 
@@ -32,7 +32,6 @@ const Login = () => {
             [name]: value,
         }));
     };
-
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -47,7 +46,8 @@ const Login = () => {
             if(result.status !== 200){
                 throw Error('Failed to login');
             }
-            assignToken(result?.data.data[0].token); // tidak berjalan
+            assignToken(result?.data.data[0].token); 
+            useID(result?.data.id);
             navigate("/home")
             
         } catch(error) {

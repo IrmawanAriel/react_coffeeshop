@@ -1,14 +1,31 @@
 import HeaderProduct from '../images/HeaderProduct.png';
 import LeftCarouselArrow from '../icons/leftCarouselArrow.png';
 import RightCarouselArrow from '../icons/rightCarouselArrow.png';
-import Image46 from '../images/image 46.png';
 // import P2 from '../images/p2.png';
 // import Orenshoppingcart from '../icons/orenshopingcart.png';
 import Arrowkanan from '../icons/Arrowkanan.png';
 import Cards from '../components/Cards';
+import PromoCards from '../components/PromoCards';
+import FilterComponent from '../components/filter';
 
 function Product() {
-  
+
+  const container = document.querySelector('.carousel-contents');
+  const scrollLeftBtn = document.getElementById('btn-scroll-left');
+  const scrollRightBtn = document.getElementById('btn-scroll-right');
+
+  if (scrollLeftBtn && container) {
+    scrollLeftBtn.addEventListener('click', () => {
+      container.scrollLeft -= 100;
+    });
+  }
+
+  if (scrollRightBtn && container) {
+    scrollRightBtn.addEventListener('click', () => {
+      container.scrollLeft += 100;
+    });
+  }
+
   return (
     <main>
       <section>
@@ -37,52 +54,15 @@ function Product() {
           </div>
         </section>
 
-        <section className="carousel pb-4">
-          <div className="carousel-contents w-screen flex flex-row overflow-hidden overflow-x-scroll overflow-x-auto space-x-4 p-8">
-            <div className="promo-card flex-shrink-0 flex flex-row items-center bg-[#88B788] rounded-3xl w-80 p-4">
-              <div className="promo-image">
-                <img src={Image46} alt="" className="promo-img" />
-              </div>
-              <div className="promo-content text-center mt-4">
-                <h1 className="text-xl font-bold">HAPPY MOTHER’S DAY!</h1>
-                <h2 className="text-lg">Get one of our favorite menu for free!</h2>
-                <a href="#" className="text-white bg-oren px-4 py-2 mt-2 rounded-lg inline-block">
-                  Klaim Kupon
-                </a>
-              </div>
-            </div>
+        <PromoCards />
 
-            <div className="promo-card flex-shrink-0 flex flex-row items-center bg-[#88B788] rounded-3xl w-80 p-4">
-              <div className="promo-image">
-                <img src={Image46} alt="" className="promo-img" />
-              </div>
-              <div className="promo-content text-center mt-4">
-                <h1 className="text-xl font-bold">HAPPY MOTHER’S DAY!</h1>
-                <h2 className="text-lg">Get one of our favorite menu for free!</h2>
-                <a href="#" className="text-white bg-oren px-4 py-2 mt-2 rounded-lg inline-block">
-                  Klaim Kupon
-                </a>
-              </div>
-            </div>
-
-            <div className="promo-card flex-shrink-0 flex flex-row items-center bg-[#88B788] rounded-3xl w-80 p-4">
-              <div className="promo-image">
-                <img src={Image46} alt="" className="promo-img" />
-              </div>
-              <div className="promo-content text-center mt-4">
-                <h1 className="text-xl font-bold">HAPPY MOTHER’S DAY!</h1>
-                <h2 className="text-lg">Get one of our favorite menu for free!</h2>
-                <a href="#" className="text-white bg-oren px-4 py-2 mt-2 rounded-lg inline-block">
-                  Klaim Kupon
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
       </section>
 
       <section className="products-show flex flex-col md:flex-row justify-center py-8 px-16 tulisan gap-2 ">
-        <div className="filter-menu basis-1/3 bg-black rounded-lg flex flex-col w-4/5	p-8 gap-4 h-max">
+
+        <FilterComponent />
+
+        {/* <div className="filter-menu basis-1/3 bg-black rounded-lg flex flex-col w-4/5 p-8 gap-4 h-max overflow-x-auto">
           <section className="filter flex flex-row justify-between text-white w-full">
             <div>
               <h4 className="text-2xl">Filter</h4>
@@ -94,94 +74,93 @@ function Product() {
 
           <section className="InputSearch text-white flex flex-col gap-2 text-black">
             <label className="text-xl" htmlFor="searchFilter">
-              search
+              Search
             </label>
-              <input  className="p-4 rounded-lg" type="text" id='searchFilter' name="searchFilter" placeholder="Search Your Product" />
+            <input className="p-4 rounded-lg" type="text" id="searchFilter" name="searchFilter" placeholder="Search Your Product" />
           </section>
 
           <section className="category text-white flex flex-col gap-4">
             <div className="flex flex-col gap-2">
-              <p className="text-xl text-white">Category</p>
+              <p className="text-xl">Category</p>
               <form className="flex flex-col gap-4">
-                <div className="gap-4 flex flex-row">
-                  <input className="w-6 h-6 rounded-2 bg-black" type="checkbox" id="Favorite Product" name="Favorite Product" />
-                  <label htmlFor="Favorite Product"> Favorite Product</label>
+                <div className="flex items-center gap-4">
+                  <input className="w-6 h-6 rounded-2 bg-black" type="checkbox" id="favorite-product" name="favorite-product" />
+                  <label htmlFor="favorite-product">Favorite Product</label>
                 </div>
-                <div className="gap-4 flex flex-row">
+                <div className="flex items-center gap-4">
                   <input className="w-6 h-6 rounded-2 bg-black" type="checkbox" id="coffee" name="coffee" />
-                  <label htmlFor="coffee"> coffee</label>
+                  <label htmlFor="coffee">Coffee</label>
                 </div>
-                <div className="gap-4 flex flex-row">
+                <div className="flex items-center gap-4">
                   <input className="w-6 h-6 rounded-2 bg-black" type="checkbox" id="foods" name="foods" />
-                  <label htmlFor="foods"> foods</label>
+                  <label htmlFor="foods">Foods</label>
                 </div>
-                <div className="gap-4 flex flex-row">
+                <div className="flex items-center gap-4">
                   <input className="w-6 h-6 rounded-2 bg-black" type="checkbox" id="add-on" name="add-on" />
-                  <label htmlFor="add-on"> add-on</label>
+                  <label htmlFor="add-on">Add-on</label>
                 </div>
               </form>
             </div>
+          </section>
 
-            <div className="flex flex-col gap-2">
-              <p className="text-xl text-white">Sort By</p>
-              <form className="flex flex-col gap-4">
-                <div className="gap-4 flex flex-row">
-                  <input className="w-6 h-6 rounded-2 bg-black" type="checkbox" id="Buy 1 get 1" name="Buy 1 get 1" />
-                  <label htmlFor="Buy 1 get 1"> Buy 1 get 1</label>
-                </div>
-                <div className="gap-4 flex flex-row">
-                  <input className="w-6 h-6 rounded-2 bg-black" type="checkbox" id="Flash sale" name="Flash sale" />
-                  <label htmlFor="Flash sale"> Flash sale</label>
-                </div>
-                <div className="gap-4 flex flex-row">
-                  <input className="w-6 h-6 rounded-2 bg-black" type="checkbox" id="Birthday Package" name="Birthday Package" />
-                  <label htmlFor="Birthday Package"> Birthday Package</label>
-                </div>
-                <div className="gap-4 flex flex-row">
-                  <input className="w-6 h-6 rounded-2 bg-black" type="checkbox" id="Cheap" name="Cheap" />
-                  <label htmlFor="Cheap"> Cheap</label>
-                </div>
-              </form>
-            </div>
+          <section className="flex flex-col gap-2 text-white">
+            <p className="text-xl">Sort By</p>
+            <form className="flex flex-col gap-4">
+              <div className="flex items-center gap-4">
+                <input className="w-6 h-6 rounded-2 bg-black" type="checkbox" id="buy-1-get-1" name="buy-1-get-1" />
+                <label htmlFor="buy-1-get-1">Buy 1 get 1</label>
+              </div>
+              <div className="flex items-center gap-4">
+                <input className="w-6 h-6 rounded-2 bg-black" type="checkbox" id="flash-sale" name="flash-sale" />
+                <label htmlFor="flash-sale">Flash sale</label>
+              </div>
+              <div className="flex items-center gap-4">
+                <input className="w-6 h-6 rounded-2 bg-black" type="checkbox" id="birthday-package" name="birthday-package" />
+                <label htmlFor="birthday-package">Birthday Package</label>
+              </div>
+              <div className="flex items-center gap-4">
+                <input className="w-6 h-6 rounded-2 bg-black" type="checkbox" id="cheap" name="cheap" />
+                <label htmlFor="cheap">Cheap</label>
+              </div>
+            </form>
           </section>
 
           <section className="flex flex-col gap-4">
             <div>
               <p className="text-xl text-white">Range Price</p>
             </div>
-            <div>
-              <div className="slidecontainer w-full">
-                <input type="range" min="1" max="100" defaultValue="25" className="slider w-full" id="myRange1" />
-              </div>
+            <div className="slidecontainer w-full">
+              <input type="range" min="1" max="100" defaultValue="25" className="slider w-full" id="myRange1" />
             </div>
           </section>
 
           <section>
             <button className="bg-[#FF8906] w-full h-8 rounded-lg">Apply Filter</button>
           </section>
-        </div>
+        </div> */}
+
 
         <div className="products basis-2/3">
-          <Cards/>
+          <Cards />
           <div className="flex flex-row gap-4 items-center justify-center">
-                <div
-                  className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
-                  1</div>
-                <div
-                  className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
-                  2</div>
-                <div
-                  className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
-                  3</div>
-                <div
-                  className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
-                  4</div>
-                <div
-                  className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
-                  <img className="h-6 w-4" src={Arrowkanan} alt="" />
-                </div>
-              </div>
-          
+            <div
+              className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
+              1</div>
+            <div
+              className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
+              2</div>
+            <div
+              className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
+              3</div>
+            <div
+              className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
+              4</div>
+            <div
+              className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
+              <img className="h-6 w-4" src={Arrowkanan} alt="" />
+            </div>
+          </div>
+
         </div>
       </section>
     </main>

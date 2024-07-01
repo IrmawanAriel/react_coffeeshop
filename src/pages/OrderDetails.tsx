@@ -85,9 +85,10 @@ const OrderDetails = () => {
         <div className="flex flex-col gap-4 basis-2/4 max-w-full max-h-fit md:w-full w-fit">
           <p className="text-2xl font-medium">Your Order</p>
           <div className="flex flex-row md:flex-col gap-4">
+
             <div className="flex flex-col md:flex-row p-4 md:gap-4 items-center bg-gray-100">
-              <div className="foto basis-1/3 p-4 hidden md:block">
-                <img className="w-auto h-fit" src={productImage} alt="Sunset in the mountains" />
+              <div className="foto basis-1/3 p-4  md:block">
+                <img className="w-auto h-[150px]" src={productImage} alt="Sunset in the mountains" />
               </div>
 
               <div className="2/3 flex flex-row">
@@ -108,8 +109,8 @@ const OrderDetails = () => {
             </div>
 
             <div className="flex flex-col md:flex-row p-4 md:gap-4 items-center bg-gray-100">
-              <div className="foto basis-1/3 p-4 hidden md:block">
-                <img className="w-auto h-fit" src={productImage} alt="Sunset in the mountains" />
+              <div className="foto basis-1/3 p-4 md:block">
+                <img className="w-auto h-[150px]" src={productImage} alt="Sunset in the mountains" />
               </div>
 
               <div className="2/3">
@@ -128,6 +129,7 @@ const OrderDetails = () => {
                 </div>
               </div>
             </div>
+
           </div>
 
         </div>

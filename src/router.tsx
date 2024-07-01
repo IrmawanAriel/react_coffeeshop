@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-
 import CheckoutProduct from "./pages/CheckoutProduct"
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -12,7 +11,6 @@ import Profile from "./pages/Profile";
 import ForgotPass from "./pages/ForgotPass";
 import AxiosTry from "./components/AxiosTry";
 import Product from "./pages/Product";
-
 
 function Error() {
   return <div>Error</div>;
@@ -75,7 +73,7 @@ const routerWithChildren = createBrowserRouter([
     element: <Register/>,
   },
   {
-    path: 'forgot',
+    path: '/forgot',
     element: <ForgotPass/>
   },
   {

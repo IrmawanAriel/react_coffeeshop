@@ -3,12 +3,14 @@ import { useContext } from 'react'
 
 type signInState = { //definisi type state
     token: string;
-    isLogin: boolean;
+    id: number | string;
     deleteToken: () => void;
+    useID: (id: number) => void;
+    deleteID: (id: number) => void;
     assignToken: (token: string) => void;
 }
 
-const userTokenContext = createContext<signInState>({ token: '', isLogin: false ,deleteToken() { }, assignToken() { } }) //create varibale context baru
+const userTokenContext = createContext<signInState>({ token: '', id: '' ,deleteToken() { }, deleteID() { }, useID() { }, assignToken() { } }) //create varibale context baru
 
 export function useSignInState() { // method pemanggil context
     return useContext<signInState>(userTokenContext);
@@ -17,8 +19,15 @@ export function useSignInState() { // method pemanggil context
 export function SignInToken({ children }: { children: JSX.Element }) {
 
     const [token, setToken] = useState('');
-    const [isLogin, setLogin] = useState(false);
+    const [id, setId] = useState(-1);
 
+    const useID = (idUser: number) => {
+        setId(idUser)
+    }
+
+    const deleteID = () => {
+        setId(-1)
+    }
 
     useEffect(() => {
         localStorage.setItem('token', token);
@@ -26,11 +35,9 @@ export function SignInToken({ children }: { children: JSX.Element }) {
 
     const assignToken = (NewToken: string) => {
         setToken(NewToken);
-        setLogin(true);
     }
 
     const deleteToken = () => {
-        setLogin(false);
         localStorage.removeItem('token');
         setToken('');
     }
@@ -38,7 +45,9 @@ export function SignInToken({ children }: { children: JSX.Element }) {
     return (
         <userTokenContext.Provider value={{
             token,
-            isLogin,
+            id,
+            useID,
+            deleteID,
             assignToken,
             deleteToken,
         }} >{children}</userTokenContext.Provider>
