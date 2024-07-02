@@ -7,10 +7,13 @@ import tulisankopi from "../images/coffeeShop.png"
 import { MouseEventHandler, useEffect, useState } from 'react';
 import PortalExample from "./logoutAccount";
 import { useSignInState } from "./context/SignInToken";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 function NavigationBar() {
 
-    const {token} = useSignInState();
+    const token = useSelector((state: RootState) => state.auth.token);
+    console.log(token);
 
     useEffect(() => {
         const belumlogin = document.getElementById('unLoged');

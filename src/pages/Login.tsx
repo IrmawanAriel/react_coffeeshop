@@ -11,7 +11,11 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../components/Input';
 import { useState } from 'react';
 import axios from 'axios';
-import { useSignInState } from '../components/context/SignInToken';
+import { AppDispatch } from '../redux/store';
+import { setToken, setId  } from '../redux/slices/authSlice';
+
+
+import { useDispatch } from 'react-redux';
 
 interface user {
     email: string;
@@ -21,8 +25,9 @@ interface user {
 
 
 const Login = () => {
-    const {assignToken, useID} = useSignInState(); //context provider
+    // const {assignToken, useID} = useSignInState(); //context provider
     const navigate = useNavigate();
+    const dispatch = useDispatch<AppDispatch>();    
     const [user, setUser]= useState<user>({email: '', password: ''})
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,8 +51,8 @@ const Login = () => {
             if(result.status !== 200){
                 throw Error('Failed to login');
             }
-            assignToken(result?.data.data[0].token); 
-            useID(result?.data.id);
+            dispatch(setToken(result?.data.data[0].token)); 
+            dispatch(setId(result?.data.id));
             navigate("/home")
             
         } catch(error) {
@@ -55,7 +60,6 @@ const Login = () => {
         }
     }
 
-    
     
     return (
         <div className="container-fluid">
