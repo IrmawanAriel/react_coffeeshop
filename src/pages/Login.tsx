@@ -14,15 +14,12 @@ import axios from 'axios';
 import { AppDispatch } from '../redux/store';
 import { setToken, setId  } from '../redux/slices/authSlice';
 
-
 import { useDispatch } from 'react-redux';
 
 interface user {
     email: string;
     password: string;
 }
-
-
 
 const Login = () => {
     // const {assignToken, useID} = useSignInState(); //context provider

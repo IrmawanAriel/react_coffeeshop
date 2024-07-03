@@ -13,9 +13,7 @@ export default function PromoCards() {
     discount : number;
     voucher : string;
     activate : boolean;
-  }[];
-
-  
+  };
 
   const [promos, setPromos] = useState<promoBody[]>([])
     
@@ -24,7 +22,7 @@ export default function PromoCards() {
         const url = 'http://localhost:8000/promo/';
         try {
             const result = await axios.get(url);
-            setPromos(result.data.data)
+            setPromos(result.data.data);
         } catch (error) {
             console.log(error)
         }

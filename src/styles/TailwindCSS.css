@@ -1501,6 +1501,11 @@ video {
   background-color: rgb(255 137 6 / var(--tw-bg-opacity));
 }
 
+.peer:checked ~ .peer-checked\:bg-oren {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 137 6 / var(--tw-bg-opacity));
+}
+
 @media (min-width: 860px) {
   .md\:visible {
     visibility: visible;

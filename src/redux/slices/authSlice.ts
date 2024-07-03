@@ -1,14 +1,22 @@
-// authSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface AuthState {
   token: string | null;
   id: string | null | number;
+  TempProduct: DetailProduct[] ;
 }
+
+interface DetailProduct {
+  idProduct?: number | null;
+  quantity: number | null;
+  size: string | null;
+  ice: boolean | null; 
+};
 
 const initialState: AuthState = {
   token: null,
-  id: null
+  id: null,
+  TempProduct : []
 };
 
 const authSlice = createSlice({
@@ -27,8 +35,14 @@ const authSlice = createSlice({
     deleteId: (state) => {
       state.id = null;
     },
+    setTempProduct: (state, action: PayloadAction<DetailProduct> ) => {
+      state.TempProduct.push(action.payload);
+    }, 
+    deleteTempProduct: (state, action: PayloadAction<number>) =>{
+      state.TempProduct = state.TempProduct.filter(product => product.idProduct !== action.payload);
+    }
   },
 });
 
-export const { setToken, deleteToken, setId, deleteId } = authSlice.actions;
+export const { setToken, deleteToken, setId, deleteId, deleteTempProduct, setTempProduct  } = authSlice.actions;
 export default authSlice.reducer;

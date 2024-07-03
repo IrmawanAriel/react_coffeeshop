@@ -50,7 +50,7 @@ const FilterComponent = () => {
     const categoryFilters = { category, product_name, rangePrice };
 
     const params = new URLSearchParams(categoryFilters).toString();
-    console.log(params)
+    // console.log(params)
     axios.get(`http://localhost:8000/product/?${params}`)
       .then((response) => {
         setProduct(response.data.data);
