@@ -7,6 +7,9 @@ import shippingIcon from '../icons/truck.png';
 import statusIcon from '../icons/status.png';
 
 const OrderDetails = () => {
+
+
+
   return (
     <main className="p-8">
 

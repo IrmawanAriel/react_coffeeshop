@@ -6,10 +6,9 @@ import axios from 'axios';
 import OrderDetails from '../pages/OrderDetails';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
-import { setTempProduct, deleteTempProduct } from '../redux/slices/authSlice';
+import { setTempProduct, deleteAllProduct } from '../redux/slices/authSlice';
 import { AppDispatch } from '../redux/store'; 
 import { useDispatch } from 'react-redux';
-import Product from '../pages/Product';
 
 interface ProductInformation {
   uuid: string;
@@ -34,7 +33,6 @@ export default function ProductDetail() {
   const { id } = useParams<{ id: string }>();
   const [ProductInfo, setInfo] = useState<ProductInformation>();
   const [quantity, setQuantity] = useState<number>(1); // Initialize quantity state
-  const ProductTest = useSelector((state: RootState) => state.auth.TempProduct);
 
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>()
@@ -84,9 +82,10 @@ export default function ProductDetail() {
   const handleIceChange = (ice: boolean) => {
     setForm((prevForm) => ({ ...prevForm, ice }));
   };
- 
+
   function buyProduct() {
     dispatch(setTempProduct(ProductForm));
+    navigate('/checkoutproduct');
   }
 
   return (

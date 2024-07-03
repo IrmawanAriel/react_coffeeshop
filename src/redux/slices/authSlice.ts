@@ -40,9 +40,12 @@ const authSlice = createSlice({
     }, 
     deleteTempProduct: (state, action: PayloadAction<number>) =>{
       state.TempProduct = state.TempProduct.filter(product => product.idProduct !== action.payload);
+    },
+    deleteAllProduct: (state) =>{
+      state.TempProduct = [];
     }
   },
 });
 
-export const { setToken, deleteToken, setId, deleteId, deleteTempProduct, setTempProduct  } = authSlice.actions;
+export const { setToken, deleteToken, setId, deleteId, deleteTempProduct, setTempProduct, deleteAllProduct  } = authSlice.actions;
 export default authSlice.reducer;

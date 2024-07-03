@@ -1,8 +1,47 @@
 import productImage from '../images/p2.png';
 import xButtonIcon from '../icons/Xbutton.png';
 import bankersIcon from '../icons/Bankers.png';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+import { useEffect } from 'react';
+import axios from 'axios';
+
+interface pesananModel {
+  id?: number;
+  user_id: number;
+  status: number;
+  quantity: number;
+  ice: boolean;
+  takeaway: boolean;
+  total: number;
+  orderdate: Date;
+}
 
 export default function CheckoutProduct() {
+
+  const {token, id, TempProduct} = useSelector((state: RootState) => state.auth);
+
+  useEffect (()=>{
+    const url = 'http://localhost:8000/pesanan/'
+
+    const getApiOrder = async () => {
+      try{
+        const resultAPIorder = await axios.post(`${url}`, {
+          user_id: id,
+          status: number,
+          quantity: number,
+          ice: boolean,
+          takeaway: true,
+      });
+        console.log(resultAPIorder);
+      } catch (error) {
+
+      }
+    }
+    getApiOrder();
+
+  },[])
+
   return (
     <section className="container-fluid flex flex-col gap-4 py-4 px-4 md:gap-8 md:py-8 md:px-16">
       
@@ -93,9 +132,9 @@ export default function CheckoutProduct() {
               </div>
               <label>Delivery</label>
               <div className="flex flex-col md:flex-row justify-between text-2xl">
-                <button className="items-center py-2 px-4 md:px-16 md:text-2xl text-black border-2 hover:border-oren rounded-lg">Regular</button>
-                <button className="py-2 px-4 md:px-16 items-center md:text-2xl text-black border-2 hover:border-oren rounded-lg">Medium</button>
-                <button className="py-2 px-4 md:px-16 md:text-2xl items-center text-black border-2 hover:border-oren rounded-lg">Large</button>
+                <button className="items-center py-2 px-4 md:px-16 md:text-2xl text-black border-2 hover:border-oren rounded-lg">Dine In </button>
+                <button className="py-2 px-4 md:px-16 items-center md:text-2xl text-black border-2 hover:border-oren rounded-lg">Door Delivery</button>
+                <button className="py-2 px-4 md:px-16 md:text-2xl items-center text-black border-2 hover:border-oren rounded-lg">Pick up</button>
               </div>
             </form>
           </div>
