@@ -1,12 +1,9 @@
-import { useParams, Navigate, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import orenshopingcart from '../icons/orenshopingcart.png';
 import kopidetail from '../images/kopidetail.png';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import OrderDetails from '../pages/OrderDetails';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
-import { setTempProduct, deleteAllProduct } from '../redux/slices/authSlice';
+import { setTempProduct } from '../redux/slices/authSlice';
 import { AppDispatch } from '../redux/store'; 
 import { useDispatch } from 'react-redux';
 
@@ -92,6 +89,10 @@ export default function ProductDetail() {
   function buyProduct() {
     dispatch(setTempProduct(ProductForm));
     navigate('/checkoutproduct');
+  }
+
+  function saveProduct() {
+    dispatch(setTempProduct(ProductForm));
   }
 
   return (
@@ -242,7 +243,7 @@ export default function ProductDetail() {
             >
               Buy
             </button>
-            <button className="font-semibold p-2 rounded-xl border-2 border-orange-400 flex justify-center items-center md:py-2 md:px-20 w-full text-2xl text-black gap-2">
+            <button onClick={() => { saveProduct() }} className="font-semibold p-2 rounded-xl border-2 border-orange-400 flex justify-center items-center md:py-2 md:px-20 w-full text-2xl text-black gap-2">
               <img
                 className="w-auto h-auto"
                 src={orenshopingcart}

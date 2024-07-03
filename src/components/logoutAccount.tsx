@@ -2,15 +2,20 @@ import { createPortal } from 'react-dom';
 import ModalContent from './modalContent/logout';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSignInState } from './context/SignInToken';
+
+import { deleteToken } from '../redux/slices/authSlice';
+import { AppDispatch } from '../redux/store'; 
+import { useDispatch } from 'react-redux';
 
 export default function PortalExample() {
-  const { deleteToken } = useSignInState();
   const [showModal, setShowModal] = useState(false);
+  
   const navigate = useNavigate(); // Pindahkan useNavigate ke dalam komponen
+  const dispatch = useDispatch<AppDispatch>()
+
 
   const handleAgree = () => {
-    deleteToken();
+    dispatch(deleteToken());
     setShowModal(false);
     navigate('home'); // Contoh navigasi ke halaman utama setelah logout
   };

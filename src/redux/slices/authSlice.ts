@@ -41,7 +41,8 @@ const authSlice = createSlice({
       state.TempProduct.push(action.payload);
     }, 
     deleteTempProduct: (state, action: PayloadAction<number>) =>{
-      state.TempProduct = state.TempProduct.filter(product => product.idProduct !== action.payload);
+      state.TempProduct = state.TempProduct.filter((_, index) => index !== action.payload);
+      // state.TempProduct = state.TempProduct.filter(product => product.idProduct !== action.payload);
     },
     deleteAllProduct: (state) =>{
       state.TempProduct = [];
