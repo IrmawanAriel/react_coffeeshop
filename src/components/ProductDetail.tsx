@@ -27,6 +27,8 @@ interface DetailProduct {
   quantity: number | null;
   size: string | null;
   ice: boolean | null;
+  image?: string;
+  product_name? : string;
 }
 
 export default function ProductDetail() {
@@ -41,7 +43,8 @@ export default function ProductDetail() {
     idProduct: null, //idProduct tak terupdate harusnya ppakai
     quantity: 1, // Set initial quantity to 1
     size: null,
-    ice: null
+    ice: null,
+    image: undefined,
   });
 
   useEffect(() => {
@@ -51,9 +54,12 @@ export default function ProductDetail() {
       try {
         const detailResult = await axios.get(ProductDetailUrl);
         setInfo(detailResult.data.data[0]);
+        console.log(detailResult.data.data[0])
         setForm((prevForm) => ({
           ...prevForm,
           idProduct: detailResult.data.data[0].id,
+          image: detailResult.data.data[0].image,
+          product_name: detailResult.data.data[0].product_name,
         }));
       } catch (error) {
         console.log(error);

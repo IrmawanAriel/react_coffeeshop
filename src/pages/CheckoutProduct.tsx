@@ -3,37 +3,42 @@ import xButtonIcon from '../icons/Xbutton.png';
 import bankersIcon from '../icons/Bankers.png';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import nullSign from '../assets/nullSign.png'
 import axios from 'axios';
 
 interface pesananModel {
-  id?: number;
   user_id: number;
   status: number;
-  quantity: number;
+  // quantity: number;
   ice: boolean;
   takeaway: boolean;
-  total: number;
-  orderdate: Date;
 }
 
 export default function CheckoutProduct() {
 
   const {token, id, TempProduct} = useSelector((state: RootState) => state.auth);
+  //tempt product di buat maping dulu
+  //token buat auth get product
+  //id buat get url
+
+  const orderedProduct = TempProduct;
+  
+  const [paymentInfo, setPayment] = useState<pesananModel>();
 
   useEffect (()=>{
     const url = 'http://localhost:8000/pesanan/'
 
     const getApiOrder = async () => {
       try{
-        const resultAPIorder = await axios.post(`${url}`, {
-          user_id: id,
-          status: number,
-          quantity: number,
-          ice: boolean,
-          takeaway: true,
-      });
-        console.log(resultAPIorder);
+      //   const resultAPIorder = await axios.post(`${url}`, { // abis ini buat api post ke product order
+      //     user_id: id,
+      //     status: number,
+      //     quantity: number,
+      //     ice: boolean,
+      //     takeaway: true,
+      // });
+        console.log(TempProduct);
       } catch (error) {
 
       }
@@ -60,57 +65,37 @@ export default function CheckoutProduct() {
             </button>
           </div>
 
-          <div className="flex flex-row gap-4 items-center bg-gray-100">
-            <div className="foto basis-1/3 p-4">
-              <img className="w-auto h-fit" src={productImage} alt="Sunset in the mountains" />
-            </div>
-            <div className="flex flex-row w-full justify-between">
-              <div className="flex flex-col gap-2 md:gap-4">
-                <div className="text-white text-xl bg-red-700 border-2 rounded-3xl w-fit p-2">Flash Sale!</div>
-                <div className="font-bold text-xl">Hazelnut Latte</div>
-                <div className="text-xl text-gray-400">2 pcs | Regular | Ice | Dine In</div>
-                <div className="price flex flex-row gap-2">
-                  <div className="first-price line-through text-red-800">
-                    <p>40.000</p>
+          {orderedProduct.map((product, index) => (
+            <div key={product.idProduct ?? index} className="flex flex-row gap-4 items-center bg-gray-100">
+              <div className="foto basis-1/3 p-4">
+                <img className="w-auto h-fit" src={product.image ? `http://localhost:8000/${product.image}` : nullSign } alt="Sunset in the mountains" />
+              </div>
+              <div className="flex flex-row w-full justify-between">
+                <div className="flex flex-col gap-2 md:gap-4">
+                  <div className="text-white text-xl bg-red-700 border-2 rounded-3xl w-fit p-2">Flash Sale!</div>
+                  <div className="font-bold text-xl">{product.product_name}</div>
+                  <div className="text-xl text-gray-400">
+                    {product.quantity} pcs | {product.size} | {product.ice ? 'Ice' : 'Hot'} | Dine In
                   </div>
-                  <div className="discount-price text-2xl text-[#FF8906]">
-                    <p>IDR 10.000</p>
+                  <div className="price flex flex-row gap-2">
+                    <div className="first-price line-through text-red-800">
+                      <p>40.000</p>
+                    </div>
+                    <div className="discount-price text-2xl text-[#FF8906]">
+                      <p>IDR 10.000</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="flex items-center px-4">
-                <button>
-                  <img className="justify-self-end h-6" src={xButtonIcon} alt="" />
-                </button>
+                <div className="flex items-center px-4">
+                  <button>
+                    <img className="justify-self-end h-6" src={xButtonIcon} alt="Close" />
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+          ))}
 
-          <div className="flex flex-row gap-2 items-center bg-gray-100">
-            <div className="foto basis-1/3 p-4">
-              <img className="w-auto h-fit" src={productImage} alt="Sunset in the mountains" />
-            </div>
-            <div className="flex flex-row w-full justify-between">
-              <div className="flex flex-col gap-2 md:gap-4">
-                <div className="text-white text-xl bg-red-700 border-2 rounded-3xl w-fit p-2">Flash Sale!</div>
-                <div className="font-bold text-xl">Hazelnut Latte</div>
-                <div className="text-xl text-gray-400">2 pcs | Regular | Ice | Dine In</div>
-                <div className="price flex flex-row gap-2">
-                  <div className="first-price line-through text-red-800">
-                    <p>40.000</p>
-                  </div>
-                  <div className="discount-price text-2xl text-[#FF8906]">
-                    <p>IDR 10.000</p>
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center px-4">
-                <button>
-                  <img className="justify-self-end h-6" src={xButtonIcon} alt="" />
-                </button>
-              </div>
-            </div>
-          </div>
+          
 
           <section className="items-beetwen p-4">
             <p className="text-header text-wrap text-2xl font-medium">Payment Details</p>

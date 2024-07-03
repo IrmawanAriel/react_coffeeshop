@@ -10,7 +10,9 @@ interface DetailProduct {
   idProduct?: number | null;
   quantity: number | null;
   size: string | null;
-  ice: boolean | null; 
+  ice: boolean | null;
+  image?: string; 
+  product_name?: string;
 };
 
 const initialState: AuthState = {
