@@ -5,15 +5,15 @@ import { RootState } from '../redux/store';
 import { useEffect, useState } from 'react';
 import nullSign from '../assets/nullSign.png';
 
-import { deleteTempProduct} from '../redux/slices/authSlice';
+import { deleteProductShopingCart} from '../redux/slices/ProductCart';
 import { AppDispatch } from '../redux/store'; 
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import ChooseYourProduct from '../components/chooseYourProduct';
 
 interface pesananModel {
   user_id: number;
   status: number;
-  // quantity: number;
   ice: boolean;
   takeaway: boolean;
 }
@@ -23,12 +23,14 @@ export default function CheckoutProduct() {
   const navigate = useNavigate()
   const dispatch = useDispatch<AppDispatch>() 
 
-  const {token, id, TempProduct} = useSelector((state: RootState) => state.auth);
+  const {ProductShopingCart} = useSelector((state: RootState) => state.Product);
   //tempt product di buat maping dulu
   //token buat auth get product
   //id buat get url
 
-  const orderedProduct = TempProduct;
+  //fulname, email bisa di panggil lewat akun.
+  //address, delivery input ke order
+  //tambah kolom, quantity, ice pada product_orders
   
   const [paymentInfo, setPayment] = useState<pesananModel>();
 
@@ -44,7 +46,7 @@ export default function CheckoutProduct() {
       //     ice: boolean,
       //     takeaway: true,
       // });
-        console.log(TempProduct);
+        console.log(ProductShopingCart);
       } catch (error) {
 
       }
@@ -71,7 +73,7 @@ export default function CheckoutProduct() {
             </button>
           </div>
 
-          {orderedProduct.map((product, index) => (
+           {ProductShopingCart.length === 0 ? <ChooseYourProduct/> : ProductShopingCart.map((product, index) => (
             <div key={product.idProduct ?? index} className="flex flex-row gap-4 items-center bg-gray-100">
               <div className="foto basis-1/3 p-4">
                 <img className="w-[178px] h-[170px] object-cover" src={product.image ? `http://localhost:8000/${product.image}` : nullSign } alt="Sunset in the mountains" />
@@ -93,16 +95,14 @@ export default function CheckoutProduct() {
                   </div>
                 </div>
                 <div className="flex items-center px-4">
-                  <button onClick={() => dispatch(deleteTempProduct(index))}>
+                  <button onClick={() => dispatch(deleteProductShopingCart(index))}>
                     <img className="justify-self-end h-6" src={xButtonIcon} alt="Close" />
                   </button>
                 </div>
               </div>
             </div>
           ))}
-
           
-
           <section className="items-beetwen p-4">
             <p className="text-header text-wrap text-2xl font-semibold">Payment Info & Delivery</p>
           </section>

@@ -48,7 +48,8 @@ const Login = () => {
             if(result.status !== 200){
                 throw Error('Failed to login');
             }
-            dispatch(setToken(result?.data.data[0].token)); 
+            dispatch(setToken(result?.data.data[0].token));
+             
             dispatch(setId(result?.data.id));
             navigate("/home")
             

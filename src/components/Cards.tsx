@@ -16,7 +16,7 @@ interface productBody {
     image?: string;
 }
 
-export default function Cards({ props }: { props: productBody[] | undefined }) {
+export default function Cards({ props }: { props: productBody[] | undefined }) { // penamaan props
     const [Products, setProduct] = useState<productBody[]>([]);
     const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ export default function Cards({ props }: { props: productBody[] | undefined }) {
         const getDataProduct = async () => {
             const url = 'http://localhost:8000/product';
             try {
-                if (props) {
+                if (props) { //bug page product
                     setProduct(props);
                 } else {
                     const result = await axios.get(url);

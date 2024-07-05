@@ -13,9 +13,6 @@ return  <div className="modal p-4 gap-2 flex justify-evenly items-center shadow-
                 <button className='bg-blue-300 p-2' onClick={onAgree}>Yes</button>
                 <button className='bg-red-300 p-2' onClick={onClose}>No</button>
             </div>
-        {/* 
-        
-        */}
         </div>;
 };
 

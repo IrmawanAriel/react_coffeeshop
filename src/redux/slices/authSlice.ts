@@ -1,24 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface AuthState {
-  token: string | null;
-  id: string | null | number;
-  TempProduct: DetailProduct[] ;
+  token: string ;
+  uuid: string ;
 }
 
-interface DetailProduct {
-  idProduct?: number | null;
-  quantity: number | null;
-  size: string | null;
-  ice: boolean | null;
-  image?: string; 
-  product_name?: string;
-};
-
 const initialState: AuthState = {
-  token: null,
-  id: null,
-  TempProduct : []
+  token: '',
+  uuid: '', //
 };
 
 const authSlice = createSlice({
@@ -29,26 +18,16 @@ const authSlice = createSlice({
       state.token = action.payload;
     },
     deleteToken: (state) => {
-      state.token = null;
+      state.token = '';
     },
     setId: (state, action: PayloadAction<string>) => {
-      state.id = action.payload;
+      state.uuid = action.payload;
     },
     deleteId: (state) => {
-      state.id = null;
-    },
-    setTempProduct: (state, action: PayloadAction<DetailProduct> ) => {
-      state.TempProduct.push(action.payload);
-    }, 
-    deleteTempProduct: (state, action: PayloadAction<number>) =>{
-      state.TempProduct = state.TempProduct.filter((_, index) => index !== action.payload);
-      // state.TempProduct = state.TempProduct.filter(product => product.idProduct !== action.payload);
-    },
-    deleteAllProduct: (state) =>{
-      state.TempProduct = [];
+      state.uuid = '';
     }
   },
 });
 
-export const { setToken, deleteToken, setId, deleteId, deleteTempProduct, setTempProduct, deleteAllProduct  } = authSlice.actions;
+export const { setToken, deleteToken, setId, deleteId } = authSlice.actions;
 export default authSlice.reducer;
