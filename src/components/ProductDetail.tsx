@@ -3,7 +3,7 @@ import orenshopingcart from '../icons/orenshopingcart.png';
 import kopidetail from '../images/kopidetail.png';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { setTempProduct } from '../redux/slices/authSlice';
+import { setProductShopingCart } from '../redux/slices/ProductCart';
 import { AppDispatch } from '../redux/store'; 
 import { useDispatch } from 'react-redux';
 
@@ -40,7 +40,7 @@ export default function ProductDetail() {
     idProduct: null, //idProduct tak terupdate harusnya ppakai
     quantity: 1, // Set initial quantity to 1
     size: null,
-    ice: null,
+    ice: false,
     image: undefined,
   });
 
@@ -87,12 +87,12 @@ export default function ProductDetail() {
   };
 
   function buyProduct() {
-    dispatch(setTempProduct(ProductForm));
+    dispatch(setProductShopingCart(ProductForm));
     navigate('/checkoutproduct');
   }
 
   function saveProduct() {
-    dispatch(setTempProduct(ProductForm));
+    dispatch(setProductShopingCart(ProductForm));
   }
 
   return (
@@ -179,7 +179,7 @@ export default function ProductDetail() {
                 className="hidden"
                 onChange={() => handleSizeChange('Regular')}
               />
-              <div className="text-lg p-4 md:py-4 md:px-16 md:text-2xl text-black border-2 hover:border-oren peer-checked:bg-oren">
+              <div className="text-lg p-4 md:py-4 md:px-16 md:text-2xl text-black border-2 hover:border-oren peer-checked:bg-oren active:bg-oren">
                 Regular
               </div>
             </label>
@@ -213,8 +213,8 @@ export default function ProductDetail() {
             <label className="cursor-pointer">
               <input
                 type="radio"
-                name="temperature"
-                value="Ice"
+                name="ice"
+                value="true"
                 className="hidden"
                 onChange={() => handleIceChange(true)}
               />
@@ -225,8 +225,8 @@ export default function ProductDetail() {
             <label className="cursor-pointer">
               <input
                 type="radio"
-                name="temperature"
-                value="Hot"
+                name="ice"
+                value="false"
                 className="hidden"
                 onChange={() => handleIceChange(false)}
               />

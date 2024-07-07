@@ -27,7 +27,6 @@ const ProductSlice = createSlice({
     }, 
     deleteProductShopingCart: (state, action: PayloadAction<number>) =>{
       state.ProductShopingCart = state.ProductShopingCart.filter((_, index) => index !== action.payload);
-      // state.ProductShopingCart = state.ProductShopingCart.filter(product => product.idProduct !== action.payload);
     },
     deleteAllProduct: (state) =>{
       state.ProductShopingCart = [];

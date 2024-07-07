@@ -20,14 +20,14 @@ const authSlice = createSlice({
     deleteToken: (state) => {
       state.token = '';
     },
-    setId: (state, action: PayloadAction<string>) => {
+    setUuid: (state, action: PayloadAction<string>) => {
       state.uuid = action.payload;
     },
-    deleteId: (state) => {
+    deleteUuid: (state) => {
       state.uuid = '';
     }
   },
 });
 
-export const { setToken, deleteToken, setId, deleteId } = authSlice.actions;
+export const { setToken, deleteToken, setUuid, deleteUuid } = authSlice.actions;
 export default authSlice.reducer;

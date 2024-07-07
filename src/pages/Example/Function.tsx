@@ -40,6 +40,7 @@ function Function() {
     if (e.target.value === "") delete newFormState[e.target.name as keyof IForm];
     setForm(newFormState);
   }
+  
   function onSubmitHandler() {
     const newUser = {
       ...user, // {user: "andi", address: "jakarta"}

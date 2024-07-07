@@ -12,8 +12,7 @@ import Input from '../components/Input';
 import { useState } from 'react';
 import axios from 'axios';
 import { AppDispatch } from '../redux/store';
-import { setToken, setId  } from '../redux/slices/authSlice';
-
+import { setToken, setUuid  } from '../redux/slices/authSlice';
 import { useDispatch } from 'react-redux';
 
 interface user {
@@ -50,7 +49,7 @@ const Login = () => {
             }
             dispatch(setToken(result?.data.data[0].token));
              
-            dispatch(setId(result?.data.id));
+            dispatch(setUuid(result?.data.uuid));
             navigate("/home")
             
         } catch(error) {
