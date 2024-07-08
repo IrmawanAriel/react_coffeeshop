@@ -66,6 +66,14 @@ const routerWithChildren = createBrowserRouter([
             <DetailProduct />
           </PrivateRoute>
         ),
+      },
+      {
+        path: '/ordersdetail/:id',
+        element: (
+          <PrivateRoute to={"/login"}>
+            <OrderDetails />
+          </PrivateRoute>
+        ),
       }
       ,
       {

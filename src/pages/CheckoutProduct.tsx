@@ -49,32 +49,29 @@ export default function CheckoutProduct() {
   const checkoutAllProduct = async () => {
     const url = `http://localhost:8000/pesanan`;
     const urlProductOrder = `http://localhost:8000/product/pesanan`
+
     try {
       const result = await axios.post(url, paymentInfo);
       const CreatedOrderId = ( result.data.data[0].id ); // lalu buat record table relationnnya untuk order dengan product
-      // console.log('ini adlaah order id', result.data.data[0].id)
+      // console.log(ProductShopingCart);
+
       try {
         await Promise.all(ProductShopingCart.map(async (value) => {
           await axios.post(urlProductOrder, {
             order_id: CreatedOrderId,
             product_id: value.idProduct,
             ice: value.ice,
-            quantity: value.quantity
+            quantity: value.quantity,
+            size: value.size
           });
         }));
         console.log('data berhasill disimpan ' , ProductShopingCart );
+        navigate(`/ordersdetail/${CreatedOrderId}`);
       } catch (error) {
         throw new Error("product tidak berhasil disimpan");
       }
 
-      // ProductShopingCart ? ProductShopingCart.map((value) => {await axios.post( urlProductOrder, 
-      //   {
-      //     order_id: CreatedOrderId,
-      //     product_id: value.idProduct,
-      //     ice: value.ice,
-      //     quantity: value.quantity
-      //   }
-      // )}) : return new Error ("product tidak berhasil disimpan") 
+
 
     } catch (error) {
       console.error('Error order:', error);
