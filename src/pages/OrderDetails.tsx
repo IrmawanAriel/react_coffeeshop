@@ -29,6 +29,7 @@ interface OrderDetail {
   takeaway: string;
   total_order: number;
   phone: string | null;
+  fullname: string;
 }
 
 const OrderDetails = () => {
@@ -43,6 +44,7 @@ const OrderDetails = () => {
     takeaway: '',
     total_order: 0,
     phone: null,
+    fullname: '',
   });
 
   useEffect(() => {
@@ -72,6 +74,7 @@ const OrderDetails = () => {
           product_name: detailInformationProduct[index].data[0].product_name,
         }));
 
+        console.log(orderDetailResponse.data.data[0]);
         setProducts(updatedProducts);
       } catch (err) {
         console.log(err);
@@ -102,7 +105,7 @@ const OrderDetails = () => {
                   <img className="h-6 w-auto" src={fullnameIcon} alt="Fullname Icon" />
                   <div className="font-normal text-xl">Fullname</div>
                 </div>
-                <div className="font-semibold text-xl text-wrap">Galuh wizard</div>
+                <div className="font-semibold text-xl text-wrap">{orderDet.fullname}</div>
               </div>
 
               <div className="flex-row flex justify-between border-b-2 p-2 gap-4">
