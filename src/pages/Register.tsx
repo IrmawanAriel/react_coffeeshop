@@ -61,11 +61,11 @@ function Register() {
     <div className="container-fluid">
 
         <div className="flex flex-col md:flex-row w-full h-full">
-            <div className="item itemImg  basis-2/4 hidden md:block" style={{ flex: 1 }}>
-                <img className='h-full object-cover' src={bg_coffeLogin} alt=""/>
+            <div className="item itemImg  basis-1/4 hidden md:block" >
+                <img className='h-screen object-cover' src={bg_coffeLogin} alt=""/>
             </div>
 
-            <div className="item itemForm flex flex-col basis-2/4 gap-4 items-center justify-center p-4">
+            <div className="item itemForm flex flex-col basis-3/4 gap-4 items-center justify-center p-4">
                     <section className="Regisform flex flex-col gap-4 py-8">
                         <section className="logoJudul flex-logo flex flex-row gap-2">
                             <img className="itemLogo h-8" src={logoCoffee} alt="logoCoffee" />
@@ -91,11 +91,6 @@ function Register() {
                                     input={{ type: 'password', name: 'password', placeholder: 'Enter your password', value: registData.password , onChange: handleChange }}
                                     label="password"
                                 />
-                                {/* <Input
-                                    img={{ src: passwordIcon, alt: 'image gagal' }}
-                                    input={{ type: 'password', name: 'password', placeholder: 'Enter your password again', value: , onChange:  }}
-                                    label="passwordConfirm"
-                                /> */}
                             <button className="item font-semibold border-2 bg-oren w-full rounded rounded-lg" type="submit">Register</button>
                         </form>
                         <section className="login-container flex flex-col gap-2 md:gap-4 w-full items-center justify-center">

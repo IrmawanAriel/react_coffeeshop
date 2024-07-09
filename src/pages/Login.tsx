@@ -61,10 +61,10 @@ const Login = () => {
     return (
         <div className="container-fluid">
             <div className="flex flex-col md:flex-row w-full">
-                <div className="item itemImg object-cover basis-2/4 hidden md:block" style={{ flex: 1 }}>
-                    <img className='h-full object-cover' src={bg_coffeLogin} alt="Logo Coffee" />
+                <div className="item itemImg object-cover basis-1/4 hidden md:block" style={{ flex: 1 }}>
+                    <img className='h-screen object-cover' src={bg_coffeLogin} alt="Logo Coffee" />
                 </div>
-                <div className="item itemForm flex flex-col basis-2/4 gap-4 items-center justify-center p-4">
+                <div className="item itemForm flex flex-col basis-3/4 gap-4 items-center justify-center p-4">
                     <section className="Regisform flex flex-col gap-4 py-8">
                         <section className="logoJudul flex-logo flex flex-row gap-2">
                             <img className="itemLogo h-8" src={logoCoffee} alt="logoCoffee" />
