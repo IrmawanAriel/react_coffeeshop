@@ -17,12 +17,7 @@ function Product() {
           </p>
         </section>
       </section>
-
-      
-
         <PromoCards />
-
-
         <FilterComponent />
         
     </main>

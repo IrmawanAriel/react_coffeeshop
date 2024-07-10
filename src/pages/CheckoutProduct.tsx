@@ -71,8 +71,6 @@ export default function CheckoutProduct() {
         throw new Error("product tidak berhasil disimpan");
       }
 
-
-
     } catch (error) {
       console.error('Error order:', error);
     }
