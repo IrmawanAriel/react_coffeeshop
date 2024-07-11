@@ -22,18 +22,22 @@ function NavigationBar() {
         const displayLoged = document.getElementById('loged');
         const classUnloged = document.getElementById('unLoged3');
         const classUnloged2 = document.getElementById('unLoged4');
+        const classloged = document.getElementById('logged1');
+
 
         if (token) { // jika udah login
             belumlogin?.classList.add('hidden');
             displayLoged?.classList.remove('hidden');
-            classUnloged?.classList.remove('hidden')
-            classUnloged2?.classList.remove('hidden')
+            classUnloged?.classList.remove('hidden');
+            classUnloged2?.classList.remove('hidden');
+            classloged?.classList.remove('hidden');
 
         } else { // jika belum login
-            classUnloged?.classList.add('hidden')
+            classloged?.classList.add('hidden');
+            classUnloged?.classList.add('hidden');
             belumlogin?.classList.remove('hidden');
             displayLoged?.classList.add('hidden');
-            classUnloged2?.classList.add('hidden')
+            classUnloged2?.classList.add('hidden');
         }
 
         const belumlogin2 = document.getElementById('unLoged2');
@@ -76,6 +80,11 @@ function NavigationBar() {
                         </Link>
                         <Link to="#" className="shopingCartItem">
                             <img className="w-4" src={shopingCart1} alt="" />
+                        </Link>
+                    </div>
+                    <div className=" hidden" id="logged1">
+                        <Link to="/profile" className="block px-4 py-2 text-lg font-medium text-white hover:bg-orange-300" id="menu-item-1">
+                            Profile
                         </Link>
                     </div>
                     <div id="unLoged" className="flex flex-row gap-4">
@@ -155,6 +164,7 @@ function NavigationBar() {
                                 <Link to="/product" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
                                     id="menu-item-1">Product</Link>
                                 <div id="unLoged4">
+                                    
                                     <Link to="/historyorder" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
                                         id="menu-item-1">Orders History</Link>
                                 </div>

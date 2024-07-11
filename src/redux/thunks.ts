@@ -18,7 +18,6 @@ interface productBody {
     image?: string;
   }
 
-// Mengubah parameter kedua menjadi objek yang menerima `apiEndpoint`
 export const fetchData = createAsyncThunk<FetchDataResponse, { apiEndpoint: string }>(
   'data/fetchData',
   async ({ apiEndpoint }) => {

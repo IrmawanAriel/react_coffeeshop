@@ -92,7 +92,6 @@ export default function CheckoutProduct() {
       </section>
 
       <section className="flex flex-col lg:flex-row gap-4 h-2/4">
-
         <div className="basis-3/5 max-w-full max-h-fit flex flex-col gap-4">
 
           <div className="flex flex-row justify-between">
@@ -102,7 +101,7 @@ export default function CheckoutProduct() {
             </button>
           </div>
 
-          {ProductShopingCart.length === 0 ? <ChooseYourProduct /> : ProductShopingCart.map((product, index) => (
+          {ProductShopingCart.length === 0 ? <ChooseYourProduct/> : ProductShopingCart.map((product, index) => (
             <div key={`${index}-${product.idProduct ?? product.product_name}`} className="flex flex-row gap-4 items-center bg-gray-100">
               <div className="foto basis-1/3 p-4">
                 <img className="w-[178px] h-[170px] object-cover" src={product.image ? `http://localhost:8000/${product.image}` : nullSign} alt="Sunset in the mountains" />
