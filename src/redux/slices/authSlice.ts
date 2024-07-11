@@ -19,6 +19,7 @@ const authSlice = createSlice({
     },
     deleteToken: (state) => {
       state.token = '';
+      state.uuid = '';
     },
     setUuid: (state, action: PayloadAction<string>) => {
       state.uuid = action.payload;

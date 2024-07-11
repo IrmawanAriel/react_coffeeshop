@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import searchIcon from "../icons/magnifying-glass.ico"
 import shopingCart from "../icons/shopping-cart.ico"
+
+import searchIcon1 from "../icons/kacapembesaar.svg"
+import shopingCart1 from "../icons/keranjangbelanja.svg"
 import ThreeDots from "../assets/ThreeDots.svg"
 import logokopi from "../images/logoCoffee.png"
 import tulisankopi from "../images/coffeeShop.png"
@@ -67,12 +70,12 @@ function NavigationBar() {
                     </div>
                 </div>
                 <div className="flex flex-row gap-4 items-center text-white">
-                    <div className="flex flex-row gap-4">
+                    <div className=" flex-row gap-4 hidden md:flex">
                         <Link to="#" className="searchButton">
-                            <img className="w-4" src={searchIcon} alt="" />
+                            <img className="w-4" src={searchIcon1} alt="" />
                         </Link>
                         <Link to="#" className="shopingCartItem">
-                            <img className="w-4" src={shopingCart} alt="" />
+                            <img className="w-4" src={shopingCart1} alt="" />
                         </Link>
                     </div>
                     <div id="unLoged" className="flex flex-row gap-4">
@@ -106,22 +109,16 @@ function NavigationBar() {
                                 <Link to="/product" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300 md:hidden"
                                     id="menu-item-1">Product</Link>
                                 <div id="unLoged3">
-                                    <Link to="/detailsproduct" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
-                                        id="menu-item-1">Details Product</Link>
-                                    <Link to="/orderdetails" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
-                                        id="menu-item-1">Order Details</Link>
-                                    <Link to="/checkoutproduct" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
-                                        id="menu-item-1">Checkout Product</Link>
                                     <Link to="/historyorder" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
                                         id="menu-item-1">Orders History</Link>
                                 </div>
                             </div>
                             <div className="py-1 " role="none">
-                                <Link to="#" className="block px-4 py-2 text-sm text-gray-700 flex flex-row gap-2 items-center hover:bg-orange-300" id="menu-item-2">
+                                <Link to="#" className="md:hidden block px-4 py-2 text-sm text-gray-700 flex flex-row gap-2 items-center hover:bg-orange-300" id="menu-item-2">
                                     <img className="h-4 w-4" src={searchIcon} alt="" />
                                     <p>Search</p>
                                 </Link>
-                                <Link to="#" className="block px-4 py-2 text-sm text-gray-700 flex flex-row gap-2 items-center hover:bg-orange-300"
+                                <Link to="#" className="md:hidden block px-4 py-2 text-sm text-gray-700 flex flex-row gap-2 items-center hover:bg-orange-300"
                                     id="menu-item-3">
                                     <img className="h-4 w-4" src={shopingCart} alt="" />
                                     <p>Shooping Cart</p>
@@ -158,17 +155,11 @@ function NavigationBar() {
                                 <Link to="/product" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
                                     id="menu-item-1">Product</Link>
                                 <div id="unLoged4">
-                                    <Link to="/detailsproduct" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
-                                        id="menu-item-1">Details Product</Link>
-                                    <Link to="/orderdetails" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
-                                        id="menu-item-1">Order Details</Link>
-                                    <Link to="/checkoutproduct" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
-                                        id="menu-item-1">Checkout Product</Link>
                                     <Link to="/historyorder" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
                                         id="menu-item-1">Orders History</Link>
                                 </div>
                             </div>
-                            <div className="py-1 " role="none">
+                            <div className="py-1 " role="none" >
                                 <Link to="#" className="block px-4 py-2 text-sm text-gray-700 flex flex-row gap-2 items-center hover:bg-orange-300" id="menu-item-2">
                                     <img className="h-4 w-4" src={searchIcon} alt="" />
                                     <p>Search</p>

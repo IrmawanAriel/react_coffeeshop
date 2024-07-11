@@ -5,7 +5,6 @@ type ModalContentProps = {
     onAgree: React.MouseEventHandler<HTMLButtonElement>; 
 };
 
-
 const ModalContent: React.FC<ModalContentProps> = ({ onClose ,onAgree}) => {
 return  <div className="show fixed z-50 inset-0 bg-black bg-opacity-50 modal-bg justify-center items-center ">
         <div className="bg-white p-6 rounded shadow-lg max-w-md uw:max-w-2xl w-3/4 tbt:w-full text-center absolute w-250 top-50 left-1/2 transform -translate-x-1/2 bottom-70">

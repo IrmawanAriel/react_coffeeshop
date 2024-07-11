@@ -21,7 +21,6 @@ const ProductSlice = createSlice({
   name: 'productShopingCart',
   initialState,
   reducers: {
-    
     setProductShopingCart: (state, action: PayloadAction<DetailProduct> ) => {
       state.ProductShopingCart.push(action.payload);
     }, 

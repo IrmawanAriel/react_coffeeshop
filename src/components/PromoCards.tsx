@@ -68,14 +68,14 @@ export default function PromoCards() {
         <section className="carousel pb-4 kiwiw">
           <div className="carousel-contents w-full flex flex-row flex-nowrap overflow-x-auto space-x-4 p-8 text-wrap	">
             {promos.map((item) => (
-              <div key={item.id} className="promo-card flex-shrink-0 flex flex-row items-center bg-[#88B788] rounded-3xl w-80 p-4">
-                <div className="promo-image">
-                  <img src={Image46} alt={`Promo Image ${item.id}`} className="promo-img" />
+              <div key={item.id} className="promo-card flex-shrink-0 flex flex-row items-center bg-[#88B788] rounded-3xl w-[335px] h-auto p-4">
+                <div className="promo-image p-2">
+                  <img src={Image46} alt={`Promo Image ${item.id}`} className="promo-img w-[96px] h-[106px]" />
                 </div>
                 <div className="promo-content text-center mt-4">
-                  <h1 className="text-xl text-wrap	 font-bold">{item.voucher}</h1>
+                  <h1 className="text-lg text-wrap	 font-bold">{item.voucher}</h1>
                   <h2 className="text-lg text-wrap">Get {item.discount * 100}% off !!</h2>
-                  <a href="#" className="text-white bg-oren px-4 py-2 mt-2 rounded-lg inline-block">
+                  <a href="#" className="text-white bg-oren p-2 py-2 mt-2 rounded-lg inline-block">
                     Klaim Kupon
                   </a>
                 </div>

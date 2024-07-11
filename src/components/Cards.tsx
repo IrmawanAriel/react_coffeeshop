@@ -24,7 +24,7 @@ export default function Cards({ props }: { props: productBody[] | undefined }) {
         const getDataProduct = async () => {
             const url = 'http://localhost:8000/product';
             try {
-                if (props) { //bug page product
+                if (props) { 
                     setProduct(props);
                 } else {
                     const result = await axios.get(url);
