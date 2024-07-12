@@ -1,16 +1,37 @@
 import React, { useState } from 'react';
-import GaluhWizardImage from '../images/GaluhWizard.png';
+import axios from 'axios';
+import { RootState } from '../redux/store';
+import { useSelector } from 'react-redux';
+import { jwtDecode, JwtPayload } from 'jwt-decode';
+import { setIMG } from '../redux/slices/authSlice';
+
+interface payloadInterface extends JwtPayload {
+    email: string;
+    id: number;
+}
+
+interface ProfileData {
+    fullname: string;
+    email: string;
+    phone: string;
+    password: string;
+    address: string;
+    image: File | null | undefined;
+}
 
 const Profile = () => {
-    const [profileData, setProfileData] = useState({
-        fullname: 'galuh wizard',
-        email: 'gahuls@gmail.com',
+    const { token, image } = useSelector((state: RootState) => state.auth);
+    const tokenPayload = jwtDecode<payloadInterface>(token);
+    const [profileImage, setProfileImage] = useState<File | null>(null);
+
+    const [profileData, setProfileData] = useState<ProfileData>({
+        fullname: '',
+        email: '',
         phone: '',
         password: '',
-        address: ''
+        address: '',
+        image: null
     });
-
-    const [profileImage, setProfileImage] = useState(GaluhWizardImage);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = e.target;
@@ -21,32 +42,56 @@ const Profile = () => {
     };
 
     const handleImageUpload: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-        const files = e.target.files;
-        if (files && files[0]) {
-            const file = files[0];
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setProfileImage(reader.result as string);
-            };
-            reader.readAsDataURL(file);
+        if (e.target.files && e.target.files[0]) {
+            const file = e.target.files[0];
+            setProfileImage(file);
+            setProfileData({
+                ...profileData,
+                image: file
+            });
+        }
+    };
+
+    const UpdateUserFunction = async () => {
+        try {
+            const formData = new FormData();
+            formData.append('fullname', profileData.fullname);
+            formData.append('email', profileData.email);
+            formData.append('phone', profileData.phone);
+            formData.append('password', profileData.password);
+            formData.append('address', profileData.address);
+            if (profileData.image) {
+                formData.append('image', profileData.image);
+            }
+
+            await axios.put(`http://localhost:8000/users/${tokenPayload.id}`, formData, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "multipart/form-data",
+                },
+            })
+            .then((response) => {
+                console.log(response);
+                setIMG(profileData.image)
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        } catch (error) {
+            console.error(error);
         }
     };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-        
-
+        UpdateUserFunction();
         console.log('Updated Profile Data:', profileData);
-        console.log('Updated Profile Data:', profileImage);
+        console.log('Updated Profile image:', profileImage);
     };
 
     return (
         <main className="md:px-16 md:py-8 flex flex-col gap-4 p-4">
-            <h5 className="text-2xl md:text-5xl font-bold">
-                Profile
-            </h5>
-            
+            <h5 className="text-2xl md:text-5xl font-bold">Profile</h5>
             <section className="flex flex-col md:flex-row gap-4">
                 <div className="profile-user flex h-fit flex-col md:basis-1/5 border-2 rounded-lg p-4">
                     <div className="flex flex-col items-center gap-4">
@@ -59,10 +104,14 @@ const Profile = () => {
                             </div>
                         </div>
                         <div className="basis-2/2 px-4">
-                            <img className=" h-[200px] w-[200px] object-cover rounded rounded-full" src={profileImage} alt="Profile" />
+                            <img 
+                                className="h-[200px] w-[200px] object-cover rounded rounded-full" 
+                                src={profileImage ? URL.createObjectURL(profileImage) : `http://localhost:8000/${image}`} 
+                                alt="Profile" 
+                            />
                         </div>
                         <div className="basis-1/4 flex flex-col gap-2">
-                            <input 
+                            <input
                                 type="file"
                                 accept="image/*"
                                 onChange={handleImageUpload}
@@ -73,17 +122,12 @@ const Profile = () => {
                                 Upload New Photo
                             </label>
                             <div className="flex flex-row items-center justify-center gap-2">
-                                <p className="text-gray-400">
-                                    Science
-                                </p>
-                                <p>
-                                    20 January 2022
-                                </p>
+                                <p className="text-gray-400">Science</p>
+                                <p>20 January 2022</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                
                 <div className="profile-update-form h-fit md:w-full border-2 rounded-lg font-medium">
                     <form className="flex flex-col gap-4 w-full p-8" onSubmit={handleSubmit}>
                         <div className="item-form gap-2">
@@ -97,7 +141,6 @@ const Profile = () => {
                                 placeholder="Enter Your Full Name"
                             />
                         </div>
-
                         <div className="item-form gap-4">
                             <label htmlFor="email">Email</label><br /><br />
                             <input
@@ -109,7 +152,6 @@ const Profile = () => {
                                 placeholder="Enter Your Email"
                             />
                         </div>
-
                         <div className="item-form gap-4">
                             <label htmlFor="phone">Phone</label><br /><br />
                             <input
@@ -121,7 +163,6 @@ const Profile = () => {
                                 placeholder="Enter Your Phone Number"
                             />
                         </div>
-
                         <div className="item-form gap-4">
                             <label htmlFor="password">Password</label><br /><br />
                             <input
@@ -133,7 +174,6 @@ const Profile = () => {
                                 placeholder="Enter Your Password"
                             />
                         </div>
-
                         <div className="item-form gap-4">
                             <label htmlFor="address">Address</label><br /><br />
                             <input
@@ -145,7 +185,6 @@ const Profile = () => {
                                 placeholder="Enter Your Address Again"
                             />
                         </div>
-
                         <button className="item h-10 w-full rounded-lg bg-oren" type="submit">
                             Update Profile
                         </button>
