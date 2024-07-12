@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import searchIcon from "../icons/magnifying-glass.ico"
 import shopingCart from "../icons/shopping-cart.ico"
-
 import searchIcon1 from "../icons/kacapembesaar.svg"
 import shopingCart1 from "../icons/keranjangbelanja.svg"
 import ThreeDots from "../assets/ThreeDots.svg"
@@ -15,7 +14,6 @@ import { RootState } from "../redux/store";
 function NavigationBar() {
 
     const token = useSelector((state: RootState) => state.auth.token);
-    // console.log(token);
 
     useEffect(() => {
         const belumlogin = document.getElementById('unLoged');
@@ -69,25 +67,25 @@ function NavigationBar() {
                         <img className="itemTulisanCoffee h-10" src={tulisankopi} alt="" />
                     </div>
                     <div className="flex flex-row text-white gap-4">
-                        <Link to="/home">Home</Link>
-                        <Link to="/product">Product</Link>
+                        <Link className=" md:text-white md:after:block md:after:border-b-2 md:after:border-solid md:after:border-primary md:after:scale-x-0 md:after:duration-200 md:after:ease-linear md:hover:after:scale-x-100 md:active:text-darkwhite" to="/home">Home</Link>
+                        <Link className="md:text-white md:after:block md:after:border-b-2 md:after:border-solid md:after:border-primary md:after:scale-x-0 md:after:duration-200 md:after:ease-linear md:hover:after:scale-x-100 md:active:text-darkwhite" to="/product">Product</Link>
                     </div>
                 </div>
-                <div className="flex flex-row gap-4 items-center text-white">
-                    <div className=" flex-row gap-4 hidden md:flex">
-                        <Link to="#" className="searchButton">
-                            <img className="w-4" src={searchIcon1} alt="" />
+                <div className="flex flex-row gap-8 items-center justify-center text-white">
+                    <div className=" flex-row gap-8 hidden md:flex">
+                        <Link to="#" className="md:text-white md:after:block md:after:border-b-2 md:after:border-solid md:after:border-primary md:after:scale-x-0 md:after:duration-200 md:after:ease-linear md:hover:after:scale-x-100 md:active:text-darkwhite">
+                            <img className="w-6" src={searchIcon1} alt="" />
                         </Link>
-                        <Link to="#" className="shopingCartItem">
-                            <img className="w-4" src={shopingCart1} alt="" />
+                        <Link to="#" className="md:text-white md:after:block md:after:border-b-2 md:after:border-solid md:after:border-primary md:after:scale-x-0 md:after:duration-200 md:after:ease-linear md:hover:after:scale-x-100 md:active:text-darkwhite">
+                            <img className="w-6" src={shopingCart1} alt="" />
                         </Link>
                     </div>
-                    <div className=" hidden" id="logged1">
-                        <Link to="/profile" className="block px-4 py-2 text-lg font-medium text-white hover:bg-orange-300" id="menu-item-1">
+                    <div className="hidden " id="logged1">
+                        <Link to="/profile" className=" md:text-white md:after:block md:after:border-b-2 md:after:border-solid md:after:border-primary md:after:scale-x-0 md:after:duration-200 md:after:ease-linear md:hover:after:scale-x-100 md:active:text-darkwhite" id="menu-item-1">
                             Profile
                         </Link>
                     </div>
-                    <div id="unLoged" className="flex flex-row gap-4">
+                    <div id="unLoged" className="flex flex-row gap-8">
                         <button>
                             <Link to="/login"  className="border-2 border-white py-2 px-4 rounded ">
                                 Sign In

@@ -1,10 +1,11 @@
-import { ChangeEvent, useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import axios from 'axios';
-import Cards from './Cards';
-import Arrowkanan from '../icons/Arrowkanan.png';
+import { ChangeEvent, useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import axios from "axios";
+import Cards from "./Cards";
+import Arrowkanan from "../icons/Arrowkanan.png";
 
 interface Filters {
+  sort: string;
   category: string;
   product_name: string;
   rangePrice: string;
@@ -26,14 +27,17 @@ const FilterComponent = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [filters, setFilters] = useState<Filters>({
-    category: searchParams.get('category') || '',
-    product_name: searchParams.get('product_name') || '',
-    rangePrice: searchParams.get('rangePrice') || '25',
+    category: searchParams.get("category") || "",
+    product_name: searchParams.get("product_name") || "",
+    rangePrice: searchParams.get("rangePrice") || "25",
+    sort: searchParams.get("sort") || "",
   });
 
   const [product, setProduct] = useState<productBody[]>([]);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = event.target;
     setFilters((prevFilters) => ({
       ...prevFilters,
@@ -49,35 +53,38 @@ const FilterComponent = () => {
   };
 
   const handleApplyFilter = () => {
-    const { category, product_name, rangePrice } = filters;
+    const { category, product_name, rangePrice, sort } = filters;
     const newSearchParams = new URLSearchParams({
       category,
       product_name,
       rangePrice,
+      sort,
     }).toString();
 
     // Update the address bar with new query params
     setSearchParams(newSearchParams);
 
     // Fetch the filtered products
-    axios.get(`http://localhost:8000/product/?${newSearchParams}`)
+    axios
+      .get(`http://localhost:8000/product/?${newSearchParams}`)
       .then((response) => {
         setProduct(response.data.data);
       })
       .catch((error) => {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       });
   };
 
   useEffect(() => {
     // Fetch initial products based on query params from the address bar
     const params = searchParams.toString();
-    axios.get(`http://localhost:8000/product/?${params}`)
+    axios
+      .get(`http://localhost:8000/product/?${params}`)
       .then((response) => {
         setProduct(response.data.data);
       })
       .catch((error) => {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       });
   }, [searchParams]);
 
@@ -88,11 +95,16 @@ const FilterComponent = () => {
           <div>
             <h4 className="text-2xl">Filter</h4>
           </div>
-          <button onClick={() => setFilters({
-            category: '',
-            product_name: '',
-            rangePrice: '25',
-          })}>
+          <button
+            onClick={() =>
+              setFilters({
+                category: "",
+                product_name: "",
+                rangePrice: "25",
+                sort: "",
+              })
+            }
+          >
             <h5>Reset Filter</h5>
           </button>
         </section>
@@ -123,7 +135,7 @@ const FilterComponent = () => {
                   id="favorite-product"
                   name="category"
                   value="favoriteProduct"
-                  checked={filters.category === 'favoriteProduct'}
+                  checked={filters.category === "favoriteProduct"}
                   onChange={handleCategoryChange}
                 />
                 <label htmlFor="favorite-product">Favorite Product</label>
@@ -135,7 +147,7 @@ const FilterComponent = () => {
                   id="coffee"
                   name="category"
                   value="coffee"
-                  checked={filters.category === 'coffee'}
+                  checked={filters.category === "coffee"}
                   onChange={handleCategoryChange}
                 />
                 <label htmlFor="coffee">Coffee</label>
@@ -147,7 +159,7 @@ const FilterComponent = () => {
                   id="foods"
                   name="category"
                   value="foods"
-                  checked={filters.category === 'foods'}
+                  checked={filters.category === "foods"}
                   onChange={handleCategoryChange}
                 />
                 <label htmlFor="foods">Foods</label>
@@ -158,13 +170,76 @@ const FilterComponent = () => {
                   type="radio"
                   id="add-on"
                   name="category"
-                  value="addOn"
-                  checked={filters.category === 'addOn'}
+                  value="add-On"
+                  checked={filters.category === "add-On"}
                   onChange={handleCategoryChange}
                 />
                 <label htmlFor="add-on">Add-on</label>
               </div>
             </form>
+          </div>
+          <h2 className="mb-4 text-xl">Sort By</h2>
+          <div className="text-m flex flex-col gap-4">
+            <label className="checkbox flex items-center gap-4" htmlFor="sort">
+              <input
+                className="w-6 h-6 rounded-2 bg-black"
+                type="radio"
+                id="alphabet"
+                name="sort"
+                value="product_name desc"
+                checked={filters.sort === "product_name desc"}
+                onChange={handleChange}
+              />
+              Alphabet
+            </label>
+            <label className="checkbox flex items-center gap-4" htmlFor="sort">
+              <input
+                className="w-6 h-6 rounded-2 bg-black"
+                type="radio"
+                id="price"
+                name="sort"
+                value="price desc"
+                checked={filters.sort === "price desc"}
+                onChange={handleChange}
+              />
+              Price
+            </label>
+            <label className="checkbox flex items-center gap-4" htmlFor="sort">
+              <input
+                className="w-6 h-6 rounded-2 bg-black"
+                type="radio"
+                id="latest"
+                name="sort"
+                value="rating desc"
+                checked={filters.sort === "rating desc"}
+                onChange={handleChange}
+              />
+              Fav Product
+            </label>
+            <label className="checkbox flex items-center gap-4" htmlFor="sort">
+              <input
+                className="w-6 h-6 rounded-2 bg-black"
+                type="radio"
+                id="promo"
+                name="promo"
+                value="true"
+                checked={filters.sort === "rating desc"}
+                onChange={handleChange}
+              />
+              promo
+            </label>
+            {/* <label className="checkbox flex items-center gap-4" htmlFor="promo">
+              <input
+                className="w-6 h-6 rounded-2 bg-black"
+                type="radio"
+                id="promo"
+                name="promo"
+                value="true1"
+                checked={filters.sort === "true 1"}
+                onChange={handleChange}
+              />
+              Promo
+            </label> */}
           </div>
         </section>
 
@@ -200,24 +275,19 @@ const FilterComponent = () => {
         <Cards props={product} />
 
         <div className="flex flex-row gap-4 items-center justify-center">
-          <div
-            className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
+          <div className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
             1
           </div>
-          <div
-            className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
+          <div className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
             2
           </div>
-          <div
-            className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
+          <div className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
             3
           </div>
-          <div
-            className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
+          <div className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
             4
           </div>
-          <div
-            className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
+          <div className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
             <img className="h-6 w-4" src={Arrowkanan} alt="" />
           </div>
         </div>

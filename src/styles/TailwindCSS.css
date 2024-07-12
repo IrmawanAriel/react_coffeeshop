@@ -941,6 +941,10 @@ video {
   width: 100%;
 }
 
+.w-8 {
+  width: 2rem;
+}
+
 .max-w-full {
   max-width: 100%;
 }

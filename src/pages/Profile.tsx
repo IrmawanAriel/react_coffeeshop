@@ -70,8 +70,7 @@ const Profile = () => {
                     "Content-Type": "multipart/form-data",
                 },
             })
-            .then((response) => {
-                console.log(response);
+            .then(() => {
                 setIMG(profileData.image)
             })
             .catch((error) => {
@@ -133,7 +132,7 @@ const Profile = () => {
                         <div className="item-form gap-2">
                             <label htmlFor="fullname">Full Name</label><br /><br />
                             <input
-                                className="fullname border-2 w-full rounded-lg h-10"
+                                className="fullname border-2 w-full rounded-lg h-10 p-4"
                                 type="text"
                                 id="fullname"
                                 value={profileData.fullname}
@@ -144,7 +143,7 @@ const Profile = () => {
                         <div className="item-form gap-4">
                             <label htmlFor="email">Email</label><br /><br />
                             <input
-                                className="email border-2 w-full rounded-lg h-10"
+                                className="email border-2 w-full rounded-lg h-10 p-4"
                                 type="email"
                                 id="email"
                                 value={profileData.email}
@@ -155,7 +154,7 @@ const Profile = () => {
                         <div className="item-form gap-4">
                             <label htmlFor="phone">Phone</label><br /><br />
                             <input
-                                className="phone border-2 w-full rounded-lg h-10"
+                                className="phone border-2 w-full rounded-lg h-10 p-4"
                                 type="text"
                                 id="phone"
                                 value={profileData.phone}
@@ -166,7 +165,7 @@ const Profile = () => {
                         <div className="item-form gap-4">
                             <label htmlFor="password">Password</label><br /><br />
                             <input
-                                className="password border-2 w-full rounded-lg h-10"
+                                className="password border-2 w-full rounded-lg h-10 p-4"
                                 type="password"
                                 id="password"
                                 value={profileData.password}
@@ -177,7 +176,7 @@ const Profile = () => {
                         <div className="item-form gap-4">
                             <label htmlFor="address">Address</label><br /><br />
                             <input
-                                className="address border-2 w-full rounded-lg h-10"
+                                className="address border-2 w-full rounded-lg h-10 p-4"
                                 type="text"
                                 id="address"
                                 value={profileData.address}
