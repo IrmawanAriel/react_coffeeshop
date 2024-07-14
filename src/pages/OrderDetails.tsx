@@ -10,14 +10,15 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 interface DetailProduct {
-  data: any;
+  order_id: number;
   product_id: number;
+  product_name: string;
+  price: number;
+  description: string;
+  image: string | null;
   quantity: number | null;
   size: string | null;
   ice: boolean | null;
-  image?: string; 
-  product_name?: string;
-  price?: number;
 }
 
 interface OrderDetail {
@@ -35,17 +36,9 @@ interface OrderDetail {
 const OrderDetails = () => {
   const { id } = useParams<{ id: string }>();
   const [productsOrdered, setProducts] = useState<DetailProduct[]>([]);
-  const [orderDet, setOrderDet] = useState<OrderDetail>({
-    id: id,
-    destination: '',
-    orderdate: '',
-    payment_method: '',
-    status: null,
-    takeaway: '',
-    total_order: 0,
-    phone: null,
-    fullname: '',
-  });
+  const [orderDet, setOrderDet] = useState<OrderDetail | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const urlOrder = `http://localhost:8000/pesanan/${id}`;
@@ -54,35 +47,34 @@ const OrderDetails = () => {
       try {
         const orderDetailResponse = await axios.get(urlOrder);
         const productOrderedDetailResponse = await axios.get(urlProducts);
-        
+        console.log(orderDetailResponse.data.data[0])
+
+
         const productsData: DetailProduct[] = productOrderedDetailResponse.data.data.rows;
         setProducts(productsData);
         setOrderDet(orderDetailResponse.data.data[0]);
-
-        const urlGetDetailProd = 'http://localhost:8000/product/';
-        const detailInformationProduct: DetailProduct[] = await Promise.all(
-          productsData.map(async (product: DetailProduct) => {
-            const response = await axios.get(`${urlGetDetailProd}${product.product_id}`);
-            return response.data; 
-          })
-        );
-
-        const updatedProducts = productsData.map((product, index) => ({
-          ...product,
-          image: detailInformationProduct[index].data[0].image,
-          price: detailInformationProduct[index].data[0].price,
-          product_name: detailInformationProduct[index].data[0].product_name,
-        }));
-
-        console.log(orderDetailResponse.data.data[0]);
-        setProducts(updatedProducts);
       } catch (err) {
-        console.log(err);
+        setError('Failed to fetch order details. Please try again later.');
+      } finally {
+        setLoading(false);
       }
     };
 
+
     displayAlldata();
   }, [id]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!orderDet) {
+    return <div>No order details found.</div>;
+  }
 
   return (
     <main className="p-8">
@@ -152,7 +144,6 @@ const OrderDetails = () => {
                 <div className="font-normal text-xl">Total Transaksi</div>
                 <div className="font-semibold text-xl mb-2 text-oren">IDR {orderDet.total_order}</div>
               </div>
-
             </div>
           </div>
         </div>
@@ -163,7 +154,7 @@ const OrderDetails = () => {
             {productsOrdered.map((product, index) => (
               <div key={index} className="flex flex-col md:flex-row p-4 md:gap-4 items-center bg-gray-100">
                 <div className="foto basis-1/3 p-4 md:block">
-                  <img className="w-auto h-[150px]" src={product.image  ? `http://localhost:8000/${product.image}` : productImage } alt={product.product_name} />
+                  <img className="w-auto h-[150px]" src={product.image ? `http://localhost:8000/${product.image}` : productImage} alt={product.product_name} />
                 </div>
                 <div className="2/3 flex flex-row">
                   <div className="flex flex-col gap-4">
