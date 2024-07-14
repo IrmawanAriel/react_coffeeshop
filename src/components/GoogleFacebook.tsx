@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 type IAccountAddons = {
     img: {
         src: string;
-        atl: string;
+        alt: string;
     };
     text: string;
     link: string;
@@ -14,7 +14,7 @@ function GoogleFacebook(props: IAccountAddons) {
     return (
         <>
             <Link className="social-button flex flex-row gap-2 items-center border-2 rounded-lg py-4 px-8" to={link}>
-                <img className="h-4" src={img.src} alt={img.atl} />
+                <img className="h-4" src={img.src} alt={img.alt} />
                 <p>{text}</p>
             </Link>
         </>

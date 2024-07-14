@@ -1,14 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchData } from '../thunks';
 
+// interface ApiResponse {
+//   msg: string;
+//   image?: File | string ;
+//   data: {
+//     token: string;
+//   }[];
+// }
+
 interface DataState {
-  data: any | null;
+  loginData: any | null;
   loading: boolean;
   error: string | null;
 }
 
+// interface user {
+//   email: string;
+//   password: string;
+// }
+
 const initialState: DataState = {
-  data: null,
+  loginData: null,
   loading: false,
   error: null,
 };
@@ -25,7 +38,7 @@ const dataSlice = createSlice({
       })
       .addCase(fetchData.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
+        state.loginData = action.payload;
       })
       .addCase(fetchData.rejected, (state, action) => {
         state.loading = false;

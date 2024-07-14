@@ -9,6 +9,7 @@ interface Filters {
   category: string;
   product_name: string;
   rangePrice: string;
+  promo: string;
 }
 
 interface productBody {
@@ -31,6 +32,7 @@ const FilterComponent = () => {
     product_name: searchParams.get("product_name") || "",
     rangePrice: searchParams.get("rangePrice") || "25",
     sort: searchParams.get("sort") || "",
+    promo: searchParams.get("promo") || "",
   });
 
   const [product, setProduct] = useState<productBody[]>([]);
@@ -53,12 +55,13 @@ const FilterComponent = () => {
   };
 
   const handleApplyFilter = () => {
-    const { category, product_name, rangePrice, sort } = filters;
+    const { category, product_name, rangePrice, sort, promo } = filters;
     const newSearchParams = new URLSearchParams({
       category,
       product_name,
       rangePrice,
       sort,
+      promo,
     }).toString();
 
     // Update the address bar with new query params
@@ -75,8 +78,7 @@ const FilterComponent = () => {
       });
   };
 
-  useEffect(() => {
-    // Fetch initial products based on query params from the address bar
+   useEffect(() => {
     const params = searchParams.toString();
     axios
       .get(`http://localhost:8000/product/?${params}`)
@@ -102,6 +104,7 @@ const FilterComponent = () => {
                 product_name: "",
                 rangePrice: "25",
                 sort: "",
+                promo: '',
               })
             }
           >
@@ -128,18 +131,18 @@ const FilterComponent = () => {
           <div className="flex flex-col gap-2">
             <p className="text-xl">Category</p>
             <form className="flex flex-col gap-4">
-              <div className="flex items-center gap-4">
-                <input
-                  className="w-6 h-6 rounded-2 bg-black"
-                  type="radio"
-                  id="favorite-product"
-                  name="category"
-                  value="favoriteProduct"
-                  checked={filters.category === "favoriteProduct"}
-                  onChange={handleCategoryChange}
-                />
-                <label htmlFor="favorite-product">Favorite Product</label>
-              </div>
+            <label className="checkbox flex items-center gap-4" htmlFor="sort">
+              <input
+                className="w-6 h-6 rounded-2 bg-black"
+                type="radio"
+                id="latest"
+                name="sort"
+                value="rating desc"
+                checked={filters.sort === "rating desc"}
+                onChange={handleChange}
+              />
+              Fav Product
+            </label>
               <div className="flex items-center gap-4">
                 <input
                   className="w-6 h-6 rounded-2 bg-black"
@@ -204,18 +207,7 @@ const FilterComponent = () => {
               />
               Price
             </label>
-            <label className="checkbox flex items-center gap-4" htmlFor="sort">
-              <input
-                className="w-6 h-6 rounded-2 bg-black"
-                type="radio"
-                id="latest"
-                name="sort"
-                value="rating desc"
-                checked={filters.sort === "rating desc"}
-                onChange={handleChange}
-              />
-              Fav Product
-            </label>
+            
             <label className="checkbox flex items-center gap-4" htmlFor="sort">
               <input
                 className="w-6 h-6 rounded-2 bg-black"
@@ -223,23 +215,11 @@ const FilterComponent = () => {
                 id="promo"
                 name="promo"
                 value="true"
-                checked={filters.sort === "rating desc"}
+                checked={filters.promo === "true"}
                 onChange={handleChange}
               />
               promo
             </label>
-            {/* <label className="checkbox flex items-center gap-4" htmlFor="promo">
-              <input
-                className="w-6 h-6 rounded-2 bg-black"
-                type="radio"
-                id="promo"
-                name="promo"
-                value="true1"
-                checked={filters.sort === "true 1"}
-                onChange={handleChange}
-              />
-              Promo
-            </label> */}
           </div>
         </section>
 
@@ -272,7 +252,7 @@ const FilterComponent = () => {
       </div>
 
       <div className="products basis-2/3">
-        <Cards props={product} />
+        <Cards props={product}/>
 
         <div className="flex flex-row gap-4 items-center justify-center">
           <div className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">

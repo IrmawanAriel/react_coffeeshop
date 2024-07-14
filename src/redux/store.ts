@@ -12,7 +12,7 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       thunk: {
-        extraArgument: { serviceApi: null }, 
+        extraArgument: { serviceApi: 'http://localhost:8000/users/login' }, 
       },
     }),
 });

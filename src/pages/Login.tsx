@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import bg_coffeLogin from "../images/loginBG.jpg"
+import bg_coffeLogin from "../images/loginBG.jpg";
 import logoCoffee from "../images/logoCoffee.png";
 import coffeeShop from "../images/coffeeShop.png";
 import emailIcon from "../icons/email.png";
@@ -9,55 +9,52 @@ import facebookIcon from "../icons/facebook.png";
 import GoogleFacebook from '../components/GoogleFacebook';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/Input';
-import { useState } from 'react';
+import {  useState } from 'react';
 import axios from 'axios';
-import { AppDispatch } from '../redux/store';
-import { setToken, setUuid, setIMG  } from '../redux/slices/authSlice';
+import { AppDispatch,  } from '../redux/store';
+import { setToken, setUuid, setIMG } from '../redux/slices/authSlice';
 import { useDispatch } from 'react-redux';
 
-interface user {
+interface User {
     email: string;
     password: string;
 }
 
 const Login = () => {
-    // const {assignToken, useID} = useSignInState(); //context provider
     const navigate = useNavigate();
-    const dispatch = useDispatch<AppDispatch>();    
-    const [user, setUser]= useState<user>({email: '', password: ''})
+    const dispatch = useDispatch<AppDispatch>();
+    const [user, setUser] = useState<User>({ email: '', password: '' });
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
-        setUser((User) => ({
-            ...User,
+        setUser((prevUser) => ({
+            ...prevUser,
             [name]: value,
         }));
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const url = 'http://localhost:8000/users/login'; 
-        let result;
+        const url = 'http://localhost:8000/users/login';
         try {
-             result = await axios.post( url, {
+            const result = await axios.post(url, {
                 email: user.email,
                 password: user.password
             });
 
-            if(result.status !== 200){
-                throw Error('Failed to login');
+            if (result.status !== 200) {
+                throw new Error('Failed to login');
             }
-            dispatch(setToken(result?.data.data[0].token));
-            dispatch(setIMG(result?.data.image))
-            dispatch(setUuid(result?.data.uuid));
-            navigate("/home")
-            
-        } catch(error) {
-            console.log(error)
+            dispatch(setToken(result.data.data[0].token));
+            dispatch(setIMG(result.data.image));
+            dispatch(setUuid(result.data.uuid));
+            navigate("/home");
+        } catch (error) {
+            console.error(error);
         }
-    }
+    };
 
-    
+
     return (
         <div className="container-fluid">
             <div className="flex flex-col md:flex-row w-full">
@@ -65,53 +62,53 @@ const Login = () => {
                     <img className='h-screen object-cover' src={bg_coffeLogin} alt="Logo Coffee" />
                 </div>
                 <div className="item itemForm flex flex-col basis-3/4 gap-4 items-center justify-center p-4">
-                    <section className="Regisform flex flex-col gap-4 py-8">
+                    <section className="Regisform flex flex-col gap-4 py-8 w-3/4">
                         <section className="logoJudul flex-logo flex flex-row gap-2">
                             <img className="itemLogo h-8" src={logoCoffee} alt="logoCoffee" />
                             <img className="itemTulisanCoffee h-8" src={coffeeShop} alt="Coffee Shop" />
                         </section>
                         <header className="flex flex-col gap-4">
                             <p className="text-amber-700 text-3xl">Login</p>
-                            <h3 className="text-amber-700" >Fill out the form correctly</h3>
+                            <h3 className="text-amber-700">Fill out the form correctly</h3>
                         </header>
-                        <form onSubmit={handleSubmit} className="flex-form flex flex-col gap-4 ">
-                                <Input
-                                    img={{ src: emailIcon, alt: 'image gagal' }}
-                                    input={{ type: 'text', name: 'email', placeholder: 'Enter your email', value: user.email, onChange: handleChange }}
-                                    label="Email"
-                                />
-                                <Input
-                                    img={{ src: passwordIcon, alt: 'image gagal' }}
-                                    input={{ type: 'password', name: 'password', placeholder: 'Enter your password', value: user.password, onChange: handleChange }}
-                                    label="password"
-                                />
-                            <button className="item font-semibold border-2 bg-oren w-full rounded rounded-lg" type="submit">Login</button>
+                        <form onSubmit={handleSubmit} className="flex-form flex flex-col gap-4">
+                            <Input
+                                img={{ src: emailIcon, alt: 'Email Icon' }}
+                                input={{ type: 'text', name: 'email', placeholder: 'Enter your email', value: user.email, onChange: handleChange }}
+                                label="Email"
+                            />
+                            <Input
+                                img={{ src: passwordIcon, alt: 'Password Icon' }}
+                                input={{ type: 'password', name: 'password', placeholder: 'Enter your password', value: user.password, onChange: handleChange }}
+                                label="Password"
+                            />
+                            <button className="item font-semibold border-2 bg-oren w-2/4 rounded-lg p-4 text-lg" type="submit" disabled={!user.email || !user.password}>Login</button>
                         </form>
                         <section className="login-container flex flex-col gap-2 md:gap-4 w-full items-center justify-center">
                             <div className="haveAccount flex flex-row gap-2">
-                                <p>Doesn't have an account?</p> <Link className="text-oren" to="/register">Register</Link>
+                                <p>Don't have an account?</p> <Link className="text-oren" to="/register">Register</Link>
                             </div>
                             <div className="separator flex flex-row">
-                                <hr className="line border-2 bor" />
+                                <hr className="line border-2" />
                                 <span className="or-text">or</span>
                                 <hr className="line" />
                             </div>
-                            <div className=" flex flex-col md:flex-row gap-4">
-                                <GoogleFacebook 
+                            <div className="flex flex-col md:flex-row gap-4">
+                                <GoogleFacebook
                                     img={{
                                         src: googleIcon,
-                                        atl: 'image google'
-                                    }} 
-                                    text={'Google'} 
-                                    link={'#'}                                    
+                                        alt: 'Google Icon'
+                                    }}
+                                    text="Google"
+                                    link="#"
                                 />
-                                <GoogleFacebook 
+                                <GoogleFacebook
                                     img={{
                                         src: facebookIcon,
-                                        atl: 'image facebook'
-                                    }} 
-                                    text={'Facebook'} 
-                                    link={'#'}                                    
+                                        alt: 'Facebook Icon'
+                                    }}
+                                    text="Facebook"
+                                    link="#"
                                 />
                             </div>
                         </section>

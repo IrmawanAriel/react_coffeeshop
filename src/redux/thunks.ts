@@ -1,27 +1,24 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-interface FetchDataResponse {
-    data: productBody[];
-    message: string;
+interface user {
+  email: string;
+  password: string;
 }
 
-interface productBody {
-    uuid: string;
-    id?: number;
-    description: string;
-    price: number;
-    product_name?: string;
-    rating: number;
-    stock: number;
-    category: string;
-    image?: string;
-  }
+interface ApiResponse {
+  msg: string;
+  image: string;
+  data: {
+    token: string;
+  }[];
+}
 
-export const fetchData = createAsyncThunk<FetchDataResponse, { apiEndpoint: string }>(
+export const fetchData = createAsyncThunk<ApiResponse, { serviceApi: string , data: user}>(
   'data/fetchData',
-  async ({ apiEndpoint }) => {
-    const response = await axios.get(apiEndpoint);
+  async ({ serviceApi, data }) => {
+    const response = await axios.post(serviceApi, data);
+
     return response.data;
   }
 );

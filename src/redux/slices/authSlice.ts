@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface AuthState {
   token: string ;
   uuid: string ;
-  image : null | undefined | File;
+  image : null | undefined | File | string;
 }
 
 const initialState: AuthState = {
@@ -18,10 +18,12 @@ const authSlice = createSlice({
   reducers: {
     setToken: (state, action: PayloadAction<string>) => {
       state.token = action.payload;
+      localStorage.setItem('token', state.token);
     },
     deleteToken: (state) => {
       state.token = '';
       state.uuid = '';
+      localStorage.removeItem('token');
     },
     setUuid: (state, action: PayloadAction<string>) => {
       state.uuid = action.payload;

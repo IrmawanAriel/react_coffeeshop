@@ -106,7 +106,7 @@ function Register() {
                                 <GoogleFacebook 
                                     img={{
                                         src: googleIcon,
-                                        atl: 'image google'
+                                        alt: 'image google'
                                     }} 
                                     text={'Google'} 
                                     link={'#'}                                    
@@ -114,7 +114,7 @@ function Register() {
                                 <GoogleFacebook 
                                     img={{
                                         src: facebookIcon,
-                                        atl: 'image facebook'
+                                        alt: 'image facebook'
                                     }} 
                                     text={'Facebook'} 
                                     link={'#'}                                    
