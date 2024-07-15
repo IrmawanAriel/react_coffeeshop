@@ -9,11 +9,11 @@ import facebookIcon from "../icons/facebook.png";
 import GoogleFacebook from '../components/GoogleFacebook';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/Input';
-import {  useState } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
 import { AppDispatch,  } from '../redux/store';
-import { setToken, setUuid, setIMG } from '../redux/slices/authSlice';
+import { setToken, setIMG } from '../redux/slices/authSlice';
 import { useDispatch } from 'react-redux';
+import { fetchData } from '../redux/thunks';
 
 interface User {
     email: string;
@@ -35,23 +35,25 @@ const Login = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const url = 'http://localhost:8000/users/login';
-        try {
-            const result = await axios.post(url, {
-                email: user.email,
-                password: user.password
-            });
 
-            if (result.status !== 200) {
-                throw new Error('Failed to login');
+
+        try {
+            const url = 'http://localhost:8000/users/login';
+            const resultAction = await dispatch(fetchData({ serviceApi: url, data: user }));
+        
+            if (fetchData.rejected.match(resultAction)) {
+              throw new Error('Failed to login');
             }
-            dispatch(setToken(result.data.data[0].token));
-            dispatch(setIMG(result.data.image));
-            dispatch(setUuid(result.data.uuid));
+        
+            const { data } = resultAction.payload;
+        
+            dispatch(setToken(data[0].token));
+            dispatch(setIMG(resultAction.payload.image));
             navigate("/home");
-        } catch (error) {
+          } catch (error) {
             console.error(error);
-        }
+          }
+
     };
 
 
