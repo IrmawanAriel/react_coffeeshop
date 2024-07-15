@@ -47,8 +47,6 @@ const OrderDetails = () => {
       try {
         const orderDetailResponse = await axios.get(urlOrder);
         const productOrderedDetailResponse = await axios.get(urlProducts);
-        console.log(orderDetailResponse.data.data[0])
-
 
         const productsData: DetailProduct[] = productOrderedDetailResponse.data.data.rows;
         setProducts(productsData);
