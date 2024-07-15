@@ -21,6 +21,7 @@ function NavigationBar() {
         const classUnloged = document.getElementById('unLoged3');
         const classUnloged2 = document.getElementById('unLoged4');
         const classloged = document.getElementById('logged1');
+        const logged_button = document.getElementById('logged_button');
 
 
         if (token) { // jika udah login
@@ -29,6 +30,8 @@ function NavigationBar() {
             classUnloged?.classList.remove('hidden');
             classUnloged2?.classList.remove('hidden');
             classloged?.classList.remove('hidden');
+            logged_button?.classList.remove('hidden');
+
 
         } else { // jika belum login
             classloged?.classList.add('hidden');
@@ -36,6 +39,8 @@ function NavigationBar() {
             belumlogin?.classList.remove('hidden');
             displayLoged?.classList.add('hidden');
             classUnloged2?.classList.add('hidden');
+            logged_button?.classList.add('hidden');
+
         }
 
         const belumlogin2 = document.getElementById('unLoged2');
@@ -98,8 +103,8 @@ function NavigationBar() {
                         </button>
                     </div>
                     
-                    <div>
-                        <div>
+                    <div id="logged_button" className="hidden">
+                        <div >
                             <button
                                 onClick={dropDown}
                                 type="button"
