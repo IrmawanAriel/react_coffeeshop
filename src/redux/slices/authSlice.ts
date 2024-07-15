@@ -1,15 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface AuthState {
-  token: string ;
-  uuid: string ;
-  image : null | undefined | File | string;
+  token: string;
+  uuid: string;
+  image: null | File | string;
 }
 
 const initialState: AuthState = {
-  token: '',
-  uuid: '', 
-  image: undefined,
+  token: localStorage.getItem("token") || '',
+  uuid: '',
+  image: null, // Initial value should be set to null to match the interface
 };
 
 const authSlice = createSlice({
@@ -28,12 +28,12 @@ const authSlice = createSlice({
     setUuid: (state, action: PayloadAction<string>) => {
       state.uuid = action.payload;
     },
-    setIMG: (state, action: PayloadAction<null | File | undefined>) => {
+    setIMG: (state, action: PayloadAction<null | File | string>) => {
       state.image = action.payload;
     },
     deleteUuid: (state) => {
       state.uuid = '';
-    }
+    },
   },
 });
 
