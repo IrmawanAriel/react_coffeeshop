@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchData } from '../thunks';
 
-interface ApiResponse {
-  msg: string;
-  image?: File | string ;
-  data: {
-    token: string;
-  }[];
-}
+// interface ApiResponse {
+//   msg: string;
+//   image?: File | string ;
+//   data: {
+//     token: string;
+//   }[];
+// }
 
 interface DataState {
   loginData: any | null;
