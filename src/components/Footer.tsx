@@ -9,7 +9,7 @@ import tulisankopi from "../images/coffeeShop.png"
   return (
         <footer className="tulisan bg-[#F8F8F8] w-full p-8 inset-x-0 bottom-0">
             <section className="flex flex-wrap gap-4 p-8 md:flex-row md:px-32 md:gap-x-12">
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4 w-1/2">
                     <div className="flex flex-row gap-4">
                         <img className="itemLogo h-6" src={logokopi} alt="logoCoffee" />
                         <img className="itemTulisanCoffee h-6" src={tulisankopi} alt="" />

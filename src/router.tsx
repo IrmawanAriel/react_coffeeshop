@@ -12,6 +12,7 @@ import ForgotPass from "./pages/ForgotPass";
 import AxiosTry from "./components/AxiosTry";
 import Product from "./pages/Product";
 import PrivateRoute from "./components/PrivateRouting";
+import AdminDashboard from "./adminPanel/pages/AdminDashboard";
 
 function Error() {
   return <div>Error</div>;
@@ -118,6 +119,12 @@ const routerWithChildren = createBrowserRouter([
     path: "*",
     element: <NotFound />,
   },
+  {
+    path: "/admin-toko-kopi",
+    element: <AdminDashboard />,
+    errorElement: <Error />,
+    children: []
+  }
 ]);
 
 export default routerWithChildren;

@@ -18,7 +18,6 @@ export const fetchData = createAsyncThunk<ApiResponse, { serviceApi: string , da
   'data/fetchData',
   async ({ serviceApi, data }) => {
     const response = await axios.post(serviceApi, data);
-
     return response.data;
   }
 );
