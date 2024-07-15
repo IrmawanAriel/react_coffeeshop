@@ -84,7 +84,7 @@ const Login = () => {
                                 input={{ type: 'password', name: 'password', placeholder: 'Enter your password', value: user.password, onChange: handleChange }}
                                 label="Password"
                             />
-                            <button className="item font-semibold border-2 bg-oren w-2/4 rounded-lg p-4 text-lg" type="submit" disabled={!user.email || !user.password}>Login</button>
+                            <button className="item font-semibold border-2 bg-oren w-2/4 rounded-lg p-4 text-lg self-center" type="submit" disabled={!user.email || !user.password}>Login</button>
                         </form>
                         <section className="login-container flex flex-col gap-2 md:gap-4 w-full items-center justify-center">
                             <div className="haveAccount flex flex-row gap-2">
