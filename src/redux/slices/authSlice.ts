@@ -7,9 +7,9 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  token: localStorage.getItem("token") || '',
+  token: '', 
   uuid: '',
-  image: null, // Initial value should be set to null to match the interface
+  image: null,
 };
 
 const authSlice = createSlice({
@@ -18,12 +18,10 @@ const authSlice = createSlice({
   reducers: {
     setToken: (state, action: PayloadAction<string>) => {
       state.token = action.payload;
-      localStorage.setItem('token', state.token);
     },
     deleteToken: (state) => {
       state.token = '';
       state.uuid = '';
-      localStorage.removeItem('token');
     },
     setUuid: (state, action: PayloadAction<string>) => {
       state.uuid = action.payload;
