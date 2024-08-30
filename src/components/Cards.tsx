@@ -22,7 +22,7 @@ export default function Cards({ props }: { props: productBody[] | undefined }) {
 
     useEffect(() => {
         const getDataProduct = async () => {
-            const url = 'http://localhost:8000/product';
+            const url = `${import.meta.env.VITE_REACT_APP_API_URL}/product`;
             try {
                 if (props) { 
                     setProduct(props);

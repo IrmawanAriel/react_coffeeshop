@@ -30,7 +30,7 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       thunk: {
-        extraArgument: { serviceApi: 'http://localhost:8000/users/login' },
+        extraArgument: { serviceApi: `${import.meta.env.VITE_REACT_APP_API_URL}/users/login` },
       },
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],

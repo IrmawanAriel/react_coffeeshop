@@ -38,7 +38,7 @@ const Login = () => {
 
 
         try {
-            const url = 'http://localhost:8000/users/login';
+            const url = `${import.meta.env.VITE_REACT_APP_API_URL}/users/login`;
             const resultAction = await dispatch(fetchData({ serviceApi: url, data: user }));
         
             if (fetchData.rejected.match(resultAction)) {

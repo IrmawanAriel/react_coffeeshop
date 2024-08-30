@@ -38,7 +38,7 @@ function Register() {
 
         e.preventDefault();
 
-        const url = 'http://localhost:8000/users/register'
+        const url = `${import.meta.env.VITE_REACT_APP_API_URL}/users/register`
         try {
             const result = await axios.post(url, {
                 fullname: registData.fullname,

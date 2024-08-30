@@ -19,7 +19,7 @@ export default function AxiosTry() {
     const [data1 ,setData] = useState<productBody>()
 
     const getdata = async () => {
-        const url = 'http://localhost:8000/product';
+        const url = `${import.meta.env.VITE_REACT_APP_API_URL}/product`;
         try {
             const result = await axios.get(url);
             setData(result.data)
