@@ -64,12 +64,10 @@ const FilterComponent = () => {
       promo,
     }).toString();
 
-    // Update the address bar with new query params
     setSearchParams(newSearchParams);
 
-    // Fetch the filtered products
     axios
-      .get(`http://localhost:8000/product/?${newSearchParams}`)
+      .get(`${import.meta.env.VITE_REACT_APP_API_URL}/product/?${newSearchParams}`)
       .then((response) => {
         setProduct(response.data.data);
       })
@@ -81,7 +79,7 @@ const FilterComponent = () => {
    useEffect(() => {
     const params = searchParams.toString();
     axios
-      .get(`http://localhost:8000/product/?${params}`)
+      .get(`${import.meta.env.VITE_REACT_APP_API_URL}/product/?${params}`)
       .then((response) => {
         setProduct(response.data.data);
       })

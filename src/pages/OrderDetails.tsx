@@ -41,8 +41,8 @@ const OrderDetails = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const urlOrder = `http://localhost:8000/pesanan/${id}`;
-    const urlProducts = `http://localhost:8000/product/pesanan/${id}`;
+    const urlOrder = `${import.meta.env.VITE_REACT_APP_API_URL}/pesanan/${id}`;
+    const urlProducts = `${import.meta.env.VITE_REACT_APP_API_URL}/product/pesanan/${id}`;
     const displayAlldata = async () => {
       try {
         const orderDetailResponse = await axios.get(urlOrder);
@@ -152,7 +152,7 @@ const OrderDetails = () => {
             {productsOrdered.map((product, index) => (
               <div key={index} className="flex flex-col md:flex-row p-4 md:gap-4 items-center bg-gray-100">
                 <div className="foto basis-1/3 p-4 md:block">
-                  <img className="w-auto h-[150px]" src={product.image ? `http://localhost:8000/${product.image}` : productImage} alt={product.product_name} />
+                  <img className="w-auto h-[150px]" src={product.image ? product.image : productImage} alt={product.product_name} />
                 </div>
                 <div className="2/3 flex flex-row">
                   <div className="flex flex-col gap-4">

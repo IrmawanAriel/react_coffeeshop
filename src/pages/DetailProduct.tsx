@@ -7,12 +7,8 @@ export default function DetailProduct () {
     return (
 
         <main className="px-16 py-8 flex gap-16 flex-col">
-            {/* detail product */}
-
             <ProductDetail/>
-
-            {/* Cards Product */}
-            <section className="flex flex-col gap-8">
+            <section className="flex flex-col gap-8 lg:-mt-64">
                 <div className='px-8'>
                     <p className="md:text-5xl text-3xl font-semibold md:font-medium">Recommendation <span className='text-[#8E6447]'>For You</span> </p>
                 </div>

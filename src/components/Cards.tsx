@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import orenShopingCart from "../icons/orenshopingcart.png";
-import gambartest from "../images/p2.png";
 import { useNavigate } from "react-router-dom";
 
 interface productBody {
@@ -44,20 +43,20 @@ export default function Cards({ props }: { props: productBody[] | undefined }) {
     };
 
     return (
-        <div className="product-list flex flex-wrap md:flex-row gap-8 p-4 justify-center">
+        <div className="product-list flex flex-wrap gap-2 p-2 gap-8 md:p-4 justify-center">
             {Products?.map((product) => (
                 <div key={product.uuid} className="max-w-sm rounded overflow-hidden relative h-[470px]">
                     <div>
                         {product.image ? (
                             <img
                                 className="-mt-16 object-cover object-top w-full h-[400px]"
-                                src={`http://localhost:8000/${product.image}`}
+                                src={product.image}
                                 alt={product.product_name}
                             />
                         ) : (
                             <img
                                 className="-mt-16 object-cover object-top w-full h-[400px]"
-                                src={gambartest}
+                                src=""
                                 alt={product.product_name}
                             />
                         )}

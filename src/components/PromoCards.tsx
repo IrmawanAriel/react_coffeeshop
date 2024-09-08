@@ -19,7 +19,7 @@ export default function PromoCards() {
     
   useEffect(() => {
     const getDataProduct = async () => {
-        const url = 'http://localhost:8000/promo/';
+        const url = `${import.meta.env.VITE_REACT_APP_API_URL}/promo/`;
         try {
             const result = await axios.get(url);
             setPromos(result.data.data);

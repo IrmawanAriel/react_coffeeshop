@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import { jwtDecode,  JwtPayload } from 'jwt-decode';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import moment from 'moment';
 
 interface payloadInterface extends JwtPayload {
     email: string;
@@ -32,7 +33,7 @@ const HistoryOrder = () => {
     const [ordersUser, setOrders] = useState<orderProduct[]>([]);
 
     useEffect(() => {
-        const url = `http://localhost:8000/pesanan/user/${tokenPayload.id}`;
+        const url = `${import.meta.env.VITE_REACT_APP_API_URL}/pesanan/user/${tokenPayload.id}`;
         
         const getDataOrdersUser = async () => {
             try {
@@ -72,8 +73,8 @@ const HistoryOrder = () => {
                     <div className="flex flex-wrap md:flex-col gap-4 ">
                         <div className="flex gap-4 flex-col">
                             {ordersUser.map(order => (
-                                <div key={order.id} className="flex flex-row gap-2 md:gap-4 items-start bg-gray-100 p-4">
-                                    <div className="foto basis-1/5 hidden md:block">
+                                <div key={order.id} className="flex flex-col md:flex-row gap-4 p-4 md:gap-4 items-start bg-gray-100 p-4">
+                                    <div className="foto  hidden md:block w-[100px]">
                                         <img className="w-[100px] h-fit" src={p2Image} alt="Sunset in the mountains" />
                                     </div>
 
@@ -91,7 +92,7 @@ const HistoryOrder = () => {
                                             <img className="h-4 md:h-6" src={calendarIcon} alt="" />
                                             <p>Date</p>
                                         </div>
-                                        <div className="font-bold text-lg">{order.orderdate}</div>
+                                        <div className="font-bold text-lg">{moment(order.orderdate).format("D MMM YY")}</div>
                                     </div>
 
                                     <div className="basis-1/5 flex flex-col gap-2 justify-center">

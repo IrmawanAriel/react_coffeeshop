@@ -64,7 +64,7 @@ const Profile = () => {
                 formData.append('image', profileData.image);
             }
 
-            await axios.put(`http://localhost:8000/users/${tokenPayload.id}`, formData, {
+            await axios.put(`${import.meta.env.VITE_REACT_APP_API_URL}/users/${tokenPayload.id}`, formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": "multipart/form-data",
@@ -105,7 +105,7 @@ const Profile = () => {
                         <div className="basis-2/2 px-4">
                             <img 
                                 className="h-[200px] w-[200px] object-cover rounded rounded-full" 
-                                src={profileImage ? URL.createObjectURL(profileImage) : `http://localhost:8000/${image}`} 
+                                src={profileImage ? URL.createObjectURL(profileImage) : `${import.meta.env.VITE_REACT_APP_API_URL}/${image}`} 
                                 alt="Profile" 
                             />
                         </div>

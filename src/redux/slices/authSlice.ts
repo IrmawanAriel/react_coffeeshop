@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface AuthState {
   token: string;
   uuid: string;
-  image: null | File | string;
+  image: any;
 }
 
 const initialState: AuthState = {
@@ -26,7 +26,7 @@ const authSlice = createSlice({
     setUuid: (state, action: PayloadAction<string>) => {
       state.uuid = action.payload;
     },
-    setIMG: (state, action: PayloadAction<null | File | string>) => {
+    setIMG: (state, action: PayloadAction<any>) => {
       state.image = action.payload;
     },
     deleteUuid: (state) => {

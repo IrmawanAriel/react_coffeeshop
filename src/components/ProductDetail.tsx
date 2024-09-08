@@ -46,7 +46,7 @@ export default function ProductDetail() {
 
   useEffect(() => {
     const getReponseData = async () => {
-      const ProductDetailUrl = `http://localhost:8000/product/${id}`;
+      const ProductDetailUrl = `${import.meta.env.VITE_REACT_APP_API_URL}/product/${id}`;
 
       try {
         const detailResult = await axios.get(ProductDetailUrl);
@@ -96,34 +96,34 @@ export default function ProductDetail() {
   }
 
   return (
-    <section className="flex flex-col md:flex-row gap-1 md:gap-8 p-2 justify-center">
-      <div className="flex flex-col gap-2 basis-2/4 max-w-full h-fit justify-center">
+    <section className="flex flex-col md:flex-row gap-1 md:gap-4 p-2 justify-center">
+      <div className="grid lg:grid-rows-2 gap-4 basis-2/4 max-w-full h-fit justify-center">
         <div className="basis-3/4">
           <img
             className="w-[580px] h-auto object-cover"
-            src={ProductInfo?.image ? `http://localhost:8000/${ProductInfo.image}` : kopidetail}
+            src={ProductInfo?.image ? ProductInfo.image: kopidetail}
             alt={ProductInfo?.product_name || 'Detail Kopi'}
           />
         </div>
-        <div className="flex flex-wrap gap-4 w-full items-center invisible md:visible">
+        <div className="flex flex-row gap-4 items-center hidden max-w-[580px]  lg:flex h-fit ">
           <img
-            className="h-fit w-[180px]"
-            src={ProductInfo?.image ? `http://localhost:8000/${ProductInfo.image}` : kopidetail}
+            className="h-auto w-[180px]"
+            src={ProductInfo?.image ? ProductInfo.image : kopidetail}
             alt="Detail Kopi 1"
           />
           <img
-            className="h-fit w-[180px]"
-            src={ProductInfo?.image ? `http://localhost:8000/${ProductInfo.image}` : kopidetail}
+            className="h-auto w-[180px]"
+            src={ProductInfo?.image ? ProductInfo.image : kopidetail}
             alt="Detail Kopi 2"
           />
           <img
-            className="h-fit w-[180px] object-cover"
-            src={ProductInfo?.image ? `http://localhost:8000/${ProductInfo.image}` : kopidetail}
+            className="h-auto w-[180px] object-cover"
+            src={ProductInfo?.image ? ProductInfo.image : kopidetail}
             alt="Detail Kopi 3"
           />
         </div>
       </div>
-      <div className="flex flex-col gap-2 basis-2/4">
+      <div className="flex flex-col gap-2 basis-2/4 p-8">
         <div className="gap-2 flex flex-col gap-2 md:gap-8">
           <div className="text-white font-bold text-3xl bg-red-500 border-2 rounded-3xl w-fit p-4">
             Flash Sale!

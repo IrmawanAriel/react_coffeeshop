@@ -12,13 +12,6 @@ import { useNavigate } from 'react-router-dom';
 import ChooseYourProduct from '../components/chooseYourProduct';
 import axios from 'axios';
 
-// interface pesananModel {
-//   user_id: number;
-//   status: number;
-//   ice: boolean;
-//   takeaway: boolean;
-// }
-
 interface payloadInterface extends JwtPayload {
   email: string;
   id: number;
@@ -47,13 +40,12 @@ export default function CheckoutProduct() {
   });
 
   const checkoutAllProduct = async () => {
-    const url = `http://localhost:8000/pesanan`;
-    const urlProductOrder = `http://localhost:8000/product/pesanan`
+    const url = `${import.meta.env.VITE_REACT_APP_API_URL}/pesanan`;
+    const urlProductOrder = `${import.meta.env.VITE_REACT_APP_API_URL}/product/pesanan`
 
     try {
       const result = await axios.post(url, paymentInfo);
       const CreatedOrderId = ( result.data.data[0].id ); // lalu buat record table relationnnya untuk order dengan product
-      // console.log(ProductShopingCart);
 
       try {
         await Promise.all(ProductShopingCart.map(async (value) => {
@@ -104,7 +96,7 @@ export default function CheckoutProduct() {
           {ProductShopingCart.length === 0 ? <ChooseYourProduct/> : ProductShopingCart.map((product, index) => (
             <div key={`${index}-${product.idProduct ?? product.product_name}`} className="flex flex-row gap-4 items-center bg-gray-100">
               <div className="foto basis-1/3 p-4">
-                <img className="w-[178px] h-[170px] object-cover" src={product.image ? `http://localhost:8000/${product.image}` : nullSign} alt="Sunset in the mountains" />
+                <img className="w-[178px] h-[170px] object-cover" src={product.image ? `${import.meta.env.VITE_REACT_APP_API_URL}/${product.image}` : nullSign} alt="Sunset in the mountains" />
               </div>
               <div className="flex flex-row w-full justify-between">
                 <div className="flex flex-col gap-2 md:gap-4">
@@ -192,14 +184,12 @@ export default function CheckoutProduct() {
 
         <div className="basis-2/5 max-w-full max-h-fit flex flex-col gap-2 p-4">
           <p className="text-2xl font-medium">Total</p>
-
           <div className=" w-full  bg-gray-100">
             <div className="flex-col flex gap-4 p-4">
               <div className="flex-row flex  justify-between">
                 <div className="font-normal	 text-xl mb-2">Order</div>
                 <div className="font-semibold text-xl mb-2">IDR 40.000</div>
               </div>
-
               <div className="flex-row flex  justify-between">
                 <div className="font-normal	 text-xl mb-2">Delivery</div>
                 <div className="font-semibold text-xl mb-2">IDR 40.000</div>
@@ -208,28 +198,21 @@ export default function CheckoutProduct() {
                 <div className="font-normal	 text-xl mb-2">Tax</div>
                 <div className="font-semibold text-xl mb-2">IDR 40.000</div>
               </div>
-
               <hr />
-
               <div className="flex-row flex  justify-between">
                 <div className="font-normal	 text-xl mb-2">Sub Total</div>
                 <div className="font-semibold text-xl mb-2">IDR 40.000</div>
               </div>
-
               <button className="item h-10 px-4 py-2 rounded-lg bg-oren font-bold w-full" onClick={checkoutAllProduct}>
                 Checkout
               </button>
-
               <div className=" text-xl text-gray-400">
                 We accept
               </div>
-
               <a className="items-center">
                 <img className="h-fit w-auto" src={bankersIcon} alt="banker" />
               </a>
-
               <div className=" text-xl text-gray-400">*Get Discount if you pay with Bank Central Asia</div>
-
             </div>
           </div>
         </div>
