@@ -179,7 +179,6 @@ export default function CheckoutProduct() {
               </div>
             </form>
           </div>
-
         </div>
 
         <div className="basis-2/5 max-w-full max-h-fit flex flex-col gap-2 p-4">

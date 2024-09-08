@@ -1,4 +1,3 @@
-import React from 'react'
 
 import logokopi from "../images/logoCoffee.png"
 import tulisankopi from "../images/coffeeShop.png"

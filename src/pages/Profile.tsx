@@ -16,7 +16,7 @@ interface ProfileData {
     phone: string;
     password: string;
     address: string;
-    image: File | null | undefined;
+    image: any;
 }
 
 const Profile = () => {
