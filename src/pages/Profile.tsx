@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { RootState } from '../redux/store';
-import { useSelector } from 'react-redux';
-import { jwtDecode, JwtPayload } from 'jwt-decode';
+import { useSelector, useDispatch } from 'react-redux';
+import {jwtDecode, JwtPayload } from 'jwt-decode';
 import { setIMG } from '../redux/slices/authSlice';
 
-interface payloadInterface extends JwtPayload {
+interface PayloadInterface extends JwtPayload {
     email: string;
     id: number;
 }
@@ -16,12 +16,13 @@ interface ProfileData {
     phone: string;
     password: string;
     address: string;
-    image: any;
+    image: File | null;
 }
 
 const Profile = () => {
     const { token, image } = useSelector((state: RootState) => state.auth);
-    const tokenPayload = jwtDecode<payloadInterface>(token);
+    const dispatch = useDispatch();
+    const tokenPayload = jwtDecode<PayloadInterface>(token);
     const [profileImage, setProfileImage] = useState<File | null>(null);
 
     const [profileData, setProfileData] = useState<ProfileData>({
@@ -30,29 +31,29 @@ const Profile = () => {
         phone: '',
         password: '',
         address: '',
-        image: null
+        image: null,
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = e.target;
-        setProfileData({
-            ...profileData,
-            [id]: value
-        });
+        setProfileData((prev) => ({
+            ...prev,
+            [id]: value,
+        }));
     };
 
     const handleImageUpload: React.ChangeEventHandler<HTMLInputElement> = (e) => {
         if (e.target.files && e.target.files[0]) {
             const file = e.target.files[0];
             setProfileImage(file);
-            setProfileData({
-                ...profileData,
-                image: file
-            });
+            setProfileData((prev) => ({
+                ...prev,
+                image: file,
+            }));
         }
     };
 
-    const UpdateUserFunction = async () => {
+    const updateUserFunction = async () => {
         try {
             const formData = new FormData();
             formData.append('fullname', profileData.fullname);
@@ -60,32 +61,24 @@ const Profile = () => {
             formData.append('phone', profileData.phone);
             formData.append('password', profileData.password);
             formData.append('address', profileData.address);
-            if (profileData.image) {
-                formData.append('image', profileData.image);
-            }
+            formData.append('image', profileData.image || "" );
 
             await axios.put(`${import.meta.env.VITE_REACT_APP_API_URL}/users/${tokenPayload.id}`, formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
-                    "Content-Type": "multipart/form-data",
+                    'Content-Type': 'multipart/form-data',
                 },
+            }).then((res)=>{
+                dispatch(setIMG(res.data.data[0].image));
             })
-            .then(() => {
-                setIMG(profileData.image)
-            })
-            .catch((error) => {
-                console.log(error);
-            });
         } catch (error) {
-            console.error(error);
+            console.error('Error updating user:', error);
         }
     };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        UpdateUserFunction();
-        console.log('Updated Profile Data:', profileData);
-        console.log('Updated Profile image:', profileImage);
+        updateUserFunction();
     };
 
     return (
@@ -103,10 +96,10 @@ const Profile = () => {
                             </div>
                         </div>
                         <div className="basis-2/2 px-4">
-                            <img 
-                                className="h-[200px] w-[200px] object-cover rounded rounded-full" 
-                                src={profileImage ? URL.createObjectURL(profileImage) : `${import.meta.env.VITE_REACT_APP_API_URL}/${image}`} 
-                                alt="Profile" 
+                            <img
+                                className="h-[200px] w-[200px] object-cover rounded rounded-full"
+                                src={profileImage ? URL.createObjectURL(profileImage) : image}
+                                alt="Profile"
                             />
                         </div>
                         <div className="basis-1/4 flex flex-col gap-2">
@@ -120,17 +113,14 @@ const Profile = () => {
                             <label htmlFor="upload-photo" className="item h-10 w-full rounded-lg bg-oren font-bold text-center cursor-pointer">
                                 Upload New Photo
                             </label>
-                            <div className="flex flex-row items-center justify-center gap-2">
-                                <p className="text-gray-400">Science</p>
-                                <p>20 January 2022</p>
-                            </div>
                         </div>
                     </div>
                 </div>
                 <div className="profile-update-form h-fit md:w-full border-2 rounded-lg font-medium">
                     <form className="flex flex-col gap-4 w-full p-8" onSubmit={handleSubmit}>
                         <div className="item-form gap-2">
-                            <label htmlFor="fullname">Full Name</label><br /><br />
+                            <label htmlFor="fullname">Full Name</label>
+                            <br /><br />
                             <input
                                 className="fullname border-2 w-full rounded-lg h-10 p-4"
                                 type="text"
@@ -141,7 +131,8 @@ const Profile = () => {
                             />
                         </div>
                         <div className="item-form gap-4">
-                            <label htmlFor="email">Email</label><br /><br />
+                            <label htmlFor="email">Email</label>
+                            <br /><br />
                             <input
                                 className="email border-2 w-full rounded-lg h-10 p-4"
                                 type="email"
@@ -152,7 +143,8 @@ const Profile = () => {
                             />
                         </div>
                         <div className="item-form gap-4">
-                            <label htmlFor="phone">Phone</label><br /><br />
+                            <label htmlFor="phone">Phone</label>
+                            <br /><br />
                             <input
                                 className="phone border-2 w-full rounded-lg h-10 p-4"
                                 type="text"
@@ -163,7 +155,8 @@ const Profile = () => {
                             />
                         </div>
                         <div className="item-form gap-4">
-                            <label htmlFor="password">Password</label><br /><br />
+                            <label htmlFor="password">Password</label>
+                            <br /><br />
                             <input
                                 className="password border-2 w-full rounded-lg h-10 p-4"
                                 type="password"
@@ -174,14 +167,15 @@ const Profile = () => {
                             />
                         </div>
                         <div className="item-form gap-4">
-                            <label htmlFor="address">Address</label><br /><br />
+                            <label htmlFor="address">Address</label>
+                            <br /><br />
                             <input
                                 className="address border-2 w-full rounded-lg h-10 p-4"
                                 type="text"
                                 id="address"
                                 value={profileData.address}
                                 onChange={handleChange}
-                                placeholder="Enter Your Address Again"
+                                placeholder="Enter Your Address"
                             />
                         </div>
                         <button className="item h-10 w-full rounded-lg bg-oren" type="submit">
@@ -192,6 +186,6 @@ const Profile = () => {
             </section>
         </main>
     );
-}
+};
 
 export default Profile;
