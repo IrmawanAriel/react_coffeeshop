@@ -2,7 +2,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import Cards from "./Cards";
-import Arrowkanan from "../icons/Arrowkanan.png";
+// import Arrowkanan from "../icons/Arrowkanan.png";
 
 interface Filters {
   sort: string;
@@ -252,7 +252,7 @@ const FilterComponent = () => {
       <div className="products basis-2/3">
         <Cards props={product}/>
 
-        <div className="flex flex-row gap-4 items-center justify-center">
+        {/* <div className="flex flex-row gap-4 items-center justify-center">
           <div className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
             1
           </div>
@@ -268,7 +268,7 @@ const FilterComponent = () => {
           <div className=" bg-gray-200 rounded-3xl p-2 px-4 items-center justify-center hover:bg-oren active:bg-oren">
             <img className="h-6 w-4" src={Arrowkanan} alt="" />
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

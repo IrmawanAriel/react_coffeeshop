@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import bg_coffeLogin from "../images/loginBG.jpg";
 import logoCoffee from "../images/logoCoffee.png";
 import coffeeShop from "../images/coffeeShop.png";
@@ -7,13 +7,13 @@ import passwordIcon from "../icons/password.png";
 import googleIcon from "../icons/google.png";
 import facebookIcon from "../icons/facebook.png";
 import GoogleFacebook from '../components/GoogleFacebook';
-import { useNavigate } from 'react-router-dom';
 import Input from '../components/Input';
 import { useState } from 'react';
-import { AppDispatch,  } from '../redux/store';
+import { AppDispatch } from '../redux/store';
 import { setToken, setIMG } from '../redux/slices/authSlice';
 import { useDispatch } from 'react-redux';
 import { fetchData } from '../redux/thunks';
+import Swal from 'sweetalert2'; // Import SweetAlert
 
 interface User {
     email: string;
@@ -36,26 +36,38 @@ const Login = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-
         try {
             const url = `${import.meta.env.VITE_REACT_APP_API_URL}/users/login`;
             const resultAction = await dispatch(fetchData({ serviceApi: url, data: user }));
         
             if (fetchData.rejected.match(resultAction)) {
-              throw new Error('Failed to login');
+                throw new Error('Failed to login');
             }
-        
+
             const { data } = resultAction.payload;
-        
             dispatch(setToken(data[0].token));
             dispatch(setIMG(resultAction.payload.image));
-            navigate("/home");
-          } catch (error) {
-            console.error(error);
-          }
 
+            // Show success alert
+            Swal.fire({
+                icon: 'success',
+                title: 'Login Successful',
+                text: 'You have logged in successfully!',
+                confirmButtonText: 'Go to Home'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate("/home"); // Navigate to home page
+                }
+            });
+        } catch (error) {
+            // Show error alert
+            Swal.fire({
+                icon: 'error',
+                title: 'Login Failed',
+                text: 'Invalid email or password. Please try again.',
+            });
+        }
     };
-
 
     return (
         <div className="container-fluid">
@@ -84,7 +96,9 @@ const Login = () => {
                                 input={{ type: 'password', name: 'password', placeholder: 'Enter your password', value: user.password, onChange: handleChange }}
                                 label="Password"
                             />
-                            <button className="item font-semibold border-2 bg-oren w-2/4 rounded-lg p-4 text-lg self-center" type="submit" disabled={!user.email || !user.password}>Login</button>
+                            <button className="item font-semibold border-2 bg-oren w-2/4 rounded-lg p-4 text-lg self-center" type="submit" disabled={!user.email || !user.password}>
+                                Login
+                            </button>
                         </form>
                         <section className="login-container flex flex-col gap-2 md:gap-4 w-full items-center justify-center">
                             <div className="haveAccount flex flex-row gap-2">
@@ -97,18 +111,12 @@ const Login = () => {
                             </div>
                             <div className="flex flex-col md:flex-row gap-4">
                                 <GoogleFacebook
-                                    img={{
-                                        src: googleIcon,
-                                        alt: 'Google Icon'
-                                    }}
+                                    img={{ src: googleIcon, alt: 'Google Icon' }}
                                     text="Google"
                                     link="#"
                                 />
                                 <GoogleFacebook
-                                    img={{
-                                        src: facebookIcon,
-                                        alt: 'Facebook Icon'
-                                    }}
+                                    img={{ src: facebookIcon, alt: 'Facebook Icon' }}
                                     text="Facebook"
                                     link="#"
                                 />
