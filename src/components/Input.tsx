@@ -31,7 +31,8 @@ function Input(props: InputProps) {
             name={input.name} 
             value={input.value} 
             placeholder={input.placeholder} 
-            onChange={input.onChange}/>
+            onChange={input.onChange}
+            className= "w-full outline-none	"/>
           </div>
       </div>
     </>
