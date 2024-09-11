@@ -21,7 +21,7 @@ interface ProfileData {
 }
 
 const Profile = () => {
-  const { token, image } = useSelector((state: RootState) => state.auth);
+  const { token } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
   const tokenPayload = jwtDecode<PayloadInterface>(token);
 
