@@ -96,7 +96,7 @@ export default function CheckoutProduct() {
           {ProductShopingCart.length === 0 ? <ChooseYourProduct/> : ProductShopingCart.map((product, index) => (
             <div key={`${index}-${product.idProduct ?? product.product_name}`} className="flex flex-row gap-4 items-center bg-gray-100">
               <div className="foto basis-1/3 p-4">
-                <img className="w-[178px] h-[170px] object-cover" src={product.image ? `${import.meta.env.VITE_REACT_APP_API_URL}/${product.image}` : nullSign} alt="Sunset in the mountains" />
+                <img className="w-[178px] h-[170px] object-cover" src={product.image ? `${product.image}` : nullSign} alt="Sunset in the mountains" />
               </div>
               <div className="flex flex-row w-full justify-between">
                 <div className="flex flex-col gap-2 md:gap-4">
