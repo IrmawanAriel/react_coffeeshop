@@ -11,6 +11,7 @@ interface DetailProduct {
   ice: boolean | null;
   image?: string; 
   product_name?: string;
+  price: number;
 };
 
 const initialState: productState = {

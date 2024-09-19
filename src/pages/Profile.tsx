@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import DefaultUser from "../images/unknown-user.jpg"
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
@@ -21,7 +22,7 @@ interface ProfileData {
 }
 
 const Profile = () => {
-  const { token, image } = useSelector((state: RootState) => state.auth);
+  const { token } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
   const tokenPayload = jwtDecode<PayloadInterface>(token);
 
@@ -114,7 +115,7 @@ const Profile = () => {
               src={
                 profileData.image instanceof File
                   ? URL.createObjectURL(profileData.image)
-                  : profileData.image
+                  : profileData.image ? profileData.image : DefaultUser
               }
               alt="Profile"
             />
@@ -125,8 +126,10 @@ const Profile = () => {
               className="hidden"
               id="upload-photo"
             />
-            <label htmlFor="upload-photo" className="item h-10 w-full bg-oren rounded-lg font-bold text-center cursor-pointer">
-              Upload New Photo
+            <label htmlFor="upload-photo" className="items-center justify-center p-2 w-full bg-oren rounded-lg font-bold text-center cursor-pointer">
+              <data value="" className=''>
+                Upload New Photo
+              </data>
             </label>
           </div>
         </div>
@@ -145,7 +148,7 @@ const Profile = () => {
                 />
               </div>
             ))}
-            <button className="item h-10 w-full bg-oren rounded-lg" type="submit">
+            <button className="item p-4 w-full bg-oren rounded-lg" type="submit">
               Update Profile
             </button>
           </form>

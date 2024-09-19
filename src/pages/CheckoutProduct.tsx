@@ -2,7 +2,7 @@ import xButtonIcon from '../icons/Xbutton.png';
 import bankersIcon from '../icons/Bankers.png';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import nullSign from '../assets/nullSign.png';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
 import { deleteProductShopingCart } from '../redux/slices/ProductCart';
@@ -38,6 +38,29 @@ export default function CheckoutProduct() {
     fullname: '',
     takeaway: '',
   });
+
+  const [total, setTotal] = useState({
+    order: 0,
+    delivery: 0,
+    tax: 2000,
+    subtotal: 0,
+  })
+
+  useEffect(()=>{
+    var plus = 0
+    ProductShopingCart.map((Product)=>{
+      plus += Product.price * (Product.quantity || 1)
+      })
+    const totalpayment =  plus
+    const Subtotal = totalpayment + total.delivery + total.tax
+
+    setTotal({
+      ...total,
+      order: totalpayment,
+      subtotal: Subtotal
+    })
+
+  },[ProductShopingCart])
 
   const checkoutAllProduct = async () => {
     const url = `${import.meta.env.VITE_REACT_APP_API_URL}/pesanan`;
@@ -96,7 +119,7 @@ export default function CheckoutProduct() {
           {ProductShopingCart.length === 0 ? <ChooseYourProduct/> : ProductShopingCart.map((product, index) => (
             <div key={`${index}-${product.idProduct ?? product.product_name}`} className="flex flex-row gap-4 items-center bg-gray-100">
               <div className="foto basis-1/3 p-4">
-                <img className="w-[178px] h-[170px] object-cover" src={product.image ? `${import.meta.env.VITE_REACT_APP_API_URL}/${product.image}` : nullSign} alt="Sunset in the mountains" />
+                <img className="w-[178px] h-[170px] object-cover" src={product.image ? `${product.image}` : nullSign} alt="Sunset in the mountains" />
               </div>
               <div className="flex flex-row w-full justify-between">
                 <div className="flex flex-col gap-2 md:gap-4">
@@ -110,7 +133,7 @@ export default function CheckoutProduct() {
                       <p>IDR40.000</p>
                     </div>
                     <div className="discount-price text-2xl text-[#FF8906]">
-                      <p>IDR10.000</p>
+                      <p>IDR. {product.price}</p>
                     </div>
                   </div>
                 </div>
@@ -143,7 +166,7 @@ export default function CheckoutProduct() {
               </div>
               <label className='text-xl font-medium'>Delivery</label>
               <div className="flex flex-col md:flex-row justify-between text-2xl">
-                <label className="radio-butto py-4 px-8 border-2 border-oren rounded rounded-xl active:bg-orange-300">
+                <label className={`radio-button py-4 px-8 border-2 border-oren rounded rounded-xl ${paymentInfo.takeaway === 'Dine In'? 'bg-orange-300': '' }`}>
                   <input
                     className='appearance-none'
                     type="radio"
@@ -154,7 +177,7 @@ export default function CheckoutProduct() {
                   />
                   Dine In
                 </label>
-                <label className="radio-button py-4 px-8 border-2 border-oren rounded rounded-xl active:bg-orange-300">
+                <label className={`radio-button py-4 px-8 border-2 border-oren rounded rounded-xl ${paymentInfo.takeaway === 'Door Delivery'? 'bg-orange-300': '' }`}>
                   <input
                     className='appearance-none'
                     type="radio"
@@ -165,7 +188,7 @@ export default function CheckoutProduct() {
                   />
                   Door Delivery
                 </label>
-                <label className="radio-button py-4 px-8 border-2 border-oren rounded rounded-xl active:bg-orange-300">
+                <label className={`radio-button py-4 px-8 border-2 border-oren rounded rounded-xl ${paymentInfo.takeaway === 'Pick up'? 'bg-orange-300': '' }`}>
                   <input
                     className='appearance-none'
                     type="radio"
@@ -187,20 +210,20 @@ export default function CheckoutProduct() {
             <div className="flex-col flex gap-4 p-4">
               <div className="flex-row flex  justify-between">
                 <div className="font-normal	 text-xl mb-2">Order</div>
-                <div className="font-semibold text-xl mb-2">IDR 40.000</div>
+                <div className="font-semibold text-xl mb-2">{total.order}</div>
               </div>
               <div className="flex-row flex  justify-between">
                 <div className="font-normal	 text-xl mb-2">Delivery</div>
-                <div className="font-semibold text-xl mb-2">IDR 40.000</div>
+                <div className="font-semibold text-xl mb-2">{total.delivery}</div>
               </div>
               <div className="flex-row flex  justify-between">
                 <div className="font-normal	 text-xl mb-2">Tax</div>
-                <div className="font-semibold text-xl mb-2">IDR 40.000</div>
+                <div className="font-semibold text-xl mb-2">{total.tax}</div>
               </div>
               <hr />
               <div className="flex-row flex  justify-between">
                 <div className="font-normal	 text-xl mb-2">Sub Total</div>
-                <div className="font-semibold text-xl mb-2">IDR 40.000</div>
+                <div className="font-semibold text-xl mb-2">{total.subtotal}</div>
               </div>
               <button className="item h-10 px-4 py-2 rounded-lg bg-oren font-bold w-full" onClick={checkoutAllProduct}>
                 Checkout

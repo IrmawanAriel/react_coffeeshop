@@ -116,6 +116,8 @@ function NavigationBar() {
                         <div className="bg-white absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md hidden shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-black"
                             role="menu" aria-orientation="vertical" aria-labelledby="menu-button1">
                             <div className="py-1" role="none">
+                                <Link to="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300 md:hidden"
+                                    id="menu-item-0">Profile</Link>
                                 <Link to="/home" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300 md:hidden"
                                     id="menu-item-0">Home</Link>
                                 <Link to="/product" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300 md:hidden"
@@ -162,6 +164,8 @@ function NavigationBar() {
                         <div className="bg-white absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md hidden shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-black"
                             role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
                             <div className="py-1" role="none">
+                                <Link to="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
+                                    id="menu-item-0">Profile</Link>
                                 <Link to="/home" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"
                                     id="menu-item-0">Home</Link>
                                 <Link to="/product" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300"

@@ -26,9 +26,10 @@ interface DetailProduct {
   ice: boolean | null;
   image?: string;
   product_name? : string;
+  price: number;
 }
 
-export default function ProductDetail() {
+export default function  ProductDetail() {
   const { id } = useParams<{ id: string }>();
   const [ProductInfo, setInfo] = useState<ProductInformation>();
   const [quantity, setQuantity] = useState<number>(1); // Initialize quantity state
@@ -42,6 +43,7 @@ export default function ProductDetail() {
     size: null,
     ice: false,
     image: undefined,
+    price: 0,
   });
 
   useEffect(() => {
@@ -57,6 +59,7 @@ export default function ProductDetail() {
           idProduct: detailResult.data.data[0].id,
           image: detailResult.data.data[0].image,
           product_name: detailResult.data.data[0].product_name,
+          price: detailResult.data.data[0].price,
         }));
       } catch (error) {
         console.log(error);
@@ -179,7 +182,7 @@ export default function ProductDetail() {
                 className="hidden"
                 onChange={() => handleSizeChange('Regular')}
               />
-              <div className="text-lg p-4 md:py-4 md:px-16 md:text-2xl text-black border-2 hover:border-oren peer-checked:bg-oren active:bg-oren">
+              <div className={`text-lg p-4 md:py-4 md:px-16 md:text-2xl text-black border-2 hover:border-oren peer-checked:bg-oren ${ProductForm.size === 'Regular'? 'bg-oren': ''}`}>
                 Regular
               </div>
             </label>
@@ -191,7 +194,7 @@ export default function ProductDetail() {
                 className="hidden"
                 onChange={() => handleSizeChange('Medium')}
               />
-              <div className="text-lg p-4 md:py-4 md:px-16 md:text-2xl text-black border-2 hover:border-oren peer-checked:bg-oren">
+              <div className={`text-lg p-4 md:py-4 md:px-16 md:text-2xl text-black border-2 hover:border-oren peer-checked:bg-oren ${ProductForm.size === 'Medium'? 'bg-oren': ''}`}>
                 Medium
               </div>
             </label>
@@ -203,7 +206,7 @@ export default function ProductDetail() {
                 className="hidden"
                 onChange={() => handleSizeChange('Large')}
               />
-              <div className="text-lg p-4 md:py-4 md:px-16 md:text-2xl text-black border-2 hover:border-oren peer-checked:bg-oren">
+              <div className={`text-lg p-4 md:py-4 md:px-16 md:text-2xl text-black border-2 hover:border-oren peer-checked:bg-oren ${ProductForm.size === 'Large'? 'bg-oren': ''}`}>
                 Large
               </div>
             </label>
@@ -218,7 +221,7 @@ export default function ProductDetail() {
                 className="hidden"
                 onChange={() => handleIceChange(true)}
               />
-              <div className="p-4 md:py-4 md:px-36 text-lg md:text-2xl text-black border-2 hover:border-oren peer-checked:bg-oren">
+              <div className={`p-4 md:py-4 md:px-36 text-lg md:text-2xl text-black border-2 hover:border-oren ${ProductForm.ice === true ? 'bg-oren': ''}`}>
                 Ice
               </div>
             </label>
@@ -230,7 +233,7 @@ export default function ProductDetail() {
                 className="hidden"
                 onChange={() => handleIceChange(false)}
               />
-              <div className="p-4 md:py-4 md:px-36 text-lg md:text-2xl text-black border-2 hover:border-oren peer-checked:bg-oren">
+              <div className={`p-4 md:py-4 md:px-36 text-lg md:text-2xl text-black border-2 hover:border-oren ${ProductForm.ice === false ? 'bg-oren': ''}`}>
                 Hot
               </div>
             </label>

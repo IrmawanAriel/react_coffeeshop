@@ -19,7 +19,6 @@ function Product() {
       </section>
         <PromoCards />
         <FilterComponent />
-        
     </main>
   );
 }
